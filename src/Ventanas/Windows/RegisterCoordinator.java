@@ -1,5 +1,6 @@
-package Ventanas.Ventanas;
+package Ventanas.Windows;
 
+import BusinessLogic.PersonDataValidations;
 import javax.swing.JOptionPane;
 
 /**
@@ -103,6 +104,8 @@ public class RegisterCoordinator extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButtonCancelActionPerformed
 
+    PersonDataValidations user = new PersonDataValidations();
+    
     private void jButtonRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegisterActionPerformed
         if (jTextFieldNameCoordinator.getText().isEmpty() 
                     || jTextFieldPersonalNumber.getText().isEmpty() 
@@ -111,12 +114,22 @@ public class RegisterCoordinator extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Favor de NO dejar espacios vacios");   
         }else{
             String nameCoordinator = jTextFieldNameCoordinator.getText();
-            String personalNumberCOordinator = jTextFieldPersonalNumber.getText();
+            String personalNumberCoordinator = jTextFieldPersonalNumber.getText();
             String mailCoordinator = jTextFieldMailCoordinator.getText();
             String passwordCoordinator = jTextFieldPasswordCoordinator.getText();
+            if((user.validateName(nameCoordinator) == true) && (user.validateEmail(mailCoordinator) == true)
+                    && (user.validatePassword(passwordCoordinator) == true)){
+                JOptionPane.showMessageDialog(this, "REGISTRO EXITOSO");
+                dispose(); 
+            }else if((user.validateName(nameCoordinator) == false)){
+                JOptionPane.showMessageDialog(this, "Asegurese ingresar un nombre valido");
+            }else if((user.validateEmail(mailCoordinator) == false)){
+                JOptionPane.showMessageDialog(this, "Asegurese de ingresar un Email valido");
+            }else if((user.validatePassword(passwordCoordinator) == false)){
+                JOptionPane.showMessageDialog(this, "Asegurese de que su contraseña contenga números y caracteres");
+            }
             
-            JOptionPane.showMessageDialog(this, "REGISTRO EXITOSO");
-            dispose();
+            
         }
                     
             

@@ -1,8 +1,10 @@
-package Ventanas.Ventanas;
+package Ventanas.Windows;
 
 
 import BusinessLogic.PersonDataValidations;
 import javax.swing.JOptionPane;
+
+
 
 /**
  *
@@ -88,7 +90,7 @@ public class Login extends javax.swing.JFrame {
       
     }//GEN-LAST:event_jTextFieldUserNameActionPerformed
 
-    PersonDataValidations usuario = new PersonDataValidations();
+    PersonDataValidations user = new PersonDataValidations();
     
     private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginActionPerformed
         if (jTextFieldUserName.getText().isEmpty() || jPasswordFieldPasswordUser.getText().isEmpty()){
@@ -96,14 +98,17 @@ public class Login extends javax.swing.JFrame {
         }else{
             String userName = jTextFieldUserName.getText();
             String userPassword = jPasswordFieldPasswordUser.getText();
-            usuario.validateEmail(userName);
-            usuario.validatePassword(userPassword);
-            usuario.saveEmailDao();
-            usuario.savePasswordDao();             
+            if(user.validateEmail(userName) == true && user.validatePassword(userPassword) == true){
+                PrincipalWindowAdministrator goToWindowAdministrator = new PrincipalWindowAdministrator();
+                goToWindowAdministrator.setVisible(true);
+                dispose();
+            }else if(user.validateEmail(userName) == true && user.validatePassword(userPassword) == false){
+                JOptionPane.showMessageDialog(this, "Verifique que su contraseña tenga números y letras");
+            }else if(user.validateEmail(userName) == false && user.validatePassword(userPassword) == true){
+                JOptionPane.showMessageDialog(this, "Verifique que su Email sea valido");
+            }
             
-            PrincipalWindowAdministrator goToWindowAdministrator = new PrincipalWindowAdministrator();
-            goToWindowAdministrator.setVisible(true);
-            dispose();
+          
         }
         
     }//GEN-LAST:event_jButtonLoginActionPerformed

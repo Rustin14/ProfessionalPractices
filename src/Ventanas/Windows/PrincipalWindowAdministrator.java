@@ -1,4 +1,4 @@
-package Ventanas.Ventanas;
+package Ventanas.Windows;
 
 import javax.swing.JOptionPane;
 
@@ -85,7 +85,7 @@ public class PrincipalWindowAdministrator extends javax.swing.JFrame {
         getContentPane().add(jButtonoptionDeleteProfesor, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 320, 230, 50));
 
         jLabelAdministratorIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ventanas/Imagenes/adminIcon.png"))); // NOI18N
-        getContentPane().add(jLabelAdministratorIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, -1, -1));
+        getContentPane().add(jLabelAdministratorIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, -1, -1));
 
         jLabelFound.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ventanas/Imagenes/Fondo.jpg"))); // NOI18N
         getContentPane().add(jLabelFound, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 731, 451));

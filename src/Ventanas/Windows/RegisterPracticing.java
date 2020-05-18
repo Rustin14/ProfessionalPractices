@@ -1,7 +1,8 @@
-package Ventanas.Ventanas;
+package Ventanas.Windows;
 
 import javax.swing.JOptionPane;
-
+import BusinessLogic.PersonDataValidations;
+import BusinessLogic.PracticingValidations;
 /**
  *
  * @author BRANDON
@@ -35,6 +36,10 @@ public class RegisterPracticing extends javax.swing.JFrame {
         jButtonRegister = new javax.swing.JButton();
         jRadioButtonWomanSex = new javax.swing.JRadioButton();
         jRadioButtonManSex = new javax.swing.JRadioButton();
+        jLabelMailPracticing = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jTextFieldPasswordPracticing = new javax.swing.JTextField();
+        jTextFieldMailPracticing = new javax.swing.JTextField();
         jLabelFound = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -55,39 +60,39 @@ public class RegisterPracticing extends javax.swing.JFrame {
         getContentPane().add(jLabelTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 10, -1, -1));
 
         jLabelPracticingIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ventanas/Imagenes/Practicings.png"))); // NOI18N
-        getContentPane().add(jLabelPracticingIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, -1, -1));
+        getContentPane().add(jLabelPracticingIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
 
         jLabelNamePracticing.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabelNamePracticing.setText("Nombre :");
-        getContentPane().add(jLabelNamePracticing, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 100, -1, -1));
+        getContentPane().add(jLabelNamePracticing, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 80, -1, -1));
 
         jLabelEnrollmentPracticing.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabelEnrollmentPracticing.setText("Matricula :");
-        getContentPane().add(jLabelEnrollmentPracticing, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 160, -1, -1));
+        getContentPane().add(jLabelEnrollmentPracticing, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 120, 100, -1));
 
         jLabelSex.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabelSex.setText("Sexo :");
-        getContentPane().add(jLabelSex, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 210, -1, -1));
+        getContentPane().add(jLabelSex, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 160, -1, -1));
 
         jLabelProfessor.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabelProfessor.setText("Profesor :");
-        getContentPane().add(jLabelProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 260, -1, -1));
+        getContentPane().add(jLabelProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 200, -1, -1));
 
         jLabelLanguageIndigenous.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabelLanguageIndigenous.setText("¿Habla alguna lengua indigena?");
-        getContentPane().add(jLabelLanguageIndigenous, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, -1, -1));
+        getContentPane().add(jLabelLanguageIndigenous, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 320, -1, -1));
 
         jTextFieldNamePracticing.setBackground(new java.awt.Color(204, 255, 255));
-        getContentPane().add(jTextFieldNamePracticing, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 100, 230, 30));
+        getContentPane().add(jTextFieldNamePracticing, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 80, 230, 30));
 
         jTextFieldEnrollmentPracticing.setBackground(new java.awt.Color(204, 255, 255));
-        getContentPane().add(jTextFieldEnrollmentPracticing, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 160, 230, 30));
+        getContentPane().add(jTextFieldEnrollmentPracticing, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 120, 230, 30));
 
         jTextFieldProfessor.setBackground(new java.awt.Color(204, 255, 255));
-        getContentPane().add(jTextFieldProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 260, 230, 30));
+        getContentPane().add(jTextFieldProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 200, 230, 30));
 
         jTextFieldLanguageIndigenous.setBackground(new java.awt.Color(204, 255, 255));
-        getContentPane().add(jTextFieldLanguageIndigenous, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 310, 230, 30));
+        getContentPane().add(jTextFieldLanguageIndigenous, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 320, 230, 30));
 
         jButtonRegister.setBackground(new java.awt.Color(204, 255, 255));
         jButtonRegister.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -102,23 +107,42 @@ public class RegisterPracticing extends javax.swing.JFrame {
         jRadioButtonWomanSex.setBackground(new java.awt.Color(204, 255, 255));
         buttonGroupChoiceOfSex.add(jRadioButtonWomanSex);
         jRadioButtonWomanSex.setText("Femenino");
-        getContentPane().add(jRadioButtonWomanSex, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 210, -1, -1));
+        getContentPane().add(jRadioButtonWomanSex, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 160, -1, -1));
 
         jRadioButtonManSex.setBackground(new java.awt.Color(204, 255, 255));
         buttonGroupChoiceOfSex.add(jRadioButtonManSex);
         jRadioButtonManSex.setText("Masculino");
-        getContentPane().add(jRadioButtonManSex, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 210, -1, -1));
+        getContentPane().add(jRadioButtonManSex, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 160, -1, -1));
+
+        jLabelMailPracticing.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabelMailPracticing.setText("Correo :");
+        getContentPane().add(jLabelMailPracticing, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 240, -1, -1));
+
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel1.setText("Asigne una contraseña :");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 280, -1, -1));
+
+        jTextFieldPasswordPracticing.setBackground(new java.awt.Color(204, 255, 255));
+        getContentPane().add(jTextFieldPasswordPracticing, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 280, 230, 30));
+
+        jTextFieldMailPracticing.setBackground(new java.awt.Color(204, 255, 255));
+        getContentPane().add(jTextFieldMailPracticing, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 240, 230, 30));
 
         jLabelFound.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ventanas/Imagenes/Fondo.jpg"))); // NOI18N
-        getContentPane().add(jLabelFound, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -1, 729, 440));
+        getContentPane().add(jLabelFound, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 729, 440));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
-        System.exit(0);
+        PrincipalWindowCoordinator returnToWindowCoordinator = new PrincipalWindowCoordinator();
+        returnToWindowCoordinator.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButtonCancelActionPerformed
 
+    PersonDataValidations user = new PersonDataValidations();
+    PracticingValidations practicing = new PracticingValidations();
+    
     private void jButtonRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegisterActionPerformed
         if (jTextFieldNamePracticing.getText().isEmpty() || jTextFieldEnrollmentPracticing.getText().isEmpty() 
                     || jTextFieldProfessor.getText().isEmpty() || jTextFieldLanguageIndigenous.getText().isEmpty()){
@@ -128,19 +152,32 @@ public class RegisterPracticing extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Favor de NO dejar campos vacios");
         }else{
             String namePracticing = jTextFieldNamePracticing.getText();
-            String enrollmentParcticing = jTextFieldEnrollmentPracticing.getText();
+            String enrollmentPracticing = jTextFieldEnrollmentPracticing.getText();
             String nameProfessor = jTextFieldProfessor.getText();
+            String mailPracticing = jTextFieldMailPracticing.getText();
+            String passwordPracticing = jTextFieldPasswordPracticing.getText();
             String languageIndigenous = jTextFieldLanguageIndigenous.getText();
             String choiceOfSex = null;
-            
             if (jRadioButtonManSex.isSelected() == true){
                 choiceOfSex = jRadioButtonManSex.getText();
             }else{
                 choiceOfSex = jRadioButtonWomanSex.getText();
             }
-            
-            JOptionPane.showMessageDialog(this, "REGISTRO EXITOSO");
-            dispose();
+            if((user.validateName(namePracticing) == true) && (practicing.validateEnrollment(enrollmentPracticing) == true)
+                    && (user.validateName(nameProfessor) == true) && (user.validateEmail(mailPracticing) == true) 
+                            && (user.validatePassword(passwordPracticing)) == true){
+                JOptionPane.showMessageDialog(this, "REGISTRO EXITOSO");
+                dispose();
+            }else if((user.validateName(namePracticing) == false) || (user.validateName(nameProfessor) == false)){
+                JOptionPane.showMessageDialog(this, "Revise el apartado Nombre o Profesor,"
+                        + " los nombres deben estar correctamente escritos y solo se puede ingresar texto");
+            }else if(practicing.validateEnrollment(enrollmentPracticing) == false){
+                JOptionPane.showMessageDialog(this, "Ingrese una matricula valida");
+            }else if(user.validateEmail(mailPracticing) == false){
+                JOptionPane.showMessageDialog(this, "Ingrese un Email valido");
+            }else if(user.validatePassword(passwordPracticing) == false){
+                JOptionPane.showMessageDialog(this, "Ingrese una contraseña que contenga números y letras");
+            }
         }
     }//GEN-LAST:event_jButtonRegisterActionPerformed
 
@@ -158,9 +195,11 @@ public class RegisterPracticing extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroupChoiceOfSex;
     private javax.swing.JButton jButtonCancel;
     private javax.swing.JButton jButtonRegister;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelEnrollmentPracticing;
     private javax.swing.JLabel jLabelFound;
     private javax.swing.JLabel jLabelLanguageIndigenous;
+    private javax.swing.JLabel jLabelMailPracticing;
     private javax.swing.JLabel jLabelNamePracticing;
     private javax.swing.JLabel jLabelPracticingIcon;
     private javax.swing.JLabel jLabelProfessor;
@@ -170,7 +209,9 @@ public class RegisterPracticing extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButtonWomanSex;
     private javax.swing.JTextField jTextFieldEnrollmentPracticing;
     private javax.swing.JTextField jTextFieldLanguageIndigenous;
+    private javax.swing.JTextField jTextFieldMailPracticing;
     private javax.swing.JTextField jTextFieldNamePracticing;
+    private javax.swing.JTextField jTextFieldPasswordPracticing;
     private javax.swing.JTextField jTextFieldProfessor;
     // End of variables declaration//GEN-END:variables
 }

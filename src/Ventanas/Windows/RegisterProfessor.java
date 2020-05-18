@@ -1,6 +1,7 @@
-package Ventanas.Ventanas;
+package Ventanas.Windows;
 
 import javax.swing.JOptionPane;
+import BusinessLogic.PersonDataValidations;
 
 /**
  *
@@ -120,6 +121,8 @@ public class RegisterProfessor extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButtonCancelActionPerformed
 
+    PersonDataValidations user = new PersonDataValidations ();
+    
     private void jButtonRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegisterActionPerformed
         if (jTextFieldNameProfessor.getText().isEmpty() || jTextFieldPersonalNumber.getText().isEmpty()
                     || jTextFieldMailProfessor.getText().isEmpty() || jTextFieldPasswordProfessor.getText().isEmpty()){
@@ -132,15 +135,24 @@ public class RegisterProfessor extends javax.swing.JFrame {
             String mailProfessor = jTextFieldMailProfessor.getText();
             String passwordProfessor = jTextFieldPasswordProfessor.getText();
             String choiceOfTurn = null;
-            
             if (jRadioButtonMorningShift.isSelected() == true){
                 choiceOfTurn = jRadioButtonMorningShift.getText();
             }else {
                 choiceOfTurn = jRadioButtonEveningShift.getText();
             }
+             if((user.validateName(nameProfessor) == true) && (user.validateEmail(mailProfessor) == true) 
+                     && (user.validatePassword(passwordProfessor) == true)){
+                JOptionPane.showMessageDialog(this, "REGISTRO EXITOSO");
+                dispose();
+            }else if(user.validateName(nameProfessor) == false){
+                JOptionPane.showMessageDialog(this, "Favor de ingresar un nombre valido");
+            }else if(user.validateEmail(mailProfessor) == false){
+                JOptionPane.showMessageDialog(this, "Ingrese un email valido");
+            }else if(user.validatePassword(passwordProfessor) == false){
+                JOptionPane.showMessageDialog(this, "Ingrese una contraseña valida");
+            }
             
-            JOptionPane.showMessageDialog(this, "REGISTRO EXITOSO");
-            dispose();
+           
         }
     }//GEN-LAST:event_jButtonRegisterActionPerformed
 
