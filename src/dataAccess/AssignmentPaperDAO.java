@@ -6,10 +6,10 @@ Date of creation: May 8th. 2020
 */
 package dataAccess;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
+import Domain.AcceptancePaper;
+import Domain.AssignmentPaper;
+
+import java.io.*;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -43,8 +43,31 @@ public class AssignmentPaperDAO implements IAssignmentPaperDAO {
     }
 
     @Override
-    public void readAssignmentPaperByIDAssignment(int id_assignment) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public AssignmentPaper readAssignmentPaperByIDAssignment(int id_assignment, String address) {
+        AssignmentPaper paper = null;
+        ResultSet resultSet = null;
+        try (Connection connect = connectDB.getConnection()) {
+            String query = "SELECT paperFile FROM assignmentpaper where id_assignment = ?";
+            PreparedStatement statement = connect.prepareStatement(query);
+            resultSet = statement.executeQuery();
+        } catch (SQLException exc) {
+            Logger.getLogger(AssignmentPaperDAO.class.getName()).log(Level.SEVERE, null, exc);
+        }
+        try {
+            File file = new File(address);
+            FileOutputStream outputStream = new FileOutputStream(file);
+            while (results.next()) {
+                InputStream input = resultSet.getBinaryStream("paperFile");
+                byte[] buffer = new byte[1024];
+                while (input.read(buffer) > 0) {
+                    outputStream.write(buffer);
+                }
+                paper.setPaperFile(buffer);
+            }
+        } catch (IOException | SQLException exc) {
+            Logger.getLogger(AssignmentPaperDAO.class.getName()).log(Level.SEVERE, null, exc);
+        }
+        return paper;
     }
 
     @Override

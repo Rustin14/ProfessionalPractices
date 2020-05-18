@@ -14,7 +14,7 @@ public class MonthlyReport {
     private int monthNumber;
     private int score;
     private String observations;
-    private Date dueDate;
+    private java.sql.Date dueDate;
     private byte[] paperFile;
     private String address;
 
