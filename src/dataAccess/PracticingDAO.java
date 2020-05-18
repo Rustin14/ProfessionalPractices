@@ -83,26 +83,20 @@ public class PracticingDAO implements IPracticingDAO {
         } catch (SQLException exc) {
             Logger.getLogger(PracticingDAO.class.getName()).log(Level.SEVERE, null, exc);
         }
-        String flag = null;
-        while (flag.equals("Y") || flag.equals("N")) {
-            System.out.println("Are you sure you want to erase this data? Y/N");
-            flag = sc.nextLine();
-            if (flag.equals("Y")) {
-                try {
-                    sentence = connect.prepareStatement("COMMIT");
-                    sentence.executeQuery();
-                } catch (SQLException exc) {
-                    System.out.println("The operation couldn't be completed.");
-                }
-            } else if (flag.equals("N")) {
-                try {
-                    sentence = connect.prepareStatement("ROLLBACK");
-                    sentence.executeQuery();
-                } catch (SQLException exc) {
-                    System.out.println("The operation couldn't be completed.");
-                }
-            } else {
-                System.out.println("Answer not valid. Try again.");
+        boolean userAnswer = true;
+        if (userAnswer) {
+            try {
+                sentence = connect.prepareStatement("COMMIT");
+                sentence.executeQuery();
+            } catch (SQLException exc) {
+                Logger.getLogger(CompanyDAO.class.getName()).log(Level.SEVERE, null, exc);
+            }
+        } else {
+            try {
+                sentence = connect.prepareStatement("ROLLBACK");
+                sentence.executeQuery();
+            } catch (SQLException exc) {
+                Logger.getLogger(CompanyDAO.class.getName()).log(Level.SEVERE, null, exc);
             }
         }
     }
