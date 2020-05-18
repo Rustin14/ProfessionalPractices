@@ -8,10 +8,8 @@ package dataAccess;
 
 import Domain.AcceptancePaper;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
+import javax.xml.transform.Result;
+import java.io.*;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -45,19 +43,31 @@ public class AcceptancePaperDAO implements IAcceptancePaperDAO{
     }
 
     @Override
-    public AcceptancePaper readAcceptancePaperByIDAcceptance(int id_acceptance) {
+    public AcceptancePaper readAcceptancePaperByIDAcceptance(int id_acceptance, String address) {
         AcceptancePaper paper = null;
+        ResultSet resultSet = null;
         try (Connection connect = connectDB.getConnection()) {
             String query = "SELECT paperFile FROM paperacceptance where id_acceptance = ?";
             PreparedStatement statement = connect.prepareStatement(query);
-            try {
-                FileInputStream inputStream = new FileInputStream(new File(address));
-            }
-            statemente
-
-        } catch (SQLException) {
+            resultSet = statement.executeQuery();
+        } catch (SQLException exc) {
             Logger.getLogger(AcceptancePaperDAO.class.getName()).log(Level.SEVERE, null, exc);
         }
+        try {
+            File file = new File(address);
+            FileOutputStream outputStream = new FileOutputStream(file);
+            while (results.next()) {
+                InputStream input = resultSet.getBinaryStream("paperFile");
+                byte[] buffer = new byte[1024];
+                while (input.read(buffer) > 0) {
+                    outputStream.write(buffer);
+                }
+            paper.setPaperFile(buffer);
+            }
+        } catch (IOException | SQLException exc) {
+            Logger.getLogger(AcceptancePaperDAO.class.getName()).log(Level.SEVERE, null, exc);
+        }
+        return paper;
     }
 
     @Override
