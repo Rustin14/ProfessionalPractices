@@ -18,7 +18,7 @@ public class Company {
     private int id_coordinator;
     private int id_course;
 
-    enum myEnum {PRIMARY, SECONDARY, TERTIARY}
+    public enum myEnum {PRIMARY, SECONDARY, TERTIARY}
 
     public Company(){}
 

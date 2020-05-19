@@ -1,4 +1,4 @@
-package dataAccess;
+package InterfacesDAO;
 
 import Domain.AssignmentPaper;
 

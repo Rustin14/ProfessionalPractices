@@ -7,6 +7,8 @@ Date of creation: April 22nd. 2020
 
 package dataAccess;
 import Domain.Person;
+import InterfacesDAO.IPersonDAO;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,7 +20,7 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class PersonDAO implements IPersonDAO{
+public class PersonDAO implements IPersonDAO {
     private final ConnectDB connectDB;
     private Connection connection;
     private Statement consultation;

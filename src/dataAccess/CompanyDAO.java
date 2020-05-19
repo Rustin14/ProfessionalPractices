@@ -6,6 +6,8 @@ Date of creation: April 29th. 2020
 */
 package dataAccess;
 import Domain.Company;
+import InterfacesDAO.ICompanyDAO;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -27,6 +29,31 @@ public class CompanyDAO implements ICompanyDAO {
         connectDB = new ConnectDB();
     }
 
+
+    @Override
+    public void saveCompany(int id_company, String name, String address, String email, String state,
+                            String phoneNumber, Company.myEnum sector,
+                            String city, int id_coordinator, int id_course) {
+        try (Connection connect = connectDB.getConnection()){
+            String query = "INSERT INTO company (id_company, name, address, email, " +
+                    "state, phoneNumber, sector, city, id_coordinator, id_course) " +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            PreparedStatement statement = connect.prepareStatement(query);
+            statement.setInt(1, id_company);
+            statement.setString(2, name);
+            statement.setString(3, address);
+            statement.setString(4, email);
+            statement.setString(5, state);
+            statement.setString(6, phoneNumber);
+            statement.setString(7, String.valueOf(sector));
+            statement.setString(8, city);
+            statement.setInt(9, id_coordinator);
+            statement.setInt(10, id_course);
+            statement.executeQuery();
+        } catch (SQLException exc) {
+            Logger.getLogger(CompanyDAO.class.getName()).log(Level.SEVERE, null, exc);
+        }
+    }
 
     @Override
     public Company searchCompanyByIDCompany(int id_company) {

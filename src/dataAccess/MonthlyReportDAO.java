@@ -6,16 +6,15 @@ Date of creation: May 8th. 2020
 */
 package dataAccess;
 
-import Domain.AssignmentPaper;
 import Domain.MonthlyReport;
+import InterfacesDAO.IMonthlyReportDAO;
 
 import java.io.*;
 import java.sql.*;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class MonthlyReportDAO implements IMonthlyReportDAO{
+public class MonthlyReportDAO implements IMonthlyReportDAO {
     private ConnectDB connectDB;
     private Connection connection;
     private Statement statement;

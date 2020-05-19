@@ -3,15 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dataAccess;
+package InterfacesDAO;
 import Domain.Practicing;
 import java.util.List;
 
-/**
- *
- * @author BRANDON TRUJILLO
- */
+
 public interface IPracticingDAO {
+    public void savePracticing (int id_person, String name, String enrollment, int id_project, int id_professor);
     public Practicing searchPracticingByEnrollment (String enrollment);
     public Practicing searchPracticingByKeyword (String keyword);
     public void deletePracticingByEnrollment (String enrollment);

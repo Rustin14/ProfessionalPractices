@@ -6,8 +6,8 @@ Date of creation: May 8th. 2020
 */
 package dataAccess;
 
-import Domain.AcceptancePaper;
 import Domain.AssignmentPaper;
+import InterfacesDAO.IAssignmentPaperDAO;
 
 import java.io.*;
 import java.sql.*;

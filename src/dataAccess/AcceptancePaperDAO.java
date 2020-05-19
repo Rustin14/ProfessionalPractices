@@ -7,14 +7,14 @@ Date of creation: May 8th. 2020
 package dataAccess;
 
 import Domain.AcceptancePaper;
+import InterfacesDAO.IAcceptancePaperDAO;
 
-import javax.xml.transform.Result;
 import java.io.*;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class AcceptancePaperDAO implements IAcceptancePaperDAO{
+public class AcceptancePaperDAO implements IAcceptancePaperDAO {
     private ConnectDB connectDB;
     private Connection connection;
     private Statement statement;

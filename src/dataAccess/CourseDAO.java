@@ -7,6 +7,8 @@ Date of creation: April 22nd. 2020
 
 package dataAccess;
 import Domain.Course;
+import InterfacesDAO.ICourseDAO;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,7 +20,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.Scanner;
 
-public class CourseDAO implements ICourseDAO  {
+public class CourseDAO implements ICourseDAO {
     private final ConnectDB connectDB;
     private Connection connection;
     private Statement statement;
@@ -26,6 +28,21 @@ public class CourseDAO implements ICourseDAO  {
 
     public CourseDAO() {
         connectDB = new ConnectDB();
+    }
+
+    @Override
+    public void saveCourse(int id_course, String NRC, String period, String name) {
+        try (Connection connect = connectDB.getConnection()){
+            String query = "INSERT INTO course (id_course, NRC, period, name) VALUES (?, ?, ?, ?)";
+            PreparedStatement statement = connect.prepareStatement(query);
+            statement.setInt(1, id_course);
+            statement.setString(2, NRC);
+            statement.setString(3, period);
+            statement.setString(4, name);
+            statement.executeQuery();
+        } catch (SQLException exc) {
+            Logger.getLogger(CompanyDAO.class.getName()).log(Level.SEVERE, null, exc);
+        }
     }
 
     public Course searchCourseByNRC (String NRC) {

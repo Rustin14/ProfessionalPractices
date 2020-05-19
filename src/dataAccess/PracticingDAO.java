@@ -6,6 +6,8 @@ Date of creation: April 22nd. 2020
 */
 package dataAccess;
 import Domain.Practicing;
+import InterfacesDAO.IPracticingDAO;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,7 +16,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.concurrent.ConcurrentNavigableMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -28,7 +29,23 @@ public class PracticingDAO implements IPracticingDAO {
     public PracticingDAO() {
         connectDB = new ConnectDB();
     }
-    
+
+    @Override
+    public void savePracticing(int id_person, String name, String enrollment, int id_project, int id_professor) {
+        try (Connection connect = connectDB.getConnection()){
+            String query = "INSERT INTO practicing (id_person, name, enrollment, id_project, id_professor) VALUES (?, ?, ?, ?, ?)";
+            PreparedStatement statement = connect.prepareStatement(query);
+            statement.setInt(1, id_person);
+            statement.setString(2, name);
+            statement.setString(3, enrollment);
+            statement.setInt(4, id_project);
+            statement.setInt(4, id_professor);
+            statement.executeQuery();
+        } catch (SQLException exc) {
+            Logger.getLogger(CompanyDAO.class.getName()).log(Level.SEVERE, null, exc);
+        }
+    }
+
     @Override
     public Practicing searchPracticingByEnrollment (String enrollment){
         Practicing practicing = null;

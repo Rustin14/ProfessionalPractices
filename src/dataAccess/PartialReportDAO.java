@@ -6,8 +6,8 @@ Date of creation: May 8th. 2020
 */
 package dataAccess;
 
-import Domain.MonthlyReport;
 import Domain.PartialReport;
+import InterfacesDAO.IPartialReportDAO;
 
 import java.io.*;
 import java.sql.*;

@@ -5,7 +5,7 @@ Class name: IPersonDAO
 Date of creation: March 22nd. 2020
 */
 
-package dataAccess;
+package InterfacesDAO;
 
 import Domain.Person;
 import Domain.Practicing;

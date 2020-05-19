@@ -5,8 +5,9 @@ Class name: ProfessorDAO
 Date of creation: April 28th. 2020
 */
 package dataAccess;
-import Domain.Person;
 import Domain.Professor;
+import InterfacesDAO.IProfessorDAO;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -26,6 +27,21 @@ public class ProfessorDAO implements IProfessorDAO {
 
     public ProfessorDAO() {
         connectDB = new ConnectDB();
+    }
+
+    @Override
+    public void saveProfessor(int id_person, String name, int cubicle, String staff_number) {
+        try (Connection connect = connectDB.getConnection()){
+            String query = "INSERT INTO professor (id_person, name, cubicle, staff_number) VALUES (?, ?, ?, ?)";
+            PreparedStatement statement = connect.prepareStatement(query);
+            statement.setInt(1, id_person);
+            statement.setString(2, name);
+            statement.setInt(4, cubicle);
+            statement.setString(4, staff_number);
+            statement.executeQuery();
+        } catch (SQLException exc) {
+            Logger.getLogger(CompanyDAO.class.getName()).log(Level.SEVERE, null, exc);
+        }
     }
 
     @Override

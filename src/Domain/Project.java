@@ -13,22 +13,22 @@ public class Project {
     private String general_purpose;
     private String general_description;
     private int id_company;
-    private String charge_Responsable;
-    private String name_Responsable;
-    private String email_Responsable;
+    private String chargeResponsable;
+    private String nameResponsable;
+    private String emailResponsable;
 
     public Project(){}
 
-    public Project(int id_project, String name, float duration, String general_purpose, String general_description, int id_company, String charge_Responsable, String name_Responsable, String email_Responsable) {
+    public Project(int id_project, String name, float duration, String general_purpose, String general_description, int id_company, String chargeResponsable, String nameResponsable, String emailResponsable) {
         this.id_project = id_project;
         this.name = name;
         this.duration = duration;
         this.general_purpose = general_purpose;
         this.general_description = general_description;
         this.id_company = id_company;
-        this.charge_Responsable = charge_Responsable;
-        this.name_Responsable = name_Responsable;
-        this.email_Responsable = email_Responsable;
+        this.chargeResponsable = chargeResponsable;
+        this.nameResponsable = nameResponsable;
+        this.emailResponsable = emailResponsable;
     }
 
     public int getId_project() {
@@ -79,27 +79,27 @@ public class Project {
         this.id_company = id_company;
     }
 
-    public String getCharge_Responsable() {
-        return charge_Responsable;
+    public String getChargeResponsable() {
+        return chargeResponsable;
     }
 
-    public void setCharge_Responsable(String charge_Responsable) {
-        this.charge_Responsable = charge_Responsable;
+    public void setChargeResponsable(String chargeResponsable) {
+        this.chargeResponsable = chargeResponsable;
     }
 
-    public String getName_Responsable() {
-        return name_Responsable;
+    public String getNameResponsable() {
+        return nameResponsable;
     }
 
-    public void setName_Responsable(String name_Responsable) {
-        this.name_Responsable = name_Responsable;
+    public void setNameResponsable(String nameResponsable) {
+        this.nameResponsable = nameResponsable;
     }
 
-    public String getEmail_Responsable() {
-        return email_Responsable;
+    public String getEmailResponsable() {
+        return emailResponsable;
     }
 
-    public void setEmail_Responsable(String email_Responsable) {
-        this.email_Responsable = email_Responsable;
+    public void setEmailResponsable(String emailResponsable) {
+        this.emailResponsable = emailResponsable;
     }
 }
