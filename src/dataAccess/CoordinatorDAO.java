@@ -116,19 +116,25 @@ public class CoordinatorDAO implements ICoordinatorDAO {
     public List<Coordinator> returnAllCoordinators() {
         List<Coordinator> AllCoordinators = new ArrayList();
         Coordinator coordinator = null;
-        try (Connection connection = connectDB.getConnection()) {
-            String query = "SELECT id_person, name FROM coordinator";
-            PreparedStatement statement = connection.prepareStatement(query);
-            statement.executeQuery();
+        try {
+            Connection connection = connectDB.getConnection();
+            consultation = connection.createStatement();
+            results = consultation.executeQuery("SELECT * FROM coordinator");
             while (results.next()) {
                 coordinator = new Coordinator();
                 coordinator.setId_person(results.getInt("id_person"));
                 coordinator.setName(results.getString("name"));
+                coordinator.setCubicle(results.getInt("cubicle"));
+                coordinator.setStaff_number(results.getString("staff_number"));
+                coordinator.setEmail(results.getString("email"));
+                coordinator.setPassword(results.getString("password"));
                 AllCoordinators.add(coordinator);
             }
         } catch (SQLException exc) {
             Logger.getLogger(CoordinatorDAO.class.getName()).log(Level.SEVERE, null, exc);
 
+        } finally {
+            connectDB.closeConnection();
         }
         return AllCoordinators;
     }

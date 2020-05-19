@@ -125,11 +125,15 @@ public class ProfessorDAO implements IProfessorDAO {
         try {
             connection = connectDB.getConnection();
             consultation = connection.createStatement();
-            results = consultation.executeQuery("SELECT id_person, name from professor");
+            results = consultation.executeQuery("SELECT * FROM professor");
             while (results.next()) {
                 professor = new Professor();
                 professor.setId_person(results.getInt("id_person"));
                 professor.setName(results.getString("name"));
+                professor.setCubicle(results.getInt("cubicle"));
+                professor.setStaff_number(results.getString("staff_number"));
+                professor.setEmail(results.getString("email"));
+                professor.setPassword(results.getString("password"));
                 allProfessors.add(professor);
             }
         } catch (SQLException exc) {
