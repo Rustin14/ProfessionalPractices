@@ -11,6 +11,8 @@ public class Professor extends Person {
     private int id_person;
     private int cubicle;
     private String staff_number;
+    private String email;
+    private String password;
 
     public Professor(){}
 
@@ -53,5 +55,23 @@ public class Professor extends Person {
     @Override
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String getEmail() {
+        return email;
+    }
+
+    @Override
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

@@ -15,6 +15,8 @@ public class Practicing {
     private String enrollment;
     private int id_project;
     private int id_professor;
+    private String email;
+    private String password;
 
 
     public Practicing(String id_person, String name, String enrollment, int id_project, int id_professor) {
@@ -68,5 +70,21 @@ public class Practicing {
 
     public void setId_professor(int id_professor) {
         this.id_professor = id_professor;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

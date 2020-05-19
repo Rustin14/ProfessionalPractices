@@ -1,7 +1,11 @@
 package Ventanas.Windows;
 
 
+import BusinessLogic.LoginValidation;
 import BusinessLogic.PersonDataValidations;
+import Domain.Coordinator;
+import Domain.Professor;
+
 import javax.swing.JOptionPane;
 
 
@@ -98,10 +102,16 @@ public class Login extends javax.swing.JFrame {
         }else{
             String userName = jTextFieldUserName.getText();
             String userPassword = jPasswordFieldPasswordUser.getText();
+            LoginValidation validation = new LoginValidation();
             if(user.validateEmail(userName) == true && user.validatePassword(userPassword) == true){
-                PrincipalWindowAdministrator goToWindowAdministrator = new PrincipalWindowAdministrator();
+                if (validation.validateLoginEmail(userName).getClass().equals(new Coordinator())) {
+                    PrincipalWindowCoordinator goToWindowCoordinator = new PrincipalWindowCoordinator();
+                    goToWindowCoordinator.setVisible(true);
+                    dispose();
+                }
+                /*PrincipalWindowAdministrator goToWindowAdministrator = new PrincipalWindowAdministrator();
                 goToWindowAdministrator.setVisible(true);
-                dispose();
+                dispose();*/
             }else if(user.validateEmail(userName) == true && user.validatePassword(userPassword) == false){
                 JOptionPane.showMessageDialog(this, "Verifique que su contraseña tenga números y letras");
             }else if(user.validateEmail(userName) == false && user.validatePassword(userPassword) == true){
