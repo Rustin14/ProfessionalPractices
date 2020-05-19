@@ -17,9 +17,9 @@ public class LoginValidation {
         } else if (loginCoordinator(email)) {
             return new Coordinator();
         }
-        else if (loginPracticing(email)) {
+        /*else if (loginPracticing(email)) {
             return new Practicing();
-        }
+        }*/
         return null;
     }
 
