@@ -25,14 +25,14 @@ public class LoginValidation {
 
     public boolean loginProfessor(String email) {
         ProfessorDAO professorDAO = new ProfessorDAO();
-        List<Professor> allProfessors = new ArrayList();
-        allProfessors = professorDAO.returnAllProfessors();
+        List<Professor> allProfessors = professorDAO.returnAllProfessors();
         int i = 0;
         boolean flag = false;
-        while (i < allProfessors.size() && !flag) {
+        while (i < allProfessors.size()) {
             if ((allProfessors.get(i)).getEmail().equals(email)) {
                 flag = true;
             }
+            i++;
         }
         return flag;
     }
@@ -43,10 +43,11 @@ public class LoginValidation {
         allCoordinators = coordinatorDAO.returnAllCoordinators();
         int i = 0;
         boolean flag = false;
-        while (i < allCoordinators.size() && !flag) {
+        while (i < allCoordinators.size()) {
             if ((allCoordinators.get(i)).getEmail().equals(email)) {
                 flag = true;
             }
+            i++;
         }
         return flag;
     }

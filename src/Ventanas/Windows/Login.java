@@ -104,26 +104,28 @@ public class Login extends javax.swing.JFrame {
             String userPassword = jPasswordFieldPasswordUser.getText();
             LoginValidation validation = new LoginValidation();
             if(user.validateEmail(userName) == true && user.validatePassword(userPassword) == true){
-                if (validation.validateLoginEmail(userName).getClass().equals(new Coordinator())) {
+                if(user.validateEmail(userName) == true && user.validatePassword(userPassword) == false) {
+                    JOptionPane.showMessageDialog(this, "Verifique que su contraseña tenga números y letras");
+                } else if(user.validateEmail(userName) == false && user.validatePassword(userPassword) == true) {
+                    JOptionPane.showMessageDialog(this, "Verifique que su Email sea valido");
+                } else if (validation.validateLoginEmail(userName).getClass().equals((new Coordinator()).getClass())) {
                     PrincipalWindowCoordinator goToWindowCoordinator = new PrincipalWindowCoordinator();
                     goToWindowCoordinator.setVisible(true);
                     dispose();
+                } else if (validation.validateLoginEmail(userName).getClass().equals((new Professor()).getClass())) {
+                    PrincipalWindowProfessor goToWindowProfessor = new PrincipalWindowProfessor();
+                    goToWindowProfessor.setVisible(true);
+                    dispose();
+                } else {
+                    PrincipalWindowAdministrator goToWindowAdministrator = new PrincipalWindowAdministrator();
+                    goToWindowAdministrator.setVisible(true);
+                    dispose();
                 }
-                /*PrincipalWindowAdministrator goToWindowAdministrator = new PrincipalWindowAdministrator();
-                goToWindowAdministrator.setVisible(true);
-                dispose();*/
-            }else if(user.validateEmail(userName) == true && user.validatePassword(userPassword) == false){
-                JOptionPane.showMessageDialog(this, "Verifique que su contraseña tenga números y letras");
-            }else if(user.validateEmail(userName) == false && user.validatePassword(userPassword) == true){
-                JOptionPane.showMessageDialog(this, "Verifique que su Email sea valido");
+        } else {
+                JOptionPane.showMessageDialog(this, "Introducir datos válidos.");
             }
-            
-          
-        }
-        
     }//GEN-LAST:event_jButtonLoginActionPerformed
-
- 
+    }
     public static void main(String args[]) {
         
         java.awt.EventQueue.invokeLater(new Runnable() {
