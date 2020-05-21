@@ -1,5 +1,6 @@
 package Ventanas.Windows;
 
+import BusinessLogic.CoordinatorValidations;
 import BusinessLogic.PersonDataValidations;
 import javax.swing.JOptionPane;
 
@@ -105,6 +106,7 @@ public class RegisterCoordinator extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCancelActionPerformed
 
     PersonDataValidations user = new PersonDataValidations();
+    CoordinatorValidations userCoordinator = new CoordinatorValidations();
     
     private void jButtonRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegisterActionPerformed
         if (jTextFieldNameCoordinator.getText().isEmpty() 
@@ -113,16 +115,21 @@ public class RegisterCoordinator extends javax.swing.JFrame {
                                             || jTextFieldPasswordCoordinator.getText().isEmpty()){
             JOptionPane.showMessageDialog(this, "Favor de NO dejar espacios vacios");   
         }else{
+            
             String nameCoordinator = jTextFieldNameCoordinator.getText();
             String personalNumberCoordinator = jTextFieldPersonalNumber.getText();
             String mailCoordinator = jTextFieldMailCoordinator.getText();
             String passwordCoordinator = jTextFieldPasswordCoordinator.getText();
-            if((user.validateName(nameCoordinator) == true) && (user.validateEmail(mailCoordinator) == true)
-                    && (user.validatePassword(passwordCoordinator) == true)){
+            
+            if((user.validateName(nameCoordinator) == true) && (userCoordinator.validateStaffNumber(personalNumberCoordinator) 
+                        == true) && (user.validateEmail(mailCoordinator) == true) && (user.validatePassword(passwordCoordinator) 
+                                == true)){
                 JOptionPane.showMessageDialog(this, "REGISTRO EXITOSO");
                 dispose(); 
             }else if((user.validateName(nameCoordinator) == false)){
-                JOptionPane.showMessageDialog(this, "Asegurese ingresar un nombre valido");
+                JOptionPane.showMessageDialog(this, "Asegurese de ingresar un nombre valido");
+            }else if((userCoordinator.validateStaffNumber(personalNumberCoordinator) == false)){
+                JOptionPane.showMessageDialog(this, "Asegurese de ingresar un numero de personal valido");
             }else if((user.validateEmail(mailCoordinator) == false)){
                 JOptionPane.showMessageDialog(this, "Asegurese de ingresar un Email valido");
             }else if((user.validatePassword(passwordCoordinator) == false)){
