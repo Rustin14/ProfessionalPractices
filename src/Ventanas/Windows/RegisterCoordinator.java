@@ -16,6 +16,38 @@ public class RegisterCoordinator extends javax.swing.JFrame {
         this.setTitle("registrar Coordinador");
     }
 
+    void verificarCampos(){
+        PersonDataValidations user = new PersonDataValidations();
+        CoordinatorValidations userCoordinator = new CoordinatorValidations();
+            if (jTextFieldNameCoordinator.getText().isEmpty() 
+                || jTextFieldPersonalNumber.getText().isEmpty() 
+                    || jTextFieldMailCoordinator.getText().isEmpty() 
+                        || jTextFieldPasswordCoordinator.getText().isEmpty()){
+                            JOptionPane.showMessageDialog(this, "Favor de NO dejar espacios vacios");   
+            }else{
+            
+                String nameCoordinator = jTextFieldNameCoordinator.getText();
+                String personalNumberCoordinator = jTextFieldPersonalNumber.getText();
+                String mailCoordinator = jTextFieldMailCoordinator.getText();
+                String passwordCoordinator = jTextFieldPasswordCoordinator.getText();
+            
+                if((user.validateName(nameCoordinator) == true) 
+                        && (userCoordinator.validateStaffNumber(personalNumberCoordinator) == true) 
+                            && (user.validateEmail(mailCoordinator) == true) 
+                                && (user.validatePassword(passwordCoordinator) == true)){
+                                    JOptionPane.showMessageDialog(this, "REGISTRO EXITOSO");
+                                    dispose(); 
+                }else if((user.validateName(nameCoordinator) == false)){
+                    JOptionPane.showMessageDialog(this, "Asegurese de ingresar un nombre valido");
+                }else if((userCoordinator.validateStaffNumber(personalNumberCoordinator) == false)){
+                    JOptionPane.showMessageDialog(this, "Asegurese de ingresar un numero de personal valido");
+                }else if((user.validateEmail(mailCoordinator) == false)){
+                    JOptionPane.showMessageDialog(this, "Asegurese de ingresar un Email valido");
+                }else if((user.validatePassword(passwordCoordinator) == false)){
+                    JOptionPane.showMessageDialog(this, "Asegurese de que su contraseña contenga números y caracteres");
+                }   
+            }
+    }
    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -105,44 +137,12 @@ public class RegisterCoordinator extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButtonCancelActionPerformed
 
-    PersonDataValidations user = new PersonDataValidations();
-    CoordinatorValidations userCoordinator = new CoordinatorValidations();
+
     
     private void jButtonRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegisterActionPerformed
-        if (jTextFieldNameCoordinator.getText().isEmpty() 
-                    || jTextFieldPersonalNumber.getText().isEmpty() 
-                                || jTextFieldMailCoordinator.getText().isEmpty() 
-                                            || jTextFieldPasswordCoordinator.getText().isEmpty()){
-            JOptionPane.showMessageDialog(this, "Favor de NO dejar espacios vacios");   
-        }else{
-            
-            String nameCoordinator = jTextFieldNameCoordinator.getText();
-            String personalNumberCoordinator = jTextFieldPersonalNumber.getText();
-            String mailCoordinator = jTextFieldMailCoordinator.getText();
-            String passwordCoordinator = jTextFieldPasswordCoordinator.getText();
-            
-            if((user.validateName(nameCoordinator) == true) && (userCoordinator.validateStaffNumber(personalNumberCoordinator) 
-                        == true) && (user.validateEmail(mailCoordinator) == true) && (user.validatePassword(passwordCoordinator) 
-                                == true)){
-                JOptionPane.showMessageDialog(this, "REGISTRO EXITOSO");
-                dispose(); 
-            }else if((user.validateName(nameCoordinator) == false)){
-                JOptionPane.showMessageDialog(this, "Asegurese de ingresar un nombre valido");
-            }else if((userCoordinator.validateStaffNumber(personalNumberCoordinator) == false)){
-                JOptionPane.showMessageDialog(this, "Asegurese de ingresar un numero de personal valido");
-            }else if((user.validateEmail(mailCoordinator) == false)){
-                JOptionPane.showMessageDialog(this, "Asegurese de ingresar un Email valido");
-            }else if((user.validatePassword(passwordCoordinator) == false)){
-                JOptionPane.showMessageDialog(this, "Asegurese de que su contraseña contenga números y caracteres");
-            }
-            
-            
-        }
-                    
-            
+        verificarCampos();
     }//GEN-LAST:event_jButtonRegisterActionPerformed
 
-   
     public static void main(String args[]) {
         
         java.awt.EventQueue.invokeLater(new Runnable() {

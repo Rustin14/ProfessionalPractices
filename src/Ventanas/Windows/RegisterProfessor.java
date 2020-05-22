@@ -2,6 +2,7 @@ package Ventanas.Windows;
 
 import javax.swing.JOptionPane;
 import BusinessLogic.PersonDataValidations;
+import BusinessLogic.ProfessorValidations;
 
 /**
  *
@@ -15,6 +16,46 @@ public class RegisterProfessor extends javax.swing.JFrame {
         this.setTitle("Registrar Profesor");
     }
 
+    void verificarCampos(){
+        PersonDataValidations user = new PersonDataValidations ();
+        ProfessorValidations professor = new ProfessorValidations();
+        
+        if (jTextFieldNameProfessor.getText().isEmpty() || jTextFieldPersonalNumber.getText().isEmpty()
+            || jTextFieldMailProfessor.getText().isEmpty() || jTextFieldPasswordProfessor.getText().isEmpty()){
+                JOptionPane.showMessageDialog(this, "Favor de NO dejar campos vacios");
+        }else if (jRadioButtonMorningShift.isSelected() == false && jRadioButtonEveningShift.isSelected() == false){
+            JOptionPane.showMessageDialog(this, "Favor de NO dejar campos vacios");
+        }else{
+            String nameProfessor = jTextFieldNameProfessor.getText();
+            String personalNumber = jTextFieldPersonalNumber.getText();
+            String mailProfessor = jTextFieldMailProfessor.getText();
+            String passwordProfessor = jTextFieldPasswordProfessor.getText();
+            String choiceOfTurn = null;
+            
+            if (jRadioButtonMorningShift.isSelected() == true){
+                choiceOfTurn = jRadioButtonMorningShift.getText();
+            }else{
+                choiceOfTurn = jRadioButtonEveningShift.getText();
+            }
+            
+            if((user.validateName(nameProfessor) == true) 
+                && (user.validateEmail(mailProfessor) == true) 
+                    && (user.validatePassword(passwordProfessor) == true) 
+                        && (professor.validateStaffNumber(personalNumber) == true)){
+                            JOptionPane.showMessageDialog(this, "REGISTRO EXITOSO");
+                            dispose();
+            }else if(user.validateName(nameProfessor) == false){
+                JOptionPane.showMessageDialog(this, "Favor de ingresar un nombre valido");
+            }else if(user.validateEmail(mailProfessor) == false){
+                JOptionPane.showMessageDialog(this, "Ingrese un email valido");
+            }else if(user.validatePassword(passwordProfessor) == false){
+                JOptionPane.showMessageDialog(this, "Ingrese una contraseña valida");
+            }else if(professor.validateStaffNumber(personalNumber) == false){
+                JOptionPane.showMessageDialog(this, "Ingrese un número de personal valido");
+            }
+        }
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -121,39 +162,10 @@ public class RegisterProfessor extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButtonCancelActionPerformed
 
-    PersonDataValidations user = new PersonDataValidations ();
+
     
     private void jButtonRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegisterActionPerformed
-        if (jTextFieldNameProfessor.getText().isEmpty() || jTextFieldPersonalNumber.getText().isEmpty()
-                    || jTextFieldMailProfessor.getText().isEmpty() || jTextFieldPasswordProfessor.getText().isEmpty()){
-            JOptionPane.showMessageDialog(this, "Favor de NO dejar campos vacios");
-        }else if (jRadioButtonMorningShift.isSelected() == false && jRadioButtonEveningShift.isSelected() == false){
-            JOptionPane.showMessageDialog(this, "Favor de NO dejar campos vacios");
-        }else{
-            String nameProfessor = jTextFieldNameProfessor.getText();
-            String personalNumber = jTextFieldPersonalNumber.getText();
-            String mailProfessor = jTextFieldMailProfessor.getText();
-            String passwordProfessor = jTextFieldPasswordProfessor.getText();
-            String choiceOfTurn = null;
-            if (jRadioButtonMorningShift.isSelected() == true){
-                choiceOfTurn = jRadioButtonMorningShift.getText();
-            }else {
-                choiceOfTurn = jRadioButtonEveningShift.getText();
-            }
-             if((user.validateName(nameProfessor) == true) && (user.validateEmail(mailProfessor) == true) 
-                     && (user.validatePassword(passwordProfessor) == true)){
-                JOptionPane.showMessageDialog(this, "REGISTRO EXITOSO");
-                dispose();
-            }else if(user.validateName(nameProfessor) == false){
-                JOptionPane.showMessageDialog(this, "Favor de ingresar un nombre valido");
-            }else if(user.validateEmail(mailProfessor) == false){
-                JOptionPane.showMessageDialog(this, "Ingrese un email valido");
-            }else if(user.validatePassword(passwordProfessor) == false){
-                JOptionPane.showMessageDialog(this, "Ingrese una contraseña valida");
-            }
-            
-           
-        }
+        verificarCampos();
     }//GEN-LAST:event_jButtonRegisterActionPerformed
 
     public static void main(String args[]) {
