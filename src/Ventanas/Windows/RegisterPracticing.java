@@ -15,7 +15,48 @@ public class RegisterPracticing extends javax.swing.JFrame {
         this.setTitle("Registrar Practicante");
     }
 
-   
+void verificarCampos(){
+    PersonDataValidations user = new PersonDataValidations();
+    PracticingValidations practicing = new PracticingValidations();
+    if (jTextFieldNamePracticing.getText().isEmpty() || jTextFieldEnrollmentPracticing.getText().isEmpty() 
+        || jTextFieldProfessor.getText().isEmpty() || jTextFieldLanguageIndigenous.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Favor de NO dejar campos vacios");
+    }else if (jRadioButtonManSex.isSelected()== false 
+        && jRadioButtonWomanSex.isSelected() == false ){
+            JOptionPane.showMessageDialog(this, "Favor de NO dejar campos vacios");
+    }else{
+        String namePracticing = jTextFieldNamePracticing.getText();
+        String enrollmentPracticing = jTextFieldEnrollmentPracticing.getText();
+        String nameProfessor = jTextFieldProfessor.getText();
+        String mailPracticing = jTextFieldMailPracticing.getText();
+        String passwordPracticing = jTextFieldPasswordPracticing.getText();
+        String languageIndigenous = jTextFieldLanguageIndigenous.getText();
+        String choiceOfSex = null;
+        
+        if (jRadioButtonManSex.isSelected() == true){
+            choiceOfSex = jRadioButtonManSex.getText();
+        }else{
+            choiceOfSex = jRadioButtonWomanSex.getText();
+        }
+           
+        if((user.validateName(namePracticing) == true) && (practicing.validateEnrollment(enrollmentPracticing) == true)
+            && (user.validateName(nameProfessor) == true) && (user.validateEmail(mailPracticing) == true) 
+                && (user.validatePassword(passwordPracticing)) == true){
+                    JOptionPane.showMessageDialog(this, "REGISTRO EXITOSO");
+                    dispose();
+        }else if((user.validateName(namePracticing) == false) || (user.validateName(nameProfessor) == false)){
+                JOptionPane.showMessageDialog(this, "Revise el apartado Nombre o Profesor,"
+                    + " los nombres deben estar correctamente escritos y solo se puede ingresar texto");
+        }else if(practicing.validateEnrollment(enrollmentPracticing) == false){
+                JOptionPane.showMessageDialog(this, "Ingrese una matricula valida");
+        }else if(user.validateEmail(mailPracticing) == false){
+                JOptionPane.showMessageDialog(this, "Ingrese un Email valido");
+        }else if(user.validatePassword(passwordPracticing) == false){
+                JOptionPane.showMessageDialog(this, "Ingrese una contraseña que contenga números y letras");
+        }
+    }
+}
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -140,45 +181,10 @@ public class RegisterPracticing extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButtonCancelActionPerformed
 
-    PersonDataValidations user = new PersonDataValidations();
-    PracticingValidations practicing = new PracticingValidations();
+
     
     private void jButtonRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegisterActionPerformed
-        if (jTextFieldNamePracticing.getText().isEmpty() || jTextFieldEnrollmentPracticing.getText().isEmpty() 
-                    || jTextFieldProfessor.getText().isEmpty() || jTextFieldLanguageIndigenous.getText().isEmpty()){
-            JOptionPane.showMessageDialog(this, "Favor de NO dejar campos vacios");
-        }else if (jRadioButtonManSex.isSelected()== false 
-                        && jRadioButtonWomanSex.isSelected() == false ){
-            JOptionPane.showMessageDialog(this, "Favor de NO dejar campos vacios");
-        }else{
-            String namePracticing = jTextFieldNamePracticing.getText();
-            String enrollmentPracticing = jTextFieldEnrollmentPracticing.getText();
-            String nameProfessor = jTextFieldProfessor.getText();
-            String mailPracticing = jTextFieldMailPracticing.getText();
-            String passwordPracticing = jTextFieldPasswordPracticing.getText();
-            String languageIndigenous = jTextFieldLanguageIndigenous.getText();
-            String choiceOfSex = null;
-            if (jRadioButtonManSex.isSelected() == true){
-                choiceOfSex = jRadioButtonManSex.getText();
-            }else{
-                choiceOfSex = jRadioButtonWomanSex.getText();
-            }
-            if((user.validateName(namePracticing) == true) && (practicing.validateEnrollment(enrollmentPracticing) == true)
-                    && (user.validateName(nameProfessor) == true) && (user.validateEmail(mailPracticing) == true) 
-                            && (user.validatePassword(passwordPracticing)) == true){
-                JOptionPane.showMessageDialog(this, "REGISTRO EXITOSO");
-                dispose();
-            }else if((user.validateName(namePracticing) == false) || (user.validateName(nameProfessor) == false)){
-                JOptionPane.showMessageDialog(this, "Revise el apartado Nombre o Profesor,"
-                        + " los nombres deben estar correctamente escritos y solo se puede ingresar texto");
-            }else if(practicing.validateEnrollment(enrollmentPracticing) == false){
-                JOptionPane.showMessageDialog(this, "Ingrese una matricula valida");
-            }else if(user.validateEmail(mailPracticing) == false){
-                JOptionPane.showMessageDialog(this, "Ingrese un Email valido");
-            }else if(user.validatePassword(passwordPracticing) == false){
-                JOptionPane.showMessageDialog(this, "Ingrese una contraseña que contenga números y letras");
-            }
-        }
+        verificarCampos();
     }//GEN-LAST:event_jButtonRegisterActionPerformed
 
     

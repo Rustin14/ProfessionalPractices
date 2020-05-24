@@ -19,10 +19,10 @@ public class PrincipalWindowCoordinator extends javax.swing.JFrame {
         jLabelTitle = new javax.swing.JLabel();
         jLabelProyectSectionTitle = new javax.swing.JLabel();
         jLabelPracticingSectionTitle = new javax.swing.JLabel();
-        jButtonOptionRegisterProyect = new javax.swing.JButton();
-        jButtonOptionAssignProyect = new javax.swing.JButton();
-        jButtonOptionUpdateProyect = new javax.swing.JButton();
-        jButtonOptionDeleteProyect = new javax.swing.JButton();
+        jButtonOptionRegisterProject = new javax.swing.JButton();
+        jButtonOptionAssignProject = new javax.swing.JButton();
+        jButtonOptionUpdateProject = new javax.swing.JButton();
+        jButtonOptionDeleteProject = new javax.swing.JButton();
         jButtonOptionRegisterPracticing = new javax.swing.JButton();
         jButtonOptionDeletePracticing = new javax.swing.JButton();
         jButtonOptionReportIndicators = new javax.swing.JButton();
@@ -51,26 +51,36 @@ public class PrincipalWindowCoordinator extends javax.swing.JFrame {
         jLabelPracticingSectionTitle.setText("Sección de Prácticantes");
         getContentPane().add(jLabelPracticingSectionTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 40, -1, -1));
 
-        jButtonOptionRegisterProyect.setBackground(new java.awt.Color(51, 255, 204));
-        jButtonOptionRegisterProyect.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jButtonOptionRegisterProyect.setText("Registrar Proyecto");
-        getContentPane().add(jButtonOptionRegisterProyect, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 210, 50));
+        jButtonOptionRegisterProject.setBackground(new java.awt.Color(51, 255, 204));
+        jButtonOptionRegisterProject.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jButtonOptionRegisterProject.setText("Registrar Proyecto");
+        jButtonOptionRegisterProject.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOptionRegisterProjectActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonOptionRegisterProject, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 210, 50));
 
-        jButtonOptionAssignProyect.setBackground(new java.awt.Color(51, 255, 204));
-        jButtonOptionAssignProyect.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jButtonOptionAssignProyect.setText("Asignar Proyecto");
-        getContentPane().add(jButtonOptionAssignProyect, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 210, 50));
+        jButtonOptionAssignProject.setBackground(new java.awt.Color(51, 255, 204));
+        jButtonOptionAssignProject.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jButtonOptionAssignProject.setText("Asignar Proyecto");
+        jButtonOptionAssignProject.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOptionAssignProjectActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonOptionAssignProject, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 210, 50));
 
-        jButtonOptionUpdateProyect.setBackground(new java.awt.Color(51, 255, 204));
-        jButtonOptionUpdateProyect.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jButtonOptionUpdateProyect.setText("Actualizar Proyecto");
-        getContentPane().add(jButtonOptionUpdateProyect, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 240, 210, 50));
+        jButtonOptionUpdateProject.setBackground(new java.awt.Color(51, 255, 204));
+        jButtonOptionUpdateProject.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jButtonOptionUpdateProject.setText("Actualizar Proyecto");
+        getContentPane().add(jButtonOptionUpdateProject, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 240, 210, 50));
 
-        jButtonOptionDeleteProyect.setBackground(new java.awt.Color(51, 255, 204));
-        jButtonOptionDeleteProyect.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jButtonOptionDeleteProyect.setText("Eliminar Proyecto");
-        jButtonOptionDeleteProyect.setToolTipText("");
-        getContentPane().add(jButtonOptionDeleteProyect, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 210, 50));
+        jButtonOptionDeleteProject.setBackground(new java.awt.Color(51, 255, 204));
+        jButtonOptionDeleteProject.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jButtonOptionDeleteProject.setText("Eliminar Proyecto");
+        jButtonOptionDeleteProject.setToolTipText("");
+        getContentPane().add(jButtonOptionDeleteProject, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 210, 50));
 
         jButtonOptionRegisterPracticing.setBackground(new java.awt.Color(51, 255, 204));
         jButtonOptionRegisterPracticing.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -150,6 +160,16 @@ public class PrincipalWindowCoordinator extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButtonOptionRegisterPracticingActionPerformed
 
+    private void jButtonOptionRegisterProjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOptionRegisterProjectActionPerformed
+        RegisterProject goToRegisterProject = new RegisterProject(); 
+        goToRegisterProject.setVisible(true);
+        dispose(); 
+    }//GEN-LAST:event_jButtonOptionRegisterProjectActionPerformed
+
+    private void jButtonOptionAssignProjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOptionAssignProjectActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonOptionAssignProjectActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -188,13 +208,13 @@ public class PrincipalWindowCoordinator extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonLogout;
-    private javax.swing.JButton jButtonOptionAssignProyect;
+    private javax.swing.JButton jButtonOptionAssignProject;
     private javax.swing.JButton jButtonOptionDeletePracticing;
-    private javax.swing.JButton jButtonOptionDeleteProyect;
+    private javax.swing.JButton jButtonOptionDeleteProject;
     private javax.swing.JButton jButtonOptionRegisterPracticing;
-    private javax.swing.JButton jButtonOptionRegisterProyect;
+    private javax.swing.JButton jButtonOptionRegisterProject;
     private javax.swing.JButton jButtonOptionReportIndicators;
-    private javax.swing.JButton jButtonOptionUpdateProyect;
+    private javax.swing.JButton jButtonOptionUpdateProject;
     private javax.swing.JLabel jLabelAssignProyectIcon;
     private javax.swing.JLabel jLabelDeleteIconPRacticing;
     private javax.swing.JLabel jLabelDeletePRoyectIcon;

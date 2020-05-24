@@ -22,6 +22,32 @@ public class Login extends javax.swing.JFrame {
         this.setTitle("Inicio de Sesión");
     }
 
+ void verificarCampos(){
+    PersonDataValidations user = new PersonDataValidations();
+    if (jTextFieldUserName.getText().isEmpty() || jPasswordFieldPasswordUser.getText().isEmpty()){
+        JOptionPane.showMessageDialog(this, "Favor de NO dejar campos vacios");
+    }else{
+        String userName = jTextFieldUserName.getText();
+        String userPassword = jPasswordFieldPasswordUser.getText();
+        LoginValidation validation = new LoginValidation();
+        if (validation.validateLoginEmail(userName).getClass().equals((new Coordinator()).getClass())) {
+                PrincipalWindowCoordinator goToWindowCoordinator = new PrincipalWindowCoordinator();
+                goToWindowCoordinator.setVisible(true);
+                dispose();
+        } else if (validation.validateLoginEmail(userName).getClass().equals((new Professor()).getClass())) {
+                PrincipalWindowProfessor goToWindowProfessor = new PrincipalWindowProfessor();
+                goToWindowProfessor.setVisible(true);
+                dispose();
+        } else{
+                PrincipalWindowAdministrator goToWindowAdministrator = new PrincipalWindowAdministrator();
+                goToWindowAdministrator.setVisible(true);
+                dispose();
+        }
+    }    
+ }
+
+  
+  
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -30,9 +56,9 @@ public class Login extends javax.swing.JFrame {
         jLabelUserIcon = new javax.swing.JLabel();
         jLabelUserName = new javax.swing.JLabel();
         jLabelUserPassword = new javax.swing.JLabel();
-        jTextFieldUserName = new javax.swing.JTextField();
         jPasswordFieldPasswordUser = new javax.swing.JPasswordField();
         jButtonLogin = new javax.swing.JButton();
+        jTextFieldUserName = new javax.swing.JTextField();
         jLabelFound = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -59,14 +85,6 @@ public class Login extends javax.swing.JFrame {
         jLabelUserPassword.setText("Password : ");
         getContentPane().add(jLabelUserPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 340, -1, -1));
 
-        jTextFieldUserName.setBackground(new java.awt.Color(204, 255, 255));
-        jTextFieldUserName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldUserNameActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jTextFieldUserName, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 300, 250, 30));
-
         jPasswordFieldPasswordUser.setBackground(new java.awt.Color(204, 255, 255));
         getContentPane().add(jPasswordFieldPasswordUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 340, 250, 30));
 
@@ -80,6 +98,9 @@ public class Login extends javax.swing.JFrame {
         });
         getContentPane().add(jButtonLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, 130, 30));
 
+        jTextFieldUserName.setBackground(new java.awt.Color(204, 255, 255));
+        getContentPane().add(jTextFieldUserName, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 300, 250, 30));
+
         jLabelFound.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ventanas/Imagenes/Fondo.jpg"))); // NOI18N
         getContentPane().add(jLabelFound, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 727, 444));
 
@@ -90,42 +111,12 @@ public class Login extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_jButtonSalirActionPerformed
 
-    private void jTextFieldUserNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldUserNameActionPerformed
-      
-    }//GEN-LAST:event_jTextFieldUserNameActionPerformed
-
-    PersonDataValidations user = new PersonDataValidations();
+    
     
     private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginActionPerformed
-        if (jTextFieldUserName.getText().isEmpty() || jPasswordFieldPasswordUser.getText().isEmpty()){
-            JOptionPane.showMessageDialog(this, "Favor de NO dejar campos vacios");
-        }else{
-            String userName = jTextFieldUserName.getText();
-            String userPassword = jPasswordFieldPasswordUser.getText();
-            LoginValidation validation = new LoginValidation();
-            if(user.validateEmail(userName) == true && user.validatePassword(userPassword) == true){
-                if(user.validateEmail(userName) == true && user.validatePassword(userPassword) == false) {
-                    JOptionPane.showMessageDialog(this, "Verifique que su contraseña tenga números y letras");
-                } else if(user.validateEmail(userName) == false && user.validatePassword(userPassword) == true) {
-                    JOptionPane.showMessageDialog(this, "Verifique que su Email sea valido");
-                } else if (validation.validateLoginEmail(userName).getClass().equals((new Coordinator()).getClass())) {
-                    PrincipalWindowCoordinator goToWindowCoordinator = new PrincipalWindowCoordinator();
-                    goToWindowCoordinator.setVisible(true);
-                    dispose();
-                } else if (validation.validateLoginEmail(userName).getClass().equals((new Professor()).getClass())) {
-                    PrincipalWindowProfessor goToWindowProfessor = new PrincipalWindowProfessor();
-                    goToWindowProfessor.setVisible(true);
-                    dispose();
-                } else {
-                    PrincipalWindowAdministrator goToWindowAdministrator = new PrincipalWindowAdministrator();
-                    goToWindowAdministrator.setVisible(true);
-                    dispose();
-                }
-        } else {
-                JOptionPane.showMessageDialog(this, "Introducir datos válidos.");
-            }
+        verificarCampos();
     }//GEN-LAST:event_jButtonLoginActionPerformed
-    }
+
     public static void main(String args[]) {
         
         java.awt.EventQueue.invokeLater(new Runnable() {
