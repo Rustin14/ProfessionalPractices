@@ -5,6 +5,8 @@ import BusinessLogic.LoginValidation;
 import BusinessLogic.PersonDataValidations;
 import Domain.Coordinator;
 import Domain.Professor;
+import Domain.Administrator;
+import Domain.Practicing;
 
 import javax.swing.JOptionPane;
 
@@ -30,18 +32,28 @@ public class Login extends javax.swing.JFrame {
         String userName = jTextFieldUserName.getText();
         String userPassword = jPasswordFieldPasswordUser.getText();
         LoginValidation validation = new LoginValidation();
-        if (validation.validateLoginEmail(userName).getClass().equals((new Coordinator()).getClass())) {
+        if(user.validateEmail(userName) == true && user.validatePassword(userPassword) == true){
+            if (validation.validateLoginEmail(userName, userPassword).getClass().equals((new Coordinator()).getClass())) {
                 PrincipalWindowCoordinator goToWindowCoordinator = new PrincipalWindowCoordinator();
                 goToWindowCoordinator.setVisible(true);
                 dispose();
-        } else if (validation.validateLoginEmail(userName).getClass().equals((new Professor()).getClass())) {
+            }else if (validation.validateLoginEmail(userName, userPassword).getClass().equals((new Professor()).getClass())) {
                 PrincipalWindowProfessor goToWindowProfessor = new PrincipalWindowProfessor();
                 goToWindowProfessor.setVisible(true);
                 dispose();
-        } else{
+            }else if(validation.validateLoginEmail(userName, userPassword).getClass().equals((new Administrator()).getClass())){
                 PrincipalWindowAdministrator goToWindowAdministrator = new PrincipalWindowAdministrator();
                 goToWindowAdministrator.setVisible(true);
                 dispose();
+            }else if(validation.validateLoginEmail(userName, userPassword).getClass().equals((new Practicing()).getClass())){
+                PrincipalWindowPracticing goToWindowPracticing = new PrincipalWindowPracticing();
+                goToWindowPracticing.setVisible(true);
+                dispose();
+            }else{
+                JOptionPane.showMessageDialog(this, "Usuario no registrado, Verifique su correo y contraseña");
+            }
+        }else{
+             JOptionPane.showMessageDialog(this, "Verificar que se ingreso un email valido");   
         }
     }    
  }

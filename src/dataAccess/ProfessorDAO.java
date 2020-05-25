@@ -27,6 +27,7 @@ public class ProfessorDAO implements IProfessorDAO {
 
     public ProfessorDAO() {
         connectDB = new ConnectDB();
+        
     }
 
     @Override
