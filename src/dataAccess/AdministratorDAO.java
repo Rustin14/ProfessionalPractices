@@ -97,11 +97,13 @@ public class AdministratorDAO implements IAdministratorDAO {
         try {
             Connection connection = connectDB.getConnection();
             consultation = connection.createStatement();
-            results = consultation.executeQuery("SELECT id_administrator, name FROM administrator");
+            results = consultation.executeQuery("SELECT * FROM administrator");
             while (results.next()) {
                 administrator = new Administrator();
                 administrator.setId_administrator(results.getInt("id_administrator"));
                 administrator.setName(results.getString("name"));
+                administrator.setEmail(results.getString("email"));
+                administrator.setPassword(results.getString("password"));
                 AllAdministrators.add(administrator);
             }
         } catch (SQLException exc) {

@@ -23,6 +23,9 @@ public class LoginValidation {
         else if (loginPracticing(email, password)) {
             return new Practicing();
         }
+        else if (loginAdministrator(email, password)) {
+            return new Administrator();
+        }
         return null;
     }
 
