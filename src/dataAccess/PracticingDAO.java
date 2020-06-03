@@ -43,6 +43,8 @@ public class PracticingDAO implements IPracticingDAO {
             statement.executeQuery();
         } catch (SQLException exc) {
             Logger.getLogger(CompanyDAO.class.getName()).log(Level.SEVERE, null, exc);
+        } finally {
+            connectDB.closeConnection();
         }
     }
 
@@ -107,6 +109,8 @@ public class PracticingDAO implements IPracticingDAO {
                 sentence.executeQuery();
             } catch (SQLException exc) {
                 Logger.getLogger(CompanyDAO.class.getName()).log(Level.SEVERE, null, exc);
+            } finally {
+                connectDB.closeConnection();
             }
         } else {
             try {
@@ -114,6 +118,8 @@ public class PracticingDAO implements IPracticingDAO {
                 sentence.executeQuery();
             } catch (SQLException exc) {
                 Logger.getLogger(CompanyDAO.class.getName()).log(Level.SEVERE, null, exc);
+            } finally {
+                connectDB.closeConnection();
             }
         }
     }

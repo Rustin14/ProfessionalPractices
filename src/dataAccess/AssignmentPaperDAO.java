@@ -39,6 +39,8 @@ public class AssignmentPaperDAO implements IAssignmentPaperDAO {
             statement.executeQuery();
         } catch (SQLException exc) {
             Logger.getLogger(AssignmentPaperDAO.class.getName()).log(Level.SEVERE, null, exc);
+        } finally {
+            connectDB.closeConnection();
         }
     }
 
@@ -66,6 +68,8 @@ public class AssignmentPaperDAO implements IAssignmentPaperDAO {
             }
         } catch (IOException | SQLException exc) {
             Logger.getLogger(AssignmentPaperDAO.class.getName()).log(Level.SEVERE, null, exc);
+        } finally {
+            connectDB.closeConnection();
         }
         return paper;
     }

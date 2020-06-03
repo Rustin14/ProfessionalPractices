@@ -36,11 +36,13 @@ public class MonthlyReportDAO implements IMonthlyReportDAO {
                 InputStream inputStream = new FileInputStream(new File(address));
                 statement.setBlob(6, inputStream);
             } catch (FileNotFoundException exc) {
-                Logger.getLogger(AssignmentPaperDAO.class.getName()).log(Level.SEVERE, null, exc);
+                Logger.getLogger(MonthlyReportDAO.class.getName()).log(Level.SEVERE, null, exc);
             }
             statement.executeQuery();
         } catch (SQLException exc) {
-            Logger.getLogger(AssignmentPaperDAO.class.getName()).log(Level.SEVERE, null, exc);
+            Logger.getLogger(MonthlyReportDAO.class.getName()).log(Level.SEVERE, null, exc);
+        } finally {
+            connectDB.closeConnection();
         }
     }
 
@@ -68,6 +70,8 @@ public class MonthlyReportDAO implements IMonthlyReportDAO {
             }
         } catch (IOException | SQLException exc) {
             Logger.getLogger(MonthlyReportDAO.class.getName()).log(Level.SEVERE, null, exc);
+        } finally {
+            connectDB.closeConnection();
         }
         return paper;
     }

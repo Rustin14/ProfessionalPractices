@@ -52,6 +52,8 @@ public class CompanyDAO implements ICompanyDAO {
             statement.executeQuery();
         } catch (SQLException exc) {
             Logger.getLogger(CompanyDAO.class.getName()).log(Level.SEVERE, null, exc);
+        } finally {
+            connectDB.closeConnection();
         }
     }
 
@@ -70,6 +72,8 @@ public class CompanyDAO implements ICompanyDAO {
              }
         } catch (SQLException exc) {
             Logger.getLogger(CompanyDAO.class.getName()).log(Level.SEVERE, null, exc);
+        } finally {
+            connectDB.closeConnection();
         }
         return company;
     }
@@ -89,6 +93,8 @@ public class CompanyDAO implements ICompanyDAO {
             }
         } catch (SQLException exc) {
             Logger.getLogger(CompanyDAO.class.getName()).log(Level.SEVERE, null, exc);
+        } finally {
+            connectDB.closeConnection();
         }
         return company;
     }
@@ -114,6 +120,8 @@ public class CompanyDAO implements ICompanyDAO {
                 sentence.executeQuery();
             } catch (SQLException exc) {
                 Logger.getLogger(CompanyDAO.class.getName()).log(Level.SEVERE, null, exc);
+            } finally {
+                connectDB.closeConnection();
             }
         } else {
             try {
@@ -121,6 +129,8 @@ public class CompanyDAO implements ICompanyDAO {
                 sentence.executeQuery();
             } catch (SQLException exc) {
                 Logger.getLogger(CompanyDAO.class.getName()).log(Level.SEVERE, null, exc);
+            } finally {
+                connectDB.closeConnection();
             }
         }
     }

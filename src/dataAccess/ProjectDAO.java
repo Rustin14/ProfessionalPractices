@@ -49,6 +49,8 @@ public class ProjectDAO implements IProjectDAO {
             statement.executeQuery();
         } catch (SQLException exc) {
             Logger.getLogger(CompanyDAO.class.getName()).log(Level.SEVERE, null, exc);
+        } finally {
+            connectDB.closeConnection();
         }
     }
 
@@ -67,6 +69,8 @@ public class ProjectDAO implements IProjectDAO {
             }
         } catch (SQLException exc) {
             Logger.getLogger(CoordinatorDAO.class.getName()).log(Level.SEVERE, null, exc);
+        } finally {
+            connectDB.closeConnection();
         }
         return project;
     }
@@ -86,6 +90,8 @@ public class ProjectDAO implements IProjectDAO {
             }
         } catch (SQLException exc) {
             Logger.getLogger(ProjectDAO.class.getName()).log(Level.SEVERE, null, exc);
+        } finally {
+            connectDB.closeConnection();
         }
         return project;
     }
@@ -111,6 +117,8 @@ public class ProjectDAO implements IProjectDAO {
                 sentence.executeQuery();
             } catch (SQLException exc) {
                 Logger.getLogger(CompanyDAO.class.getName()).log(Level.SEVERE, null, exc);
+            } finally {
+                connectDB.closeConnection();
             }
         } else {
             try {
@@ -118,6 +126,8 @@ public class ProjectDAO implements IProjectDAO {
                 sentence.executeQuery();
             } catch (SQLException exc) {
                 Logger.getLogger(CompanyDAO.class.getName()).log(Level.SEVERE, null, exc);
+            } finally {
+                connectDB.closeConnection();
             }
         }
     }
@@ -138,6 +148,8 @@ public class ProjectDAO implements IProjectDAO {
             }
         } catch (SQLException exc) {
             Logger.getLogger(ProjectDAO.class.getName()).log(Level.SEVERE, null, exc);
+        } finally {
+            connectDB.closeConnection();
         }
         return allProjects;
     }

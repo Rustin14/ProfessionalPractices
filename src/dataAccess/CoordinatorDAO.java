@@ -39,6 +39,8 @@ public class CoordinatorDAO implements ICoordinatorDAO {
             statement.executeQuery();
         } catch (SQLException exc) {
             Logger.getLogger(CompanyDAO.class.getName()).log(Level.SEVERE, null, exc);
+        } finally {
+            connectDB.closeConnection();
         }
     }
 
@@ -57,6 +59,8 @@ public class CoordinatorDAO implements ICoordinatorDAO {
             }
         } catch (SQLException exc) {
             Logger.getLogger(ProjectDAO.class.getName()).log(Level.SEVERE, null, exc);
+        } finally {
+            connectDB.closeConnection();
         }
         return coordinator;
     }
@@ -76,6 +80,8 @@ public class CoordinatorDAO implements ICoordinatorDAO {
             }
         } catch (SQLException exc) {
             Logger.getLogger(CoordinatorDAO.class.getName()).log(Level.SEVERE, null, exc);
+        } finally {
+            connectDB.closeConnection();
         }
         return coordinator;
     }
@@ -101,6 +107,8 @@ public class CoordinatorDAO implements ICoordinatorDAO {
                 sentence.executeQuery();
             } catch (SQLException exc) {
                 Logger.getLogger(CompanyDAO.class.getName()).log(Level.SEVERE, null, exc);
+            } finally {
+                connectDB.closeConnection();
             }
         } else {
             try {
@@ -108,6 +116,8 @@ public class CoordinatorDAO implements ICoordinatorDAO {
                 sentence.executeQuery();
             } catch (SQLException exc) {
                 Logger.getLogger(CompanyDAO.class.getName()).log(Level.SEVERE, null, exc);
+            } finally {
+                connectDB.closeConnection();
             }
         }
     }

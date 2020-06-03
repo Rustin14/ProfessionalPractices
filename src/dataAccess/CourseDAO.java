@@ -42,6 +42,8 @@ public class CourseDAO implements ICourseDAO {
             statement.executeQuery();
         } catch (SQLException exc) {
             Logger.getLogger(CompanyDAO.class.getName()).log(Level.SEVERE, null, exc);
+        } finally {
+            connectDB.closeConnection();
         }
     }
 
@@ -108,6 +110,8 @@ public class CourseDAO implements ICourseDAO {
                 sentence.executeQuery();
             } catch (SQLException exc) {
                 Logger.getLogger(CompanyDAO.class.getName()).log(Level.SEVERE, null, exc);
+            } finally {
+                connectDB.closeConnection();
             }
         } else {
             try {
@@ -115,6 +119,8 @@ public class CourseDAO implements ICourseDAO {
                 sentence.executeQuery();
             } catch (SQLException exc) {
                 Logger.getLogger(CompanyDAO.class.getName()).log(Level.SEVERE, null, exc);
+            } finally {
+                connectDB.closeConnection();
             }
         }
     }

@@ -36,7 +36,9 @@ public class AdministratorDAO implements IAdministratorDAO {
             statement.setString(4, password);
             statement.executeQuery();
         } catch (SQLException exc) {
-            Logger.getLogger(CompanyDAO.class.getName()).log(Level.SEVERE, null, exc);
+            Logger.getLogger(AdministratorDAO.class.getName()).log(Level.SEVERE, null, exc);
+        } finally {
+            connectDB.closeConnection();
         }
     }
 
@@ -54,7 +56,9 @@ public class AdministratorDAO implements IAdministratorDAO {
                 administrator.setName(results.getString("name"));
             }
         } catch (SQLException exc) {
-            Logger.getLogger(ProjectDAO.class.getName()).log(Level.SEVERE, null, exc);
+            Logger.getLogger(AdministratorDAO.class.getName()).log(Level.SEVERE, null, exc);
+        } finally {
+            connectDB.closeConnection();
         }
         return administrator;
     }
@@ -78,14 +82,18 @@ public class AdministratorDAO implements IAdministratorDAO {
                 sentence = connect.prepareStatement("COMMIT");
                 sentence.executeQuery();
             } catch (SQLException exc) {
-                Logger.getLogger(CompanyDAO.class.getName()).log(Level.SEVERE, null, exc);
+                Logger.getLogger(AdministratorDAO.class.getName()).log(Level.SEVERE, null, exc);
+            } finally {
+                connectDB.closeConnection();
             }
         } else {
             try {
                 sentence = connect.prepareStatement("ROLLBACK");
                 sentence.executeQuery();
             } catch (SQLException exc) {
-                Logger.getLogger(CompanyDAO.class.getName()).log(Level.SEVERE, null, exc);
+                Logger.getLogger(AdministratorDAO.class.getName()).log(Level.SEVERE, null, exc);
+            } finally {
+                connectDB.closeConnection();
             }
         }
     }
@@ -107,7 +115,7 @@ public class AdministratorDAO implements IAdministratorDAO {
                 AllAdministrators.add(administrator);
             }
         } catch (SQLException exc) {
-            Logger.getLogger(CoordinatorDAO.class.getName()).log(Level.SEVERE, null, exc);
+            Logger.getLogger(Administrator.class.getName()).log(Level.SEVERE, null, exc);
 
         } finally {
             connectDB.closeConnection();

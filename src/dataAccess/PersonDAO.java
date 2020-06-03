@@ -26,6 +26,7 @@ public class PersonDAO implements IPersonDAO {
     private Statement consultation;
     private ResultSet results;
 
+
     public PersonDAO() {
         connectDB = new ConnectDB();
     }
@@ -90,6 +91,8 @@ public class PersonDAO implements IPersonDAO {
                 sentence.executeQuery();
             } catch (SQLException exc) {
                 Logger.getLogger(CompanyDAO.class.getName()).log(Level.SEVERE, null, exc);
+            } finally {
+                connectDB.closeConnection();
             }
         } else {
             try {
@@ -97,6 +100,8 @@ public class PersonDAO implements IPersonDAO {
                 sentence.executeQuery();
             } catch (SQLException exc) {
                 Logger.getLogger(CompanyDAO.class.getName()).log(Level.SEVERE, null, exc);
+            } finally {
+                connectDB.closeConnection();
             }
         }
     }

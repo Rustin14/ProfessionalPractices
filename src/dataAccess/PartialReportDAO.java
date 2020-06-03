@@ -41,6 +41,8 @@ public class PartialReportDAO implements IPartialReportDAO {
             statement.executeQuery();
         } catch (SQLException exc) {
             Logger.getLogger(PartialReport.class.getName()).log(Level.SEVERE, null, exc);
+        } finally {
+            connectDB.closeConnection();
         }
     }
 
@@ -68,6 +70,8 @@ public class PartialReportDAO implements IPartialReportDAO {
             }
         } catch (IOException | SQLException exc) {
             Logger.getLogger(PartialReportDAO.class.getName()).log(Level.SEVERE, null, exc);
+        } finally {
+            connectDB.closeConnection();
         }
         return paper;
     }

@@ -39,6 +39,8 @@ public class AcceptancePaperDAO implements IAcceptancePaperDAO {
             statement.executeQuery();
         } catch (SQLException exc) {
             Logger.getLogger(AcceptancePaperDAO.class.getName()).log(Level.SEVERE, null, exc);
+        } finally {
+            connectDB.closeConnection();
         }
     }
 
@@ -66,6 +68,8 @@ public class AcceptancePaperDAO implements IAcceptancePaperDAO {
             }
         } catch (IOException | SQLException exc) {
             Logger.getLogger(AcceptancePaperDAO.class.getName()).log(Level.SEVERE, null, exc);
+        } finally {
+            connectDB.closeConnection();
         }
         return paper;
     }
