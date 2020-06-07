@@ -156,7 +156,7 @@
     <Component class="javax.swing.JLabel" name="jLabelSelectIcon">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/GUI/Imagenes/RegisterProyectIcon.png"/>
+          <Image iconType="3" name="/GUI/Images/RegisterProyectIcon.png"/>
         </Property>
       </Properties>
       <Constraints>
@@ -168,7 +168,7 @@
     <Component class="javax.swing.JLabel" name="jLabelMyProyectIcon">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/GUI/Imagenes/MyProyectIcon.png"/>
+          <Image iconType="3" name="/GUI/Images/MyProyectIcon.png"/>
         </Property>
       </Properties>
       <Constraints>
@@ -180,7 +180,7 @@
     <Component class="javax.swing.JLabel" name="jLabelScheduleIcon">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/GUI/Imagenes/scheduleIcon.png"/>
+          <Image iconType="3" name="/GUI/Images/scheduleIcon.png"/>
         </Property>
       </Properties>
       <Constraints>
@@ -192,7 +192,7 @@
     <Component class="javax.swing.JLabel" name="jLabelPartialReportIcon">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/GUI/Imagenes/reportParcialIcon.png"/>
+          <Image iconType="3" name="/GUI/Images/reportParcialIcon.png"/>
         </Property>
       </Properties>
       <Constraints>
@@ -204,7 +204,7 @@
     <Component class="javax.swing.JLabel" name="jLabelMontlyReport">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/GUI/Imagenes/reportMontlyIcon.png"/>
+          <Image iconType="3" name="/GUI/Images/reportMontlyIcon.png"/>
         </Property>
       </Properties>
       <Constraints>
@@ -216,7 +216,7 @@
     <Component class="javax.swing.JLabel" name="jLabelActivitiesPlanIcon">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/GUI/Imagenes/ActivitiesPlanIcon.png"/>
+          <Image iconType="3" name="/GUI/Images/ActivitiesPlanIcon.png"/>
         </Property>
       </Properties>
       <Constraints>
@@ -228,7 +228,7 @@
     <Component class="javax.swing.JLabel" name="jLabelSelfAppraisalIcon">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/GUI/Imagenes/selfAppraisalIcon.png"/>
+          <Image iconType="3" name="/GUI/Images/selfAppraisalIcon.png"/>
         </Property>
       </Properties>
       <Constraints>
@@ -240,7 +240,7 @@
     <Component class="javax.swing.JLabel" name="jLabelAddPSPIcon">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/GUI/Imagenes/AddPSPIcon.png"/>
+          <Image iconType="3" name="/GUI/Images/AddPSPIcon.png"/>
         </Property>
       </Properties>
       <Constraints>
@@ -325,7 +325,7 @@
     <Component class="javax.swing.JLabel" name="jLabelFound">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/GUI/Imagenes/Fondo.jpg"/>
+          <Image iconType="3" name="/GUI/Images/Fondo.jpg"/>
         </Property>
       </Properties>
       <Constraints>

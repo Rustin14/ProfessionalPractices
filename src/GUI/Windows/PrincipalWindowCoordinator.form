@@ -211,7 +211,7 @@
     <Component class="javax.swing.JLabel" name="jLabelRegisterProyectIcon">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/GUI/Imagenes/RegisterProyectIcon.png"/>
+          <Image iconType="3" name="/GUI/Images/RegisterProyectIcon.png"/>
         </Property>
       </Properties>
       <Constraints>
@@ -223,7 +223,7 @@
     <Component class="javax.swing.JLabel" name="jLabelAssignProyectIcon">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/GUI/Imagenes/assignIcon.png"/>
+          <Image iconType="3" name="/GUI/Images/assignIcon.png"/>
         </Property>
       </Properties>
       <Constraints>
@@ -235,7 +235,7 @@
     <Component class="javax.swing.JLabel" name="jLabelUpdateProyectIcon">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/GUI/Imagenes/updateIcon.png"/>
+          <Image iconType="3" name="/GUI/Images/updateIcon.png"/>
         </Property>
       </Properties>
       <Constraints>
@@ -247,7 +247,7 @@
     <Component class="javax.swing.JLabel" name="jLabelDeletePRoyectIcon">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/GUI/Imagenes/DeleteIcon.png"/>
+          <Image iconType="3" name="/GUI/Images/DeleteIcon.png"/>
         </Property>
       </Properties>
       <Constraints>
@@ -259,7 +259,7 @@
     <Component class="javax.swing.JLabel" name="jLabelRegisterPracticingIcon">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/GUI/Imagenes/RegisterPracticingIcon.png"/>
+          <Image iconType="3" name="/GUI/Images/RegisterPracticingIcon.png"/>
         </Property>
       </Properties>
       <Constraints>
@@ -271,7 +271,7 @@
     <Component class="javax.swing.JLabel" name="jLabelDeleteIconPRacticing">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/GUI/Imagenes/DeletePRacticingIcon.png"/>
+          <Image iconType="3" name="/GUI/Images/DeletePRacticingIcon.png"/>
         </Property>
       </Properties>
       <Constraints>
@@ -283,7 +283,7 @@
     <Component class="javax.swing.JLabel" name="jLabelGeneratrReportIcon">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/GUI/Imagenes/GEnerateReportIcon.png"/>
+          <Image iconType="3" name="/GUI/Images/GEnerateReportIcon.png"/>
         </Property>
       </Properties>
       <Constraints>
@@ -295,7 +295,7 @@
     <Component class="javax.swing.JLabel" name="jLabelFound">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/GUI/Imagenes/Fondo.jpg"/>
+          <Image iconType="3" name="/GUI/Images/Fondo.jpg"/>
         </Property>
       </Properties>
       <Constraints>

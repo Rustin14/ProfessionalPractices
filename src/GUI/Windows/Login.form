@@ -47,7 +47,7 @@
     <Component class="javax.swing.JLabel" name="jLabelUserIcon">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/GUI/Imagenes/UserIcon.png"/>
+          <Image iconType="3" name="/GUI/Images/UserIcon.png"/>
         </Property>
       </Properties>
       <Constraints>
@@ -128,7 +128,7 @@
     <Component class="javax.swing.JLabel" name="jLabelFound">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/GUI/Imagenes/Fondo.jpg"/>
+          <Image iconType="3" name="/GUI/Images/Fondo.jpg"/>
         </Property>
       </Properties>
       <Constraints>

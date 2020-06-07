@@ -174,11 +174,20 @@ void verificarCampos(){
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    String [] cancelButtons = {"Si", "No"}; 
+    
     private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
-        PrincipalWindowCoordinator returnToWindowCoordinator = new PrincipalWindowCoordinator();
-        returnToWindowCoordinator.setVisible(true);
-        dispose();
+        
+        int optionSelected = JOptionPane.showOptionDialog(this, "¿Seguro que desea cancelar?", "Cancelar Registro de Practicante", 
+                JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.CANCEL_OPTION, null, cancelButtons, cancelButtons[0]);
+        
+        if (optionSelected == 0) {
+            PrincipalWindowCoordinator returnToWindowCoordinator = new PrincipalWindowCoordinator();
+            returnToWindowCoordinator.setVisible(true);
+            dispose(); 
+        } 
+      
     }//GEN-LAST:event_jButtonCancelActionPerformed
 
 

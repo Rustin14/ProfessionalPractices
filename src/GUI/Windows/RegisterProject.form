@@ -41,7 +41,7 @@
     <Component class="javax.swing.JLabel" name="jLabelRegisterProjectIcon">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/GUI/Imagenes/RegisterProyectIcon.png"/>
+          <Image iconType="3" name="/GUI/Images/RegisterProyectIcon.png"/>
         </Property>
       </Properties>
       <Constraints>
@@ -177,16 +177,6 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextFieldQuotaProject">
-      <Properties>
-        <Property name="text" type="java.lang.String" value=" "/>
-      </Properties>
-      <Constraints>
-        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="190" y="320" width="90" height="30"/>
-        </Constraint>
-      </Constraints>
-    </Component>
     <Component class="javax.swing.JLabel" name="jLabelQuotaProject">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -216,10 +206,17 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JTextField" name="jTextFieldQuotaProject">
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="190" y="320" width="80" height="30"/>
+        </Constraint>
+      </Constraints>
+    </Component>
     <Component class="javax.swing.JLabel" name="jLabelFound">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/GUI/Imagenes/Fondo.jpg"/>
+          <Image iconType="3" name="/GUI/Images/Fondo.jpg"/>
         </Property>
         <Property name="text" type="java.lang.String" value=" "/>
       </Properties>

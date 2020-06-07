@@ -170,7 +170,7 @@
     <Component class="javax.swing.JLabel" name="jLabelIcongenerateActivitie">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/GUI/Imagenes/GEnerateActivitie.png"/>
+          <Image iconType="3" name="/GUI/Images/GEnerateActivitie.png"/>
         </Property>
       </Properties>
       <Constraints>
@@ -182,7 +182,7 @@
     <Component class="javax.swing.JLabel" name="jLabelActivitiesDeliveredICon">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/GUI/Imagenes/ActivitiesDelivered.png"/>
+          <Image iconType="3" name="/GUI/Images/ActivitiesDelivered.png"/>
         </Property>
       </Properties>
       <Constraints>
@@ -194,7 +194,7 @@
     <Component class="javax.swing.JLabel" name="jLabelReportMontlyIcon">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/GUI/Imagenes/reportMontlyIcon.png"/>
+          <Image iconType="3" name="/GUI/Images/reportMontlyIcon.png"/>
         </Property>
       </Properties>
       <Constraints>
@@ -206,7 +206,7 @@
     <Component class="javax.swing.JLabel" name="jLabelUploadPresentationFormatIcon">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/GUI/Imagenes/uploadFormatPresentationIcon.png"/>
+          <Image iconType="3" name="/GUI/Images/uploadFormatPresentationIcon.png"/>
         </Property>
       </Properties>
       <Constraints>
@@ -218,7 +218,7 @@
     <Component class="javax.swing.JLabel" name="jLabelPartialReportIcon">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/GUI/Imagenes/reportParcialIcon.png"/>
+          <Image iconType="3" name="/GUI/Images/reportParcialIcon.png"/>
         </Property>
       </Properties>
       <Constraints>
@@ -230,7 +230,7 @@
     <Component class="javax.swing.JLabel" name="jLabelFound">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/GUI/Imagenes/Fondo.jpg"/>
+          <Image iconType="3" name="/GUI/Images/Fondo.jpg"/>
         </Property>
       </Properties>
       <Constraints>

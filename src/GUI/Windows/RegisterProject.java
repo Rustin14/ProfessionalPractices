@@ -35,10 +35,10 @@ public class RegisterProject extends javax.swing.JFrame {
         jButtonCancel = new javax.swing.JButton();
         jLabelNumberPhone = new javax.swing.JLabel();
         jTextFieldNumberPhone = new javax.swing.JTextField();
-        jTextFieldQuotaProject = new javax.swing.JTextField();
         jLabelQuotaProject = new javax.swing.JLabel();
         jScrollPaneActivities = new javax.swing.JScrollPane();
         jTextPaneActivities = new javax.swing.JTextPane();
+        jTextFieldQuotaProject = new javax.swing.JTextField();
         jLabelFound = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -93,9 +93,6 @@ public class RegisterProject extends javax.swing.JFrame {
         getContentPane().add(jLabelNumberPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, -1, -1));
         getContentPane().add(jTextFieldNumberPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, 200, 30));
 
-        jTextFieldQuotaProject.setText(" ");
-        getContentPane().add(jTextFieldQuotaProject, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 320, 90, 30));
-
         jLabelQuotaProject.setFont(new java.awt.Font("Arial", 3, 14)); // NOI18N
         jLabelQuotaProject.setText("Cupo del Proyecto: ");
         getContentPane().add(jLabelQuotaProject, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, -1, -1));
@@ -103,6 +100,7 @@ public class RegisterProject extends javax.swing.JFrame {
         jScrollPaneActivities.setViewportView(jTextPaneActivities);
 
         getContentPane().add(jScrollPaneActivities, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 150, 310, 200));
+        getContentPane().add(jTextFieldQuotaProject, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 320, 80, 30));
 
         jLabelFound.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Fondo.jpg"))); // NOI18N
         jLabelFound.setText(" ");
@@ -114,6 +112,7 @@ public class RegisterProject extends javax.swing.JFrame {
     CoordinatorValidations coordinator = new CoordinatorValidations();
     
     private void jButtonRegisterProjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegisterProjectActionPerformed
+        
         if (jTextFieldCompanyName.getText().isEmpty() || jTextFieldNumberPhone.getText().isEmpty()
                 || jTextFieldProjectName.getText().isEmpty() || jTextFieldManagerName.getText().isEmpty()
                         || jTextFieldQuotaProject.getText().isEmpty() || jTextPaneActivities.getText().isEmpty()) {
@@ -123,11 +122,12 @@ public class RegisterProject extends javax.swing.JFrame {
             String numberPhone = jTextFieldNumberPhone.getText();
             String projectName = jTextFieldProjectName.getText();
             String managerName = jTextFieldManagerName.getText(); 
+            String quotaProject = jTextFieldQuotaProject.getText();
             
             if ((coordinator.validateCompanyName(companyName) == true) && (coordinator.validatePhoneNumber(numberPhone) 
                     == true) && (coordinator.validateProjectName(projectName) == true) && (coordinator.validateName(managerName)
-                            == true)) {
-                JOptionPane.showMessageDialog(this, "REGISTRO DE PROYECTO EXITOSO");
+                            == true) && (coordinator.validateQuotaProject(quotaProject) == true)) {
+                JOptionPane.showMessageDialog(this, "REGISTRO DE PROYECTO EXITOSO");    
                 dispose();  
             } else if (coordinator.validateCompanyName(companyName) == false) {
                 JOptionPane.showMessageDialog(this, "Asegurese de ingresar un nombre de compañia valido");
@@ -137,14 +137,24 @@ public class RegisterProject extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Asegurese de ingresar un nombre de proyecto valido");
             } else if (coordinator.validateName(managerName) == false) {
                 JOptionPane.showMessageDialog(this, "Asegurese de ingresar un nombre de encargado del proyecto valido");
+            } else if (coordinator.validateQuotaProject(quotaProject) == false) {
+                JOptionPane.showMessageDialog(this, "Asegurese de ingresar un cupo de proyecto valido. Solo numeros");
             }
-        }
+        } 
     }//GEN-LAST:event_jButtonRegisterProjectActionPerformed
 
+    String [] cancelButtons = {"Si", "No"}; 
+    
     private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
-        PrincipalWindowCoordinator returnToPrincipalWindowCoordinator = new PrincipalWindowCoordinator(); 
-        returnToPrincipalWindowCoordinator.setVisible(true);
-        dispose(); 
+         int optionSelected = JOptionPane.showOptionDialog(this, "¿Seguro que desea cancelar?", "Cancelar Registro de Proyecto", 
+                JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.CANCEL_OPTION, null, cancelButtons, cancelButtons[0]);
+        
+        if (optionSelected == 0) {
+            PrincipalWindowCoordinator returnToPrincipalWindowCoordinator = new PrincipalWindowCoordinator(); 
+            returnToPrincipalWindowCoordinator.setVisible(true);
+            dispose();     
+        }
+ 
     }//GEN-LAST:event_jButtonCancelActionPerformed
 
   
