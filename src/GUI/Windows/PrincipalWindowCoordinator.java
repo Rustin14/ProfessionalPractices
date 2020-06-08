@@ -100,6 +100,11 @@ public class PrincipalWindowCoordinator extends javax.swing.JFrame {
         jButtonOptionDeletePracticing.setBackground(new java.awt.Color(51, 255, 204));
         jButtonOptionDeletePracticing.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jButtonOptionDeletePracticing.setText("Eliminar Practicante");
+        jButtonOptionDeletePracticing.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOptionDeletePracticingActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonOptionDeletePracticing, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 200, 220, 50));
 
         jButtonOptionReportIndicators.setBackground(new java.awt.Color(51, 255, 204));
@@ -180,6 +185,12 @@ public class PrincipalWindowCoordinator extends javax.swing.JFrame {
         goToDeleteProject.setVisible(true);
         dispose(); 
     }//GEN-LAST:event_jButtonOptionDeleteProjectActionPerformed
+
+    private void jButtonOptionDeletePracticingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOptionDeletePracticingActionPerformed
+        DeletePracticing goToDeletePracticing = new DeletePracticing(); 
+        goToDeletePracticing.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButtonOptionDeletePracticingActionPerformed
 
     /**
      * @param args the command line arguments

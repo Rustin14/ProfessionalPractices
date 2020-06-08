@@ -43,7 +43,9 @@ void verificarCampos(){
             && (user.validateName(nameProfessor) == true) && (user.validateEmail(mailPracticing) == true) 
                 && (user.validatePassword(passwordPracticing)) == true){
                     JOptionPane.showMessageDialog(this, "REGISTRO EXITOSO");
-                    dispose();
+                    PrincipalWindowCoordinator returnToPrincipalWindowCoordinator = new PrincipalWindowCoordinator(); 
+                    returnToPrincipalWindowCoordinator.setVisible(true);
+                    dispose(); 
         }else if((user.validateName(namePracticing) == false) || (user.validateName(nameProfessor) == false)){
                 JOptionPane.showMessageDialog(this, "Revise el apartado Nombre o Profesor,"
                     + " los nombres deben estar correctamente escritos y solo se puede ingresar texto");
