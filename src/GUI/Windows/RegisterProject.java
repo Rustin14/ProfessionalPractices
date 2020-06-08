@@ -127,8 +127,12 @@ public class RegisterProject extends javax.swing.JFrame {
             if ((coordinator.validateCompanyName(companyName) == true) && (coordinator.validatePhoneNumber(numberPhone) 
                     == true) && (coordinator.validateProjectName(projectName) == true) && (coordinator.validateName(managerName)
                             == true) && (coordinator.validateQuotaProject(quotaProject) == true)) {
+                
                 JOptionPane.showMessageDialog(this, "REGISTRO DE PROYECTO EXITOSO");    
-                dispose();  
+                PrincipalWindowCoordinator returnToPrincipalWindowCoordinator = new PrincipalWindowCoordinator(); 
+                returnToPrincipalWindowCoordinator.setVisible(true);
+                dispose();
+                
             } else if (coordinator.validateCompanyName(companyName) == false) {
                 JOptionPane.showMessageDialog(this, "Asegurese de ingresar un nombre de compañia valido");
             } else if (coordinator.validatePhoneNumber(numberPhone) == false) {
@@ -146,15 +150,16 @@ public class RegisterProject extends javax.swing.JFrame {
     String [] cancelButtons = {"Si", "No"}; 
     
     private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
-         int optionSelected = JOptionPane.showOptionDialog(this, "¿Seguro que desea cancelar?", "Cancelar Registro de Proyecto", 
+        
+        int optionSelected = JOptionPane.showOptionDialog(this, "¿Seguro que desea cancelar?", "Cancelar Registro de Proyecto", 
                 JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.CANCEL_OPTION, null, cancelButtons, cancelButtons[0]);
         
         if (optionSelected == 0) {
             PrincipalWindowCoordinator returnToPrincipalWindowCoordinator = new PrincipalWindowCoordinator(); 
             returnToPrincipalWindowCoordinator.setVisible(true);
             dispose();     
-        }
- 
+        } 
+         
     }//GEN-LAST:event_jButtonCancelActionPerformed
 
   

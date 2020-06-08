@@ -80,6 +80,11 @@ public class PrincipalWindowCoordinator extends javax.swing.JFrame {
         jButtonOptionDeleteProject.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jButtonOptionDeleteProject.setText("Eliminar Proyecto");
         jButtonOptionDeleteProject.setToolTipText("");
+        jButtonOptionDeleteProject.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOptionDeleteProjectActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonOptionDeleteProject, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 210, 50));
 
         jButtonOptionRegisterPracticing.setBackground(new java.awt.Color(51, 255, 204));
@@ -169,6 +174,12 @@ public class PrincipalWindowCoordinator extends javax.swing.JFrame {
     private void jButtonOptionAssignProjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOptionAssignProjectActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonOptionAssignProjectActionPerformed
+
+    private void jButtonOptionDeleteProjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOptionDeleteProjectActionPerformed
+        DeleteProject goToDeleteProject = new DeleteProject();
+        goToDeleteProject.setVisible(true);
+        dispose(); 
+    }//GEN-LAST:event_jButtonOptionDeleteProjectActionPerformed
 
     /**
      * @param args the command line arguments
