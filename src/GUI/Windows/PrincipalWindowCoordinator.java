@@ -74,6 +74,11 @@ public class PrincipalWindowCoordinator extends javax.swing.JFrame {
         jButtonOptionUpdateProject.setBackground(new java.awt.Color(51, 255, 204));
         jButtonOptionUpdateProject.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jButtonOptionUpdateProject.setText("Actualizar Proyecto");
+        jButtonOptionUpdateProject.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOptionUpdateProjectActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonOptionUpdateProject, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 240, 210, 50));
 
         jButtonOptionDeleteProject.setBackground(new java.awt.Color(51, 255, 204));
@@ -191,6 +196,12 @@ public class PrincipalWindowCoordinator extends javax.swing.JFrame {
         goToDeletePracticing.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButtonOptionDeletePracticingActionPerformed
+
+    private void jButtonOptionUpdateProjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOptionUpdateProjectActionPerformed
+        UpdateProject goToUpdateProject = new UpdateProject();
+        goToUpdateProject.setVisible(true);
+        dispose(); 
+    }//GEN-LAST:event_jButtonOptionUpdateProjectActionPerformed
 
     /**
      * @param args the command line arguments
