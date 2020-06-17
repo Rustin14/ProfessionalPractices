@@ -22,55 +22,32 @@ public class AssignmentPaperDAO implements IAssignmentPaperDAO {
 
 
     @Override
-    public void saveAssignmentPaper(int id_assignment, int id_coordinator, int id_practicing, int id_project, byte[] paperFile, String address) {
-        try (Connection connect = connectDB.getConnection()) {
-            String query = "INSERT INTO assignmentpaper  (id_assignment, id_coordinator, id_practicing, id_project, paperFile) VALUES (?, ?, ?, ?, ?)";
-            PreparedStatement statement = connect.prepareStatement(query);
-            statement.setInt(1, id_assignment);
-            statement.setInt(2, id_coordinator);
-            statement.setInt(3, id_practicing);
-            statement.setInt(4, id_project);
-            try {
-                InputStream inputStream = new FileInputStream(new File(address));
-                statement.setBlob(5, inputStream);
-            } catch (FileNotFoundException exc) {
-                Logger.getLogger(AssignmentPaperDAO.class.getName()).log(Level.SEVERE, null, exc);
-            }
-            statement.executeQuery();
-        } catch (SQLException exc) {
-            Logger.getLogger(AssignmentPaperDAO.class.getName()).log(Level.SEVERE, null, exc);
-        } finally {
-            connectDB.closeConnection();
-        }
+    public void saveAssignmentPaper(int id_assignment, int id_coordinator, int id_practicing, int id_project, byte[] paperFile, String address) throws SQLException, ClassNotFoundException {
+        Connection connect = connectDB.getConnection();
+        String query = "INSERT INTO assignmentpaper  (id_assignment, id_coordinator, id_practicing, id_project, paperFile) VALUES (?, ?, ?, ?, ?)";
+        PreparedStatement statement = connect.prepareStatement(query);
+        statement.setInt(1, id_assignment);
+        statement.setInt(2, id_coordinator);
+        statement.setInt(3, id_practicing);
+        statement.setInt(4, id_project);
+        statement.executeQuery();
+        connectDB.closeConnection();
+        
     }
 
     @Override
-    public AssignmentPaper readAssignmentPaperByIDAssignment(int id_assignment, String address) {
+    public AssignmentPaper readAssignmentPaperByIDAssignment(int id_assignment, String address) throws SQLException, ClassNotFoundException {
         AssignmentPaper paper = null;
         ResultSet resultSet = null;
-        try (Connection connect = connectDB.getConnection()) {
-            String query = "SELECT paperFile FROM assignmentpaper where id_assignment = ?";
-            PreparedStatement statement = connect.prepareStatement(query);
-            resultSet = statement.executeQuery();
-        } catch (SQLException exc) {
-            Logger.getLogger(AssignmentPaperDAO.class.getName()).log(Level.SEVERE, null, exc);
+        Connection connect = connectDB.getConnection();
+        String query = "SELECT paperFile FROM assignmentpaper where id_assignment = ?";
+        PreparedStatement statement = connect.prepareStatement(query);
+        resultSet = statement.executeQuery();
+        while (resultSet.next()) {
+            paper = new AssignmentPaper();
+            paper.setId_assignment(resultSet.getInt("id_assignment"));
         }
-        try {
-            File file = new File(address);
-            FileOutputStream outputStream = new FileOutputStream(file);
-            while (results.next()) {
-                InputStream input = resultSet.getBinaryStream("paperFile");
-                byte[] buffer = new byte[1024];
-                while (input.read(buffer) > 0) {
-                    outputStream.write(buffer);
-                }
-                paper.setPaperFile(buffer);
-            }
-        } catch (IOException | SQLException exc) {
-            Logger.getLogger(AssignmentPaperDAO.class.getName()).log(Level.SEVERE, null, exc);
-        } finally {
-            connectDB.closeConnection();
-        }
+        connectDB.closeConnection();
         return paper;
     }
 

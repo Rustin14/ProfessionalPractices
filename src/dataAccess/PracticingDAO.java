@@ -31,118 +31,104 @@ public class PracticingDAO implements IPracticingDAO {
     }
 
     @Override
-    public void savePracticing(int id_person, String name, String enrollment, int id_project, int id_professor) {
-        try (Connection connect = connectDB.getConnection()){
-            String query = "INSERT INTO practicing (id_person, name, enrollment, id_project, id_professor) VALUES (?, ?, ?, ?, ?)";
-            PreparedStatement statement = connect.prepareStatement(query);
-            statement.setInt(1, id_person);
-            statement.setString(2, name);
-            statement.setString(3, enrollment);
-            statement.setInt(4, id_project);
-            statement.setInt(4, id_professor);
-            statement.executeQuery();
-        } catch (SQLException exc) {
-            Logger.getLogger(CompanyDAO.class.getName()).log(Level.SEVERE, null, exc);
-        } finally {
-            connectDB.closeConnection();
-        }
+    public void savePracticing(int id_person, String name, String enrollment, int id_project, int id_professor)  throws SQLException, ClassNotFoundException {
+        Connection connect = connectDB.getConnection();
+        String query = "INSERT INTO practicing (id_person, name, enrollment, id_project, id_professor) VALUES (?, ?, ?, ?, ?)";
+        PreparedStatement statement = connect.prepareStatement(query);
+        statement.setInt(1, id_person);
+        statement.setString(2, name);
+        statement.setString(3, enrollment);
+        statement.setInt(4, id_project);
+        statement.setInt(4, id_professor);
+        statement.executeQuery();
+        connectDB.closeConnection();
     }
+    
 
     @Override
-    public Practicing searchPracticingByEnrollment (String enrollment){
+    public Practicing searchPracticingByEnrollment (String enrollment) throws SQLException, ClassNotFoundException {
         Practicing practicing = null;
-        try (Connection connect = connectDB.getConnection()){
-            String query = "Select name, enrollment from practicing where enrollment = ?";
-            PreparedStatement sentencia = connect.prepareStatement(query);
-            sentencia.setString(1, enrollment);
-            resultados = sentencia.executeQuery();
-            while (resultados.next()){
-                practicing = new Practicing();
-                practicing.setEnrollment(resultados.getString("enrollment"));
-                practicing.setName(resultados.getString("name"));
-            }
-        }catch (SQLException exc){
-         Logger.getLogger(PracticingDAO.class.getName()).log(Level.SEVERE, null, exc);
-        } finally {
-            connectDB.closeConnection();
+        Connection connect = ConnectDB.getConnection();
+        String query = "SELECT name, enrollment, id_project FROM practicing WHERE enrollment = ?";
+        PreparedStatement sentencia = connect.prepareStatement(query);
+        sentencia.setString(1, enrollment);
+        resultados = sentencia.executeQuery();
+        while (resultados.next()){
+            practicing = new Practicing();
+            practicing.setEnrollment(resultados.getString("enrollment"));
+            practicing.setPracticingName(resultados.getString("name"));
+            practicing.setId_project(resultados.getInt("id_project"));
         }
+        connectDB.closeConnection();
+        return practicing;
+    }
+    
+    public Practicing searchPracticingByIDPracticing (int id_person) throws SQLException, ClassNotFoundException{
+        Practicing practicing = null;
+        Connection connection = connectDB.getConnection();
+        String query = "SELECT id_person, name from practicing where id_person = ?";
+        PreparedStatement sentence = connection.prepareStatement(query);
+        sentence.setInt(1, id_person);
+        resultados = sentence.executeQuery();
+        while (resultados.next()) {
+            practicing = new Practicing();
+            practicing.setPracticingName(resultados.getString("name"));
+            practicing.setId_person(resultados.getInt("id_person"));
+        }
+        connectDB.closeConnection();
         return practicing;
     }
 
-    public Practicing searchPracticingByKeyword (String keyword) {
+    public Practicing searchPracticingByKeyword (String keyword) throws SQLException, ClassNotFoundException {
         Practicing practicing = null;
-        try (Connection connect = connectDB.getConnection()) {
-            String query = "SELECT enrollment, name FROM practicing WHERE enrollment LIKE %{?}%";
-            PreparedStatement sentencia = connect.prepareStatement(query);
-            sentencia.setString(1, keyword);
-            resultados = sentencia.executeQuery();
-            while (resultados.next()) {
-                practicing = new Practicing();
-                practicing.setEnrollment(resultados.getString("enrollment"));
-                practicing.setName(resultados.getString("name"));
-            }
-        } catch (SQLException exc) {
-            Logger.getLogger(PracticingDAO.class.getName()).log(Level.SEVERE, null, exc);
-        } finally {
-            connectDB.closeConnection();
+        Connection connect = connectDB.getConnection();
+        String query = "SELECT enrollment, name FROM practicing WHERE enrollment LIKE %{?}%";
+        PreparedStatement sentencia = connect.prepareStatement(query);
+        sentencia.setString(1, keyword);
+        resultados = sentencia.executeQuery();
+        while (resultados.next()) {
+            practicing = new Practicing();
+            practicing.setEnrollment(resultados.getString("enrollment"));
+            practicing.setPracticingName(resultados.getString("name"));
         }
+        connectDB.closeConnection();
         return practicing;
     }
 
-    public void deletePracticingByEnrollment (String enrollment) {
-        Scanner sc = new Scanner(System.in);
+    public void deletePracticingByEnrollment (String enrollment) throws SQLException, ClassNotFoundException {
         Connection connect = null;
         PreparedStatement sentence = null;
-        try {
-            connect = connectDB.getConnection();
-            String query = "START TRANSACTION; DELETE FROM practicing where enrollment = ?";
-            sentence = connect.prepareStatement(query);
-            sentence.setString(1, enrollment);
-            resultados = sentence.executeQuery();
-        } catch (SQLException exc) {
-            Logger.getLogger(PracticingDAO.class.getName()).log(Level.SEVERE, null, exc);
-        }
+        connect = connectDB.getConnection();
+        String query = "START TRANSACTION; DELETE FROM practicing where enrollment = ?";
+        sentence = connect.prepareStatement(query);
+        sentence.setString(1, enrollment);
+        resultados = sentence.executeQuery();
         boolean userAnswer = true;
         if (userAnswer) {
-            try {
                 sentence = connect.prepareStatement("COMMIT");
                 sentence.executeQuery();
-            } catch (SQLException exc) {
-                Logger.getLogger(CompanyDAO.class.getName()).log(Level.SEVERE, null, exc);
-            } finally {
                 connectDB.closeConnection();
-            }
-        } else {
-            try {
+            } else {
                 sentence = connect.prepareStatement("ROLLBACK");
                 sentence.executeQuery();
-            } catch (SQLException exc) {
-                Logger.getLogger(CompanyDAO.class.getName()).log(Level.SEVERE, null, exc);
-            } finally {
                 connectDB.closeConnection();
             }
-        }
     }
     
     @Override
-    public List<Practicing> returnAllPracticing(){
+    public List<Practicing> returnAllPracticing() throws SQLException, ClassNotFoundException {
         List<Practicing> allPracticing = new ArrayList();
-        try {
         connection = connectDB.getConnection();
         consulta = connection.createStatement();
         resultados = consulta.executeQuery("select name, enrollment from practicing");
         while (resultados.next()){
             Practicing practicing = new Practicing();
             practicing.setEnrollment(resultados.getString("enrollment"));
-            practicing.setName(resultados.getString("name"));
+            practicing.setPracticingName(resultados.getString("name"));
             allPracticing.add(practicing);
         }
-        } catch (SQLException exc) {
-                Logger.getLogger(PracticingDAO.class.getName()).log(Level.SEVERE, null, exc);
-        }  finally {
-            connectDB.closeConnection();
-        }
+        connectDB.closeConnection();
         return allPracticing;
     } 
-    
 }
+

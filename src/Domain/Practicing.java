@@ -1,7 +1,7 @@
 /*
 Institution: Universidad Veracruzana
 File creator: Carlos Gabriel Flores Lira
-Class name: Practicing
+Class practicingName: Practicing
 Date of creation: April 27th. 2020
 */
 package Domain;
@@ -11,8 +11,8 @@ package Domain;
  * @author BRANDON TRUJILLO
  */
 public class Practicing {
-    private String id_person;
-    private String name;
+    private int id_person;
+    private String practicingName;
     private String enrollment;
     private int id_project;
     private int id_professor;
@@ -20,9 +20,9 @@ public class Practicing {
     private String password;
 
 
-    public Practicing(String id_person, String name, String enrollment, int id_project, int id_professor) {
+    public Practicing(int id_person, String name, String enrollment, int id_project, int id_professor) {
         this.id_person = id_person;
-        this.name = name;
+        this.practicingName = name;
         this.enrollment = enrollment;
         this.id_project = id_project;
         this.id_professor = id_professor;
@@ -38,22 +38,22 @@ public class Practicing {
         return enrollment;
     }
     
-    public void setName (String name) {
-        this.name = name;
+    public void setPracticingName (String practicingName) {
+        this.practicingName = practicingName;
     }
-    public String getName (){
-        return name;
+    public String getPracticingName (){
+        return practicingName;
     }
     @Override
     public String toString(){
-        return String.format("%d %s %s", enrollment, name);
+        return String.format("%d %s %s", enrollment, practicingName);
     }
 
-    public String getId_person() {
+    public int getId_person() {
         return id_person;
     }
 
-    public void setId_person(String id_person) {
+    public void setId_person(int id_person) {
         this.id_person = id_person;
     }
 

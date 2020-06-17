@@ -22,18 +22,9 @@ public class ConnectDB {
     private static String password = "Flipper10011";
     private static Connection con;
 
-    public static Connection getConnection() {
-        try {
-            Class.forName(driverName);
-            try {
-                con = DriverManager.getConnection(url, username, password);
-            } catch (SQLException er) {
-                System.out.println("Failed to create the database connection.");
-                er.printStackTrace();
-            }
-        } catch (ClassNotFoundException clsEx) {
-            System.out.println("Driver not found.");
-        }
+    public static Connection getConnection() throws SQLException, ClassNotFoundException {
+        Class.forName(driverName);
+        con = DriverManager.getConnection(url, username, password);
         return con;
     }
 

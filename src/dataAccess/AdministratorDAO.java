@@ -26,100 +26,71 @@ public class AdministratorDAO implements IAdministratorDAO {
     }
 
     @Override
-    public void saveAdministrator(int id_administrator, String name, String email, String password) {
-        try (Connection connect = connectDB.getConnection()){
-            String query = "INSERT INTO administrator (id_administrator, name, email, password) VALUES (?, ?, ?, ?)";
-            PreparedStatement statement = connect.prepareStatement(query);
-            statement.setInt(1, id_administrator);
-            statement.setString(2, name);
-            statement.setString(3, email);
-            statement.setString(4, password);
-            statement.executeQuery();
-        } catch (SQLException exc) {
-            Logger.getLogger(AdministratorDAO.class.getName()).log(Level.SEVERE, null, exc);
-        } finally {
-            connectDB.closeConnection();
-        }
+    public void saveAdministrator(int id_administrator, String name, String email, String password) throws SQLException, ClassNotFoundException {
+        Connection connect = connectDB.getConnection();
+        String query = "INSERT INTO administrator (id_administrator, name, email, password) VALUES (?, ?, ?, ?)";
+        PreparedStatement statement = connect.prepareStatement(query);
+        statement.setInt(1, id_administrator);
+        statement.setString(2, name);
+        statement.setString(3, email);
+        statement.setString(4, password);
+        statement.executeQuery();
+        connectDB.closeConnection();
     }
 
     @Override
-    public Administrator readAdministrator(int id_administrator) {
+    public Administrator readAdministrator(int id_administrator) throws SQLException, ClassNotFoundException {
         Administrator administrator = null;
-        try (Connection connection = connectDB.getConnection()){
-            String query = "SELECT id_administrator, name FROM administrator where id_administrator = ?";
-            PreparedStatement statement = connection.prepareStatement(query);
-            statement.setInt(1, id_administrator);
-            statement.executeQuery();
-            while (results.next()) {
-                administrator = new Administrator();
-                administrator.setId_administrator(results.getInt("id_administrator"));
-                administrator.setName(results.getString("name"));
-            }
-        } catch (SQLException exc) {
-            Logger.getLogger(AdministratorDAO.class.getName()).log(Level.SEVERE, null, exc);
-        } finally {
-            connectDB.closeConnection();
+        Connection connection = connectDB.getConnection();
+        String query = "SELECT id_administrator, name FROM administrator where id_administrator = ?";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setInt(1, id_administrator);
+        statement.executeQuery();
+        while (results.next()) {
+            administrator = new Administrator();
+            administrator.setId_administrator(results.getInt("id_administrator"));
+            administrator.setName(results.getString("name"));
         }
+        connectDB.closeConnection();
         return administrator;
     }
 
     @Override
-    public void deleteAdministrator(int id_administrator) {
+    public void deleteAdministrator(int id_administrator, boolean userAnswer) throws SQLException, ClassNotFoundException {
         Connection connect = null;
         PreparedStatement sentence = null;
-        try {
-            connect = connectDB.getConnection();
-            String query = "START TRANSACTION; DELETE FROM administrator WHERE id_administrator = ?";
-            sentence = connect.prepareStatement(query);
-            sentence.setInt(1, id_administrator);
-            results = sentence.executeQuery();
-        } catch (SQLException exc) {
-            Logger.getLogger(AdministratorDAO.class.getName()).log(Level.SEVERE, null, exc);
-        }
-        boolean userAnswer = true;
+        connect = connectDB.getConnection();
+        String query = "START TRANSACTION; DELETE FROM administrator WHERE id_administrator = ?";
+        sentence = connect.prepareStatement(query);
+        sentence.setInt(1, id_administrator);
+        results = sentence.executeQuery();
         if (userAnswer) {
-            try {
-                sentence = connect.prepareStatement("COMMIT");
-                sentence.executeQuery();
-            } catch (SQLException exc) {
-                Logger.getLogger(AdministratorDAO.class.getName()).log(Level.SEVERE, null, exc);
-            } finally {
-                connectDB.closeConnection();
-            }
+            sentence = connect.prepareStatement("COMMIT");
+            sentence.executeQuery();
+            connectDB.closeConnection();
         } else {
-            try {
-                sentence = connect.prepareStatement("ROLLBACK");
-                sentence.executeQuery();
-            } catch (SQLException exc) {
-                Logger.getLogger(AdministratorDAO.class.getName()).log(Level.SEVERE, null, exc);
-            } finally {
-                connectDB.closeConnection();
-            }
+            sentence = connect.prepareStatement("ROLLBACK");
+            sentence.executeQuery();
+            connectDB.closeConnection();
         }
     }
 
     @Override
-    public List<Administrator> returnAllAdministrators() {
+    public List<Administrator> returnAllAdministrators() throws SQLException, ClassNotFoundException {
         List<Administrator> AllAdministrators = new ArrayList();
         Administrator administrator = null;
-        try {
-            Connection connection = connectDB.getConnection();
-            consultation = connection.createStatement();
-            results = consultation.executeQuery("SELECT * FROM administrator");
-            while (results.next()) {
-                administrator = new Administrator();
-                administrator.setId_administrator(results.getInt("id_administrator"));
-                administrator.setName(results.getString("name"));
-                administrator.setEmail(results.getString("email"));
-                administrator.setPassword(results.getString("password"));
-                AllAdministrators.add(administrator);
-            }
-        } catch (SQLException exc) {
-            Logger.getLogger(Administrator.class.getName()).log(Level.SEVERE, null, exc);
-
-        } finally {
-            connectDB.closeConnection();
+        Connection connection = connectDB.getConnection();
+        consultation = connection.createStatement();
+        results = consultation.executeQuery("SELECT * FROM administrator");
+        while (results.next()) {
+            administrator = new Administrator();
+            administrator.setId_administrator(results.getInt("id_administrator"));
+            administrator.setName(results.getString("name"));
+            administrator.setEmail(results.getString("email"));
+            administrator.setPassword(results.getString("password"));
+            AllAdministrators.add(administrator);
         }
+        connectDB.closeConnection();
         return AllAdministrators;
     }
 }

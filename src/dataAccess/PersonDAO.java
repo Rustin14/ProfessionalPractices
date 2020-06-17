@@ -31,100 +31,70 @@ public class PersonDAO implements IPersonDAO {
         connectDB = new ConnectDB();
     }
 
-    public Person searchPersonbyID (int id_person) {
+    public Person searchPersonbyID (int id_person) throws SQLException, ClassNotFoundException {
         Person person = null;
-        try (Connection connect = connectDB.getConnection()){
-            String query = "SELECT id_person, name FROM person WHERE id_person = ?";
-            PreparedStatement sentencia = connect.prepareStatement(query);
-            sentencia.setInt(1, id_person);
-            results = sentencia.executeQuery();
-            while (results.next()){
-                person = new Person();
-                person.setId_person(results.getInt("id_person"));
-                person.setName(results.getString("name"));
-            }
-        } catch (SQLException exc){
-            Logger.getLogger(PersonDAO.class.getName()).log(Level.SEVERE, null, exc);
-        } finally {
-            connectDB.closeConnection();
+        Connection connect = connectDB.getConnection();
+        String query = "SELECT id_person, name FROM person WHERE id_person = ?";
+        PreparedStatement sentencia = connect.prepareStatement(query);
+        sentencia.setInt(1, id_person);
+        results = sentencia.executeQuery();
+        while (results.next()){
+            person = new Person();
+            person.setId_person(results.getInt("id_person"));
+            person.setName(results.getString("name"));
         }
+        connectDB.closeConnection();
         return person;
     }
 
-    public Person searchPersonByKeyword (String keyword) {
+    public Person searchPersonByKeyword (String keyword) throws SQLException, ClassNotFoundException {
         Person person = null;
-        try (Connection connect = connectDB.getConnection()) {
-            String query = "SELECT id_person, name FROM person WHERE name LIKE %{?}%";
-            PreparedStatement sentence = connect.prepareStatement(query);
-            sentence.setString(1, keyword);
-            results = sentence.executeQuery();
-            while (results.next()) {
-                person = new Person();
-                person.setId_person(results.getInt("id_person"));
-                person.setName(results.getString("name"));
-            }
-        } catch (SQLException exc) {
-            Logger.getLogger(PersonDAO.class.getName()).log(Level.SEVERE, null, exc);
-        } finally {
-            connectDB.closeConnection();
+        Connection connect = connectDB.getConnection();
+        String query = "SELECT id_person, name FROM person WHERE name LIKE %{?}%";
+        PreparedStatement sentence = connect.prepareStatement(query);
+        sentence.setString(1, keyword);
+        results = sentence.executeQuery();
+        while (results.next()) {
+            person = new Person();
+            person.setId_person(results.getInt("id_person"));
+            person.setName(results.getString("name"));
         }
+        connectDB.closeConnection();
         return person;
     }
 
-    public void deletePersonByIDPerson (int id_person) {
-        Scanner sc = new Scanner(System.in);
+    public void deletePersonByIDPerson (int id_person, boolean userAnswer) throws SQLException, ClassNotFoundException {
         Connection connect = null;
         PreparedStatement sentence = null;
-        try {
-            connect = connectDB.getConnection();
-            String query = "START TRANSACTION; DELETE FROM person WHERE id_person = ?";
-            sentence = connect.prepareStatement(query);
-            sentence.setInt(1, id_person);
-            results = sentence.executeQuery();
-        } catch (SQLException exc) {
-            Logger.getLogger(PersonDAO.class.getName()).log(Level.SEVERE, null, exc);
-        }
-        boolean userAnswer = true;
+        connect = connectDB.getConnection();
+        String query = "START TRANSACTION; DELETE FROM person WHERE id_person = ?";
+        sentence = connect.prepareStatement(query);
+        sentence.setInt(1, id_person);
+        results = sentence.executeQuery();
         if (userAnswer) {
-            try {
                 sentence = connect.prepareStatement("COMMIT");
                 sentence.executeQuery();
-            } catch (SQLException exc) {
-                Logger.getLogger(CompanyDAO.class.getName()).log(Level.SEVERE, null, exc);
-            } finally {
                 connectDB.closeConnection();
-            }
-        } else {
-            try {
+            } else {
                 sentence = connect.prepareStatement("ROLLBACK");
                 sentence.executeQuery();
-            } catch (SQLException exc) {
-                Logger.getLogger(CompanyDAO.class.getName()).log(Level.SEVERE, null, exc);
-            } finally {
                 connectDB.closeConnection();
-            }
         }
     }
 
-    public List<Person> returnAllPerson() {
+    public List<Person> returnAllPerson() throws SQLException, ClassNotFoundException {
         List<Person> allPerson = new ArrayList();
         Person person = null;
-        try {
-            connection = connectDB.getConnection();
-            consultation = connection.createStatement();
-            results = consultation.executeQuery("select id_person, name from person");
-            while (results.next()){
-                person = new Person();
-                person.setId_person(results.getInt("id_person"));
-                person.setName(results.getString("name"));
-                allPerson.add(person);
-            }
-
-        } catch (SQLException exc) {
-            Logger.getLogger(PersonDAO.class.getName()).log(Level.SEVERE, null, exc);
-        }  finally {
-            connectDB.closeConnection();
+        connection = connectDB.getConnection();
+        consultation = connection.createStatement();
+        results = consultation.executeQuery("select id_person, name from person");
+        while (results.next()){
+            person = new Person();
+            person.setId_person(results.getInt("id_person"));
+            person.setName(results.getString("name"));
+            allPerson.add(person);
         }
+        connectDB.closeConnection();
         return allPerson;
     }
 }

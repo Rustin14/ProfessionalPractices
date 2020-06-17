@@ -1,14 +1,14 @@
 /*
 Institution: Universidad Veracruzana
 File creator: Carlos Gabriel Flores Lira
-Class name: Project
+Class projectName: Project
 Date of creation: April 27th. 2020
 */
 package Domain;
 
 public class Project {
     private int id_project;
-    private String name;
+    private String projectName;
     private float duration;
     private String general_purpose;
     private String general_description;
@@ -21,7 +21,7 @@ public class Project {
 
     public Project(int id_project, String name, float duration, String general_purpose, String general_description, int id_company, String chargeResponsable, String nameResponsable, String emailResponsable) {
         this.id_project = id_project;
-        this.name = name;
+        this.projectName = name;
         this.duration = duration;
         this.general_purpose = general_purpose;
         this.general_description = general_description;
@@ -39,12 +39,12 @@ public class Project {
         this.id_project = id_project;
     }
 
-    public String getName() {
-        return name;
+    public String getProjectName() {
+        return projectName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
     }
 
     public float getDuration() {
