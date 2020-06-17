@@ -43,7 +43,9 @@ void verificarCampos(){
             && (user.validateName(nameProfessor) == true) && (user.validateEmail(mailPracticing) == true) 
                 && (user.validatePassword(passwordPracticing)) == true){
                     JOptionPane.showMessageDialog(this, "REGISTRO EXITOSO");
-                    dispose();
+                    PrincipalWindowCoordinator returnToPrincipalWindowCoordinator = new PrincipalWindowCoordinator(); 
+                    returnToPrincipalWindowCoordinator.setVisible(true);
+                    dispose(); 
         }else if((user.validateName(namePracticing) == false) || (user.validateName(nameProfessor) == false)){
                 JOptionPane.showMessageDialog(this, "Revise el apartado Nombre o Profesor,"
                     + " los nombres deben estar correctamente escritos y solo se puede ingresar texto");
@@ -174,11 +176,20 @@ void verificarCampos(){
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    String [] cancelButtons = {"Si", "No"}; 
+    
     private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
-        PrincipalWindowCoordinator returnToWindowCoordinator = new PrincipalWindowCoordinator();
-        returnToWindowCoordinator.setVisible(true);
-        dispose();
+        
+        int optionSelected = JOptionPane.showOptionDialog(this, "¿Seguro que desea cancelar?", "Cancelar Registro de Practicante", 
+                JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.CANCEL_OPTION, null, cancelButtons, cancelButtons[0]);
+        
+        if (optionSelected == 0) {
+            PrincipalWindowCoordinator returnToWindowCoordinator = new PrincipalWindowCoordinator();
+            returnToWindowCoordinator.setVisible(true);
+            dispose(); 
+        } 
+      
     }//GEN-LAST:event_jButtonCancelActionPerformed
 
 

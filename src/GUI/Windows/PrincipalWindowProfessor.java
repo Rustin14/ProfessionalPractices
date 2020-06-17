@@ -8,6 +8,7 @@ public class PrincipalWindowProfessor extends javax.swing.JFrame {
 
     public PrincipalWindowProfessor() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     @SuppressWarnings("unchecked")

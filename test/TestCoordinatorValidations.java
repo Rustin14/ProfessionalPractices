@@ -33,4 +33,10 @@ public class TestCoordinatorValidations {
         assertEquals(valueExpected, valueEntered); 
     }
     
+    @Test
+    public void TestValidateQuotaProject() {
+        valueEntered = coordinatorTest.validateQuotaProject("3");
+        assertEquals(valueExpected, valueEntered); 
+    }
+    
 }

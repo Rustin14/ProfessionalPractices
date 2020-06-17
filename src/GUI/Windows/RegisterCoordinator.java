@@ -130,11 +130,20 @@ public class RegisterCoordinator extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    String [] cancelButtons = {"Si", "No"}; 
+    
     private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
-        PrincipalWindowAdministrator returnToWindowAdministrator = new PrincipalWindowAdministrator();
-        returnToWindowAdministrator.setVisible(true);
-        dispose();
+        
+        int optionSelected = JOptionPane.showOptionDialog(this, "¿Seguro que desea cancelar?", "Cancelar Registro de Coordinador", 
+                JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.CANCEL_OPTION, null, cancelButtons, cancelButtons[0]);
+        
+        if (optionSelected == 0) {
+            PrincipalWindowAdministrator returnToWindowAdministrator = new PrincipalWindowAdministrator();
+            returnToWindowAdministrator.setVisible(true);
+            dispose();   
+        } 
+        
     }//GEN-LAST:event_jButtonCancelActionPerformed
 
 

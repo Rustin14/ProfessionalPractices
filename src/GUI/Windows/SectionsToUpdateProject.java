@@ -1,83 +1,97 @@
 /*
 Intitution: Universidad Veracruzana 
 File creator: Mario Dorantes
-Class name: RegisterProject
-Date of creation: May 19th. 2020 
-*/  
+Class name: SectionsToUpdateProject
+Date of creation: June 09th. 2020 
+*/   
 
 package GUI.Windows;
 
 import BusinessLogic.CoordinatorValidations;
 import javax.swing.JOptionPane;
 
-public class RegisterProject extends javax.swing.JFrame {
+public class SectionsToUpdateProject extends javax.swing.JFrame {
 
-    public RegisterProject() {
+    public SectionsToUpdateProject() {
         initComponents();
         this.setLocationRelativeTo(null);
-        this.setTitle("Registrar Proyecto");
+        this.setTitle("Secciones para Actualizar Proyecto"); 
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabelRegisterProject = new javax.swing.JLabel();
-        jLabelRegisterProjectIcon = new javax.swing.JLabel();
-        jTextFieldCompanyName = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabelSectionsToUpdateIcon = new javax.swing.JLabel();
         jLabelCompanyName = new javax.swing.JLabel();
-        jLabelProjectName = new javax.swing.JLabel();
-        jTextFieldProjectName = new javax.swing.JTextField();
-        jLabelActivities = new javax.swing.JLabel();
-        jLabelManagerName = new javax.swing.JLabel();
-        jTextFieldManagerName = new javax.swing.JTextField();
-        jButtonRegisterProject = new javax.swing.JButton();
-        jButtonCancel = new javax.swing.JButton();
         jLabelNumberPhone = new javax.swing.JLabel();
-        jTextFieldNumberPhone = new javax.swing.JTextField();
+        jLabelProjectName = new javax.swing.JLabel();
+        jLabelManagerName = new javax.swing.JLabel();
         jLabelQuotaProject = new javax.swing.JLabel();
+        jLabelActivities = new javax.swing.JLabel();
+        jTextFieldCompanyName = new javax.swing.JTextField();
+        jTextFieldNumberPhone = new javax.swing.JTextField();
+        jTextFieldProjectName = new javax.swing.JTextField();
+        jTextFieldManagerName = new javax.swing.JTextField();
+        jTextFieldQuotaProject = new javax.swing.JTextField();
         jScrollPaneActivities = new javax.swing.JScrollPane();
         jTextPaneActivities = new javax.swing.JTextPane();
-        jTextFieldQuotaProject = new javax.swing.JTextField();
+        jButtonUpdateProject = new javax.swing.JButton();
+        jButtonCancel = new javax.swing.JButton();
         jLabelFound = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabelRegisterProject.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabelRegisterProject.setText("Registrar Proyecto");
-        getContentPane().add(jLabelRegisterProject, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 40, -1, -1));
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel1.setText("Secciones para actualizar");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 30, 320, 50));
 
-        jLabelRegisterProjectIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/RegisterProyectIcon.png"))); // NOI18N
-        getContentPane().add(jLabelRegisterProjectIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, 90, 90));
-        getContentPane().add(jTextFieldCompanyName, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 130, 200, 30));
+        jLabelSectionsToUpdateIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/updateIcon.png"))); // NOI18N
+        getContentPane().add(jLabelSectionsToUpdateIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 20, -1, -1));
 
         jLabelCompanyName.setFont(new java.awt.Font("Arial", 3, 14)); // NOI18N
-        jLabelCompanyName.setText("Nombre de la Empresa: ");
-        getContentPane().add(jLabelCompanyName, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, 30));
+        jLabelCompanyName.setText("Nombre de la Empresa:");
+        getContentPane().add(jLabelCompanyName, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
+
+        jLabelNumberPhone.setFont(new java.awt.Font("Arial", 3, 14)); // NOI18N
+        jLabelNumberPhone.setText("Número Telefónico:");
+        getContentPane().add(jLabelNumberPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, -1, 20));
 
         jLabelProjectName.setFont(new java.awt.Font("Arial", 3, 14)); // NOI18N
-        jLabelProjectName.setText("Nombre del Proyecto: ");
-        getContentPane().add(jLabelProjectName, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, -1, -1));
-        getContentPane().add(jTextFieldProjectName, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 220, 200, 30));
-
-        jLabelActivities.setFont(new java.awt.Font("Arial", 3, 14)); // NOI18N
-        jLabelActivities.setText("Calendarización de Actividades: ");
-        getContentPane().add(jLabelActivities, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 110, 220, 40));
+        jLabelProjectName.setText("Nombre del Proyecto:");
+        getContentPane().add(jLabelProjectName, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, -1, -1));
 
         jLabelManagerName.setFont(new java.awt.Font("Arial", 3, 14)); // NOI18N
         jLabelManagerName.setText("<html>Nombre del Encargado <p> del Proyecto: <html>");
-        getContentPane().add(jLabelManagerName, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, -1, 40));
-        getContentPane().add(jTextFieldManagerName, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 270, 200, 30));
+        getContentPane().add(jLabelManagerName, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, -1, -1));
 
-        jButtonRegisterProject.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButtonRegisterProject.setText("Registrar Proyecto");
-        jButtonRegisterProject.addActionListener(new java.awt.event.ActionListener() {
+        jLabelQuotaProject.setFont(new java.awt.Font("Arial", 3, 14)); // NOI18N
+        jLabelQuotaProject.setText("Cupo del Proyecto:");
+        getContentPane().add(jLabelQuotaProject, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, -1, -1));
+
+        jLabelActivities.setFont(new java.awt.Font("Arial", 3, 14)); // NOI18N
+        jLabelActivities.setText("Calendarización de Actividades:");
+        getContentPane().add(jLabelActivities, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 120, -1, -1));
+        getContentPane().add(jTextFieldCompanyName, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, 200, 30));
+        getContentPane().add(jTextFieldNumberPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, 200, 30));
+        getContentPane().add(jTextFieldProjectName, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, 200, 30));
+        getContentPane().add(jTextFieldManagerName, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 270, 200, 30));
+        getContentPane().add(jTextFieldQuotaProject, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 320, 80, 30));
+
+        jScrollPaneActivities.setViewportView(jTextPaneActivities);
+
+        getContentPane().add(jScrollPaneActivities, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 150, 310, 200));
+
+        jButtonUpdateProject.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jButtonUpdateProject.setText("Actualizar Proyecto");
+        jButtonUpdateProject.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonRegisterProjectActionPerformed(evt);
+                jButtonUpdateProjectActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonRegisterProject, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 380, 140, 40));
+        getContentPane().add(jButtonUpdateProject, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 380, 150, 40));
 
         jButtonCancel.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jButtonCancel.setText("Cancelar");
@@ -86,32 +100,32 @@ public class RegisterProject extends javax.swing.JFrame {
                 jButtonCancelActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 380, 140, 40));
-
-        jLabelNumberPhone.setFont(new java.awt.Font("Arial", 3, 14)); // NOI18N
-        jLabelNumberPhone.setText("Número Telefónico: ");
-        getContentPane().add(jLabelNumberPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, -1, -1));
-        getContentPane().add(jTextFieldNumberPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, 200, 30));
-
-        jLabelQuotaProject.setFont(new java.awt.Font("Arial", 3, 14)); // NOI18N
-        jLabelQuotaProject.setText("Cupo del Proyecto: ");
-        getContentPane().add(jLabelQuotaProject, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, -1, -1));
-
-        jScrollPaneActivities.setViewportView(jTextPaneActivities);
-
-        getContentPane().add(jScrollPaneActivities, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 150, 310, 200));
-        getContentPane().add(jTextFieldQuotaProject, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 320, 80, 30));
+        getContentPane().add(jButtonCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 380, 150, 40));
 
         jLabelFound.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Fondo.jpg"))); // NOI18N
-        jLabelFound.setText(" ");
-        getContentPane().add(jLabelFound, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 780, 460));
+        getContentPane().add(jLabelFound, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 755, 446));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    String [] cancelButtons = {"Si", "No"};  
     
+    private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
+        
+        int optionSelected = JOptionPane.showOptionDialog(this, "¿Seguro desea cancelar?", "Cancelar Actualizar Proyecto", 
+                JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.CANCEL_OPTION, null, cancelButtons, cancelButtons [0]);  
+        
+        if (optionSelected == 0) {
+            PrincipalWindowCoordinator returnToPrincipalWindowCoordinator = new PrincipalWindowCoordinator(); 
+            returnToPrincipalWindowCoordinator.setVisible(true);
+            dispose(); 
+        }
+        
+    }//GEN-LAST:event_jButtonCancelActionPerformed
+
     CoordinatorValidations coordinator = new CoordinatorValidations();
     
-    private void jButtonRegisterProjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegisterProjectActionPerformed
+    private void jButtonUpdateProjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateProjectActionPerformed
         
         if (jTextFieldCompanyName.getText().isEmpty() || jTextFieldNumberPhone.getText().isEmpty()
                 || jTextFieldProjectName.getText().isEmpty() || jTextFieldManagerName.getText().isEmpty()
@@ -128,7 +142,7 @@ public class RegisterProject extends javax.swing.JFrame {
                     == true) && (coordinator.validateProjectName(projectName) == true) && (coordinator.validateName(managerName)
                             == true) && (coordinator.validateQuotaProject(quotaProject) == true)) {
                 
-                JOptionPane.showMessageDialog(this, "REGISTRO DE PROYECTO EXITOSO");    
+                JOptionPane.showMessageDialog(this, "Proyecto actualizado exitosamente");    
                 PrincipalWindowCoordinator returnToPrincipalWindowCoordinator = new PrincipalWindowCoordinator(); 
                 returnToPrincipalWindowCoordinator.setVisible(true);
                 dispose();
@@ -144,25 +158,10 @@ public class RegisterProject extends javax.swing.JFrame {
             } else if (coordinator.validateQuotaProject(quotaProject) == false) {
                 JOptionPane.showMessageDialog(this, "Asegurese de ingresar un cupo de proyecto valido. Solo numeros");
             }
-        } 
-    }//GEN-LAST:event_jButtonRegisterProjectActionPerformed
-
-    String [] cancelButtons = {"Si", "No"}; 
-    
-    private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
+        }
         
-        int optionSelected = JOptionPane.showOptionDialog(this, "¿Seguro que desea cancelar?", "Cancelar Registro de Proyecto", 
-                JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.CANCEL_OPTION, null, cancelButtons, cancelButtons[0]);
-        
-        if (optionSelected == 0) {
-            PrincipalWindowCoordinator returnToPrincipalWindowCoordinator = new PrincipalWindowCoordinator(); 
-            returnToPrincipalWindowCoordinator.setVisible(true);
-            dispose();     
-        } 
-         
-    }//GEN-LAST:event_jButtonCancelActionPerformed
+    }//GEN-LAST:event_jButtonUpdateProjectActionPerformed
 
-  
     public static void main(String args[]) {
         
         try {
@@ -173,26 +172,26 @@ public class RegisterProject extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RegisterProject.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SectionsToUpdateProject.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RegisterProject.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SectionsToUpdateProject.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RegisterProject.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SectionsToUpdateProject.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RegisterProject.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SectionsToUpdateProject.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-
-        
+     
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RegisterProject().setVisible(true);
+                new SectionsToUpdateProject().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCancel;
-    private javax.swing.JButton jButtonRegisterProject;
+    private javax.swing.JButton jButtonUpdateProject;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelActivities;
     private javax.swing.JLabel jLabelCompanyName;
     private javax.swing.JLabel jLabelFound;
@@ -200,8 +199,7 @@ public class RegisterProject extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelNumberPhone;
     private javax.swing.JLabel jLabelProjectName;
     private javax.swing.JLabel jLabelQuotaProject;
-    private javax.swing.JLabel jLabelRegisterProject;
-    private javax.swing.JLabel jLabelRegisterProjectIcon;
+    private javax.swing.JLabel jLabelSectionsToUpdateIcon;
     private javax.swing.JScrollPane jScrollPaneActivities;
     private javax.swing.JTextField jTextFieldCompanyName;
     private javax.swing.JTextField jTextFieldManagerName;
