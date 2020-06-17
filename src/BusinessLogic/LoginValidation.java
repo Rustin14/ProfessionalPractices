@@ -8,13 +8,16 @@ import dataAccess.AdministratorDAO;
 import dataAccess.CoordinatorDAO;
 import dataAccess.PracticingDAO;
 import dataAccess.ProfessorDAO;
+import java.sql.SQLException;
 
 
 import java.util.ArrayList;
 import java.util.List;
 
+
+
 public class LoginValidation {
-    public Object validateLoginEmail (String email, String password) {
+    public Object validateLoginEmail (String email, String password) throws SQLException, ClassNotFoundException {
         if (loginProfessor(email, password)) {
             return new Professor();
         } else if (loginCoordinator(email, password)) {
@@ -29,7 +32,7 @@ public class LoginValidation {
         return null;
     }
 
-    public boolean loginProfessor(String email, String password) {
+    public boolean loginProfessor(String email, String password) throws SQLException, ClassNotFoundException{
         ProfessorDAO professorDAO = new ProfessorDAO();
         List<Professor> allProfessors = professorDAO.returnAllProfessors();
         int i = 0;
@@ -43,7 +46,7 @@ public class LoginValidation {
         return flag;
     }
 
-    public boolean loginCoordinator(String email, String password) {
+    public boolean loginCoordinator(String email, String password) throws SQLException, ClassNotFoundException {
         CoordinatorDAO coordinatorDAO = new CoordinatorDAO();
         List<Coordinator> allCoordinators = new ArrayList();
         allCoordinators = coordinatorDAO.returnAllCoordinators();
@@ -58,7 +61,7 @@ public class LoginValidation {
         return flag;
     }
 
-    public boolean loginPracticing(String email, String password) {
+    public boolean loginPracticing(String email, String password) throws SQLException, ClassNotFoundException {
         PracticingDAO practicingDAO = new PracticingDAO();
         List<Practicing> allPracticing = new ArrayList();
         allPracticing = practicingDAO.returnAllPracticing();
@@ -72,7 +75,7 @@ public class LoginValidation {
         return flag;
     }
 
-    public boolean loginAdministrator (String email, String password) {
+    public boolean loginAdministrator (String email, String password) throws SQLException, ClassNotFoundException {
         AdministratorDAO administratorDAO = new AdministratorDAO();
         List<Administrator> allAdministrators = new ArrayList();
         allAdministrators = administratorDAO.returnAllAdministrators();

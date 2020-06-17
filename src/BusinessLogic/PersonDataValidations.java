@@ -10,6 +10,7 @@ package BusinessLogic;
 public class PersonDataValidations {
     
     boolean validName;
+    boolean validNumber = true;
     boolean validEmail; 
     boolean validPassword; 
     boolean validSex;
@@ -19,6 +20,10 @@ public class PersonDataValidations {
     public boolean validateName (String name) {
         return validName = name.matches("^([A-ZÑ]{1}[a-zñ]+[ ]?){2,4}$");
     } 
+    
+    public boolean validateNumber(String number) {
+        return validNumber = number.matches("[0-9]+");
+    }
     
     public boolean validateEmail (String email) {
         return validEmail = email.matches("^[(A-Z)(a-z)(0-9)(/)(.)(#)(_)]{5,20}[@]{1}"
