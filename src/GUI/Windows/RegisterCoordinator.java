@@ -145,8 +145,6 @@ public class RegisterCoordinator extends javax.swing.JFrame {
         } 
         
     }//GEN-LAST:event_jButtonCancelActionPerformed
-
-
     
     private void jButtonRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegisterActionPerformed
         verificarCampos();

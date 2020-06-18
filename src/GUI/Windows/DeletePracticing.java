@@ -77,7 +77,7 @@ public class DeletePracticing extends javax.swing.JFrame {
         
         int optionSelected = JOptionPane.showOptionDialog(this, "¿Seguro desea cancelar?", "Cancelar Eliminar Practicante", 
                 JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.CANCEL_OPTION, null, cancelButtons, cancelButtons [0]); 
-        
+     
         if (optionSelected == 0) {
             PrincipalWindowCoordinator returnToPrincipalWindowCoordinator = new PrincipalWindowCoordinator(); 
             returnToPrincipalWindowCoordinator.setVisible(true); 
