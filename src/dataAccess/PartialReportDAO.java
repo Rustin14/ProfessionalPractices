@@ -8,11 +8,13 @@ package dataAccess;
 
 import Domain.PartialReport;
 import InterfacesDAO.IPartialReportDAO;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 
-import java.io.*;
 import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.ArrayList;
 
 public class PartialReportDAO implements IPartialReportDAO {
     private ConnectDB connectDB;
@@ -22,62 +24,57 @@ public class PartialReportDAO implements IPartialReportDAO {
 
 
     @Override
-    public void savePartialReport(int id_partial, int partialNumber, int score, String observations, Date dueDate, byte[] paperFile, int id_practicing, String address) {
-        try (Connection connect = connectDB.getConnection()) {
-            String query = "INSERT INTO partialreport  (id_partial, partialNumber, score, observations, dueDate, paperFile, id_practicing) VALUES (?, ?, ?, ?, ?, ?, ?)";
-            PreparedStatement statement = connect.prepareStatement(query);
-            statement.setInt(1, id_partial);
-            statement.setInt(2, partialNumber);
-            statement.setInt(3, score);
-            statement.setString(4, observations);
-            statement.setDate(5, dueDate);
-            statement.setInt(7, id_practicing);
-            try {
-                InputStream inputStream = new FileInputStream(new File(address));
-                statement.setBlob(5, inputStream);
-            } catch (FileNotFoundException exc) {
-                Logger.getLogger(PartialReport.class.getName()).log(Level.SEVERE, null, exc);
-            }
-            statement.executeQuery();
-        } catch (SQLException exc) {
-            Logger.getLogger(PartialReport.class.getName()).log(Level.SEVERE, null, exc);
-        } finally {
-            connectDB.closeConnection();
-        }
+    public void savePartialReport(int id_partial, int partialNumber, int score, String observations, Date dueDate, int id_practicing, String address) throws SQLException, ClassNotFoundException {
+        Connection connect = connectDB.getConnection();
+        String query = "INSERT INTO partialreport  (id_partial, id_practicing) VALUES (?, ?)";
+        PreparedStatement statement = connect.prepareStatement(query);
+        statement.setInt(1, id_partial);
+        statement.setInt(7, id_practicing);
+        statement.executeQuery();
+        connectDB.closeConnection();
+    }
+    
+    public void savePartialReportByIDPartial(int id_partial, String address) throws SQLException, ClassNotFoundException, FileNotFoundException {
+        Connection connect = connectDB.getConnection();
+        String query = "INSERT INTO partialreport (paperFile) VALUES (?) where id_partial = ?";
+        PreparedStatement statement = connect.prepareStatement(query);
+        File file = new File(address);
+        InputStream inputStream = new FileInputStream(file);
+        int fileLength = (int)file.length();
+        statement.setBinaryStream(1, inputStream);
+        statement.setInt(2, id_partial);
+        statement.executeUpdate();
     }
 
     @Override
-    public PartialReport readPartialReportByIDPartial(int id_partial, String address) {
-       PartialReport paper = null;
+    public PartialReport readPartialReportByIDPartial(int id_partial, String address) throws SQLException, ClassNotFoundException {
+        PartialReport paper = null;
         ResultSet resultSet = null;
-        try (Connection connect = connectDB.getConnection()) {
-            String query = "SELECT paperFile FROM partialreport where id_partial = ?";
-            PreparedStatement statement = connect.prepareStatement(query);
-            resultSet = statement.executeQuery();
-        } catch (SQLException exc) {
-            Logger.getLogger(PartialReportDAO.class.getName()).log(Level.SEVERE, null, exc);
-        }
-        try {
-            File file = new File(address);
-            FileOutputStream outputStream = new FileOutputStream(file);
-            while (results.next()) {
-                InputStream input = resultSet.getBinaryStream("paperFile");
-                byte[] buffer = new byte[1024];
-                while (input.read(buffer) > 0) {
-                    outputStream.write(buffer);
-                }
-                paper.setPaperFile(buffer);
-            }
-        } catch (IOException | SQLException exc) {
-            Logger.getLogger(PartialReportDAO.class.getName()).log(Level.SEVERE, null, exc);
-        } finally {
-            connectDB.closeConnection();
-        }
+        Connection connect = connectDB.getConnection();
+        String query = "SELECT paperFile FROM partialreport where id_partial = ?";
+        PreparedStatement statement = connect.prepareStatement(query);
+        resultSet = statement.executeQuery();
+        connectDB.closeConnection();
         return paper;
     }
 
     @Override
     public void deletePartialReportByIDPartial(int id_partial) {
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+    
+    public ArrayList<PartialReport> ReadAllPartialReports() throws SQLException, ClassNotFoundException {
+        PartialReport paper = null;
+        ArrayList<PartialReport> allPartialReports = new ArrayList();
+        Connection connect = connectDB.getConnection();
+        String query = "SELECT id_partial FROM partialreport";
+        PreparedStatement statement = connect.prepareStatement(query);
+        results = statement.executeQuery();
+        while (results.next()) {
+            paper = new PartialReport();
+            paper.setId_partial(results.getInt("id_partial"));
+            allPartialReports.add(paper);
+        }
+        return allPartialReports;
     }
 }

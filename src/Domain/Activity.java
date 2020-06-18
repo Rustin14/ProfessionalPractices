@@ -2,18 +2,18 @@ package Domain;
 
 public class Activity {
     private int id_activity;
-    private String name;
+    private String activityName;
     private String description;
-    private String plannedTime;
+    private String timePlanned;
     private String timeInvested;
-    private int timeInWeeks;
+    private String timeInWeeks;
     private int id_practicing;
 
-    public Activity(int id_activity, String name, String description, String plannedTime, String timeInvested, int timeInWeeks, int id_practicing) {
+    public Activity(int id_activity, String name, String description, String plannedTime, String timeInvested, String timeInWeeks, int id_practicing) {
         this.id_activity = id_activity;
-        this.name = name;
+        this.activityName = name;
         this.description = description;
-        this.plannedTime = plannedTime;
+        this.timePlanned = plannedTime;
         this.timeInvested = timeInvested;
         this.timeInWeeks = timeInWeeks;
         this.id_practicing = id_practicing;
@@ -29,12 +29,12 @@ public class Activity {
         this.id_activity = id_activity;
     }
 
-    public String getName() {
-        return name;
+    public String getActivityName() {
+        return activityName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setActivityName(String activityName) {
+        this.activityName = activityName;
     }
 
     public int getId_practicing() {
@@ -53,12 +53,12 @@ public class Activity {
         this.description = description;
     }
 
-    public String getPlannedTime() {
-        return plannedTime;
+    public String getTimePlanned() {
+        return timePlanned;
     }
 
-    public void setPlannedTime(String plannedTime) {
-        this.plannedTime = plannedTime;
+    public void setTimePlanned(String timePlanned) {
+        this.timePlanned = timePlanned;
     }
 
     public String getTimeInvested() {
@@ -69,11 +69,11 @@ public class Activity {
         this.timeInvested = timeInvested;
     }
 
-    public int getTimeInWeeks() {
+    public String getTimeInWeeks() {
         return timeInWeeks;
     }
 
-    public void setTimeInWeeks(int timeInWeeks) {
+    public void setTimeInWeeks(String timeInWeeks) {
         this.timeInWeeks = timeInWeeks;
     }
 }

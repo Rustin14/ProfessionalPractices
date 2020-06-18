@@ -31,9 +31,9 @@ public class ProjectDAO implements IProjectDAO {
 
     @Override
     public void saveProject(int id_project, String name, float duration, String general_purpose, String general_description,
-                            int id_company, String chargeResponsable, String nameResponsable, String emailResponsable) {
+                            int id_company, String chargeResponsable, String nameResponsable, String emailResponsable) throws SQLException, ClassNotFoundException{
 
-        try (Connection connect = connectDB.getConnection()){
+        Connection connect = connectDB.getConnection();
             String query = "INSERT INTO project (id_project, name, duration, general_purpose, general_description, " +
                     "id_company, charge_responsable, name_responsable, email_responsable) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement statement = connect.prepareStatement(query);
@@ -47,110 +47,79 @@ public class ProjectDAO implements IProjectDAO {
             statement.setString(8, nameResponsable);
             statement.setString(9, emailResponsable);
             statement.executeQuery();
-        } catch (SQLException exc) {
-            Logger.getLogger(CompanyDAO.class.getName()).log(Level.SEVERE, null, exc);
-        } finally {
             connectDB.closeConnection();
-        }
     }
 
     @Override
-    public Project searchProjectByIDProject(int id_project) {
+    public Project searchProjectByIDProject(int id_project) throws SQLException, ClassNotFoundException{
         Project project = null;
-        try (Connection connection = connectDB.getConnection()) {
-            String query = "SELECT id_project, name FROM project WHERE id_project = ?";
-            PreparedStatement statement = connection.prepareStatement(query);
-            statement.setInt (1, id_project);
-            statement.executeQuery();
-            while (results.next()) {
-                project = new Project();
-                project.setId_project(results.getInt("id_project"));
-                project.setName(results.getString("name"));
-            }
-        } catch (SQLException exc) {
-            Logger.getLogger(CoordinatorDAO.class.getName()).log(Level.SEVERE, null, exc);
-        } finally {
-            connectDB.closeConnection();
+        Connection connection = ConnectDB.getConnection();
+        String query = "SELECT id_project, name FROM project WHERE id_project = ?";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setInt (1, id_project);
+        results = statement.executeQuery();
+        while (results.next()) {
+            project = new Project();
+            project.setId_project(results.getInt("id_project"));
+            project.setProjectName(results.getString("name"));
         }
+        connectDB.closeConnection();
         return project;
     }
 
     @Override
-    public Project searchProjectByKeyword(String keyword) {
+    public Project searchProjectByKeyword(String keyword) throws SQLException, ClassNotFoundException {
         Project project = null;
-        try (Connection connection = connectDB.getConnection()) {
-            String query = "SELECT id_project, name FROM project WHERE name LIKE %{?}%";
-            PreparedStatement statement = connection.prepareStatement(query);
-            statement.setString(1, keyword);
-            statement.executeQuery();
-            while (results.next()) {
-                project = new Project();
-                project.setId_project(results.getInt("id_project"));
-                project.setName(results.getString("name"));
-            }
-        } catch (SQLException exc) {
-            Logger.getLogger(ProjectDAO.class.getName()).log(Level.SEVERE, null, exc);
-        } finally {
-            connectDB.closeConnection();
+        Connection connection = connectDB.getConnection();
+        String query = "SELECT id_project, name FROM project WHERE name LIKE %{?}%";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setString(1, keyword);
+        statement.executeQuery();
+        while (results.next()) {
+            project = new Project();
+            project.setId_project(results.getInt("id_project"));
+            project.setProjectName(results.getString("name"));
         }
+            connectDB.closeConnection();
         return project;
     }
 
     @Override
-    public void deleteProjectByIDProject(int id_project) {
-        Scanner sc = new Scanner(System.in);
-        Connection connect = null;
+    public void deleteProjectByIDProject(int id_project) throws SQLException, ClassNotFoundException {
         PreparedStatement sentence = null;
-        try {
-            connect = connectDB.getConnection();
-            String query = "START TRANSACTION; DELETE FROM project WHERE id_project = ?";
-            sentence = connect.prepareStatement(query);
-            sentence.setInt(1, id_project);
-            results = sentence.executeQuery();
-        } catch (SQLException exc) {
-            Logger.getLogger(ProjectDAO.class.getName()).log(Level.SEVERE, null, exc);
-        }
+        Connection connect = connectDB.getConnection();
+        String query = "START TRANSACTION; DELETE FROM project WHERE id_project = ?";
+        sentence = connect.prepareStatement(query);
+        sentence.setInt(1, id_project);
+        results = sentence.executeQuery();
         boolean userAnswer = true;
         if (userAnswer) {
-            try {
-                sentence = connect.prepareStatement("COMMIT");
-                sentence.executeQuery();
-            } catch (SQLException exc) {
-                Logger.getLogger(CompanyDAO.class.getName()).log(Level.SEVERE, null, exc);
-            } finally {
-                connectDB.closeConnection();
-            }
+            sentence = connect.prepareStatement("COMMIT");
+            sentence.executeQuery();
+            connectDB.closeConnection();
         } else {
-            try {
-                sentence = connect.prepareStatement("ROLLBACK");
-                sentence.executeQuery();
-            } catch (SQLException exc) {
-                Logger.getLogger(CompanyDAO.class.getName()).log(Level.SEVERE, null, exc);
-            } finally {
-                connectDB.closeConnection();
-            }
-        }
-    }
-
-    @Override
-    public List<Project> returnAllProjects() {
-        List<Project> allProjects = new ArrayList();
-        Project project = null;
-        try (Connection connection = connectDB.getConnection()) {
-            String query = "SELECT id_project, name FROM project";
-            PreparedStatement statement = connection.prepareStatement(query);
-            statement.executeQuery();
-            while(results.next()) {
-                project = new Project();
-                project.setId_project(results.getInt("id_project"));
-                project.setName(results.getString("name"));
-                allProjects.add(project);
-            }
-        } catch (SQLException exc) {
-            Logger.getLogger(ProjectDAO.class.getName()).log(Level.SEVERE, null, exc);
-        } finally {
+            sentence = connect.prepareStatement("ROLLBACK");
+            sentence.executeQuery();
             connectDB.closeConnection();
         }
+    }
+    
+
+    @Override
+    public List<Project> returnAllProjects() throws SQLException, ClassNotFoundException {
+        List<Project> allProjects = new ArrayList();
+        Project project = null;
+        Connection connection = connectDB.getConnection();
+        String query = "SELECT id_project, name FROM project";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.executeQuery();
+        while(results.next()) {
+            project = new Project();
+            project.setId_project(results.getInt("id_project"));
+            project.setProjectName(results.getString("name"));
+            allProjects.add(project);
+        }
+        connectDB.closeConnection();
         return allProjects;
     }
 }

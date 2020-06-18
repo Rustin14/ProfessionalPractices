@@ -7,56 +7,64 @@ import Domain.Coordinator;
 import Domain.Professor;
 import Domain.Administrator;
 import Domain.Practicing;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.JOptionPane;
 
-
-
-/**
- *
- * @author BRANDON
- */
 public class Login extends javax.swing.JFrame {
+    
+    private Object loginUser = null;
     
     public Login() {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setTitle("Inicio de Sesión");
     }
-
+    
  void verificarCampos(){
+    String userName = null;
+    String userPassword = null;
     PersonDataValidations user = new PersonDataValidations();
     if (jTextFieldUserName.getText().isEmpty() || jPasswordFieldPasswordUser.getText().isEmpty()){
         JOptionPane.showMessageDialog(this, "Favor de NO dejar campos vacios");
     }else{
-        String userName = jTextFieldUserName.getText();
-        String userPassword = jPasswordFieldPasswordUser.getText();
+        userName = jTextFieldUserName.getText();
+        userPassword = jPasswordFieldPasswordUser.getText();
         LoginValidation validation = new LoginValidation();
+        try {
+            loginUser = validation.validateLoginEmail(userName, userPassword);
+        } catch (SQLException | ClassNotFoundException loginException) {
+            JOptionPane.showMessageDialog(this, "No se puede acceder a la base de datos ahora.");
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, loginException);
+        }
         if(user.validateEmail(userName) == true && user.validatePassword(userPassword) == true){
-            if (validation.validateLoginEmail(userName, userPassword).getClass().equals((new Coordinator()).getClass())) {
+            if (loginUser.getClass().equals((new Coordinator()).getClass())) {
                 PrincipalWindowCoordinator goToWindowCoordinator = new PrincipalWindowCoordinator();
                 goToWindowCoordinator.setVisible(true);
                 dispose();
-            }else if (validation.validateLoginEmail(userName, userPassword).getClass().equals((new Professor()).getClass())) {
+            } else if (loginUser.getClass().equals((new Professor()).getClass())) {
                 PrincipalWindowProfessor goToWindowProfessor = new PrincipalWindowProfessor();
                 goToWindowProfessor.setVisible(true);
                 dispose();
-            }else if(validation.validateLoginEmail(userName, userPassword).getClass().equals((new Administrator()).getClass())){
+            } else if(loginUser.getClass().equals((new Administrator()).getClass())){
                 PrincipalWindowAdministrator goToWindowAdministrator = new PrincipalWindowAdministrator();
                 goToWindowAdministrator.setVisible(true);
                 dispose();
-            }else if(validation.validateLoginEmail(userName, userPassword).getClass().equals((new Practicing()).getClass())){
+            } else if(loginUser.getClass().equals((new Practicing()).getClass())){
                 PrincipalWindowPracticing goToWindowPracticing = new PrincipalWindowPracticing();
                 goToWindowPracticing.setVisible(true);
                 dispose();
-            }else{
+            } else{
                 JOptionPane.showMessageDialog(this, "Usuario no registrado, Verifique su correo y contraseña");
             }
-        }else{
+        } else {
              JOptionPane.showMessageDialog(this, "Verificar que se ingreso un email valido");   
         }
-    }    
- }
+    }   
+}    
+
 
   
   
