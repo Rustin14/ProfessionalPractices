@@ -55,7 +55,7 @@ public class PrincipalWindowPracticing extends javax.swing.JFrame {
 
         jLabelTitle.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabelTitle.setText("Practicante");
-        getContentPane().add(jLabelTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 0, -1, -1));
+        getContentPane().add(jLabelTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 30, -1, -1));
 
         jLabelProyectTitle.setFont(new java.awt.Font("Arial", 3, 18)); // NOI18N
         jLabelProyectTitle.setText("Proyecto");
@@ -81,13 +81,23 @@ public class PrincipalWindowPracticing extends javax.swing.JFrame {
         getContentPane().add(jLabelDocumentationTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 70, -1, -1));
 
         jButtonscheduleAdd.setBackground(new java.awt.Color(51, 255, 204));
-        jButtonscheduleAdd.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jButtonscheduleAdd.setText("<html><center>Añadir horario");
+        jButtonscheduleAdd.setFont(new java.awt.Font("Arial", 1, 10)); // NOI18N
+        jButtonscheduleAdd.setText("Generar Reporte Parcial");
+        jButtonscheduleAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonscheduleAddActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonscheduleAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 110, 150, 70));
 
         jButtonPartialReportAdd.setBackground(new java.awt.Color(51, 255, 204));
-        jButtonPartialReportAdd.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jButtonPartialReportAdd.setText("<html><center>Añadir Reporte Parcial");
+        jButtonPartialReportAdd.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jButtonPartialReportAdd.setText("Añadir Reporte Parcial");
+        jButtonPartialReportAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPartialReportAddActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonPartialReportAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 200, 150, 70));
 
         jButtonPersonalSoftwareProcessAdd.setBackground(new java.awt.Color(51, 255, 204));
@@ -130,13 +140,17 @@ public class PrincipalWindowPracticing extends javax.swing.JFrame {
         getContentPane().add(jButtonLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 400, -1, -1));
 
         jButtonAddMontlyReport.setBackground(new java.awt.Color(51, 255, 204));
-        jButtonAddMontlyReport.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jButtonAddMontlyReport.setText("<html><center>Añadir Reporte Mensual");
+        jButtonAddMontlyReport.setFont(new java.awt.Font("Arial", 1, 10)); // NOI18N
+        jButtonAddMontlyReport.setText("Añadir Reporte Mensual");
+        jButtonAddMontlyReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAddMontlyReportActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonAddMontlyReport, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 290, 150, 70));
 
         jButtonAddActivitiesPlan.setBackground(new java.awt.Color(51, 255, 204));
         jButtonAddActivitiesPlan.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jButtonAddActivitiesPlan.setText("<html><center>Añadir Plan de Actividades");
         getContentPane().add(jButtonAddActivitiesPlan, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 110, 160, 70));
 
         jButtonAddSelfAppraisal.setBackground(new java.awt.Color(51, 255, 204));
@@ -159,6 +173,22 @@ public class PrincipalWindowPracticing extends javax.swing.JFrame {
         returnToLogin.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButtonLogoutActionPerformed
+
+    private void jButtonAddMontlyReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddMontlyReportActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAddMontlyReportActionPerformed
+
+    private void jButtonPartialReportAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPartialReportAddActionPerformed
+        setVisible(false);
+        AddPartialReport partialWindow = new AddPartialReport();
+        partialWindow.setVisible(true);
+    }//GEN-LAST:event_jButtonPartialReportAddActionPerformed
+
+    private void jButtonscheduleAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonscheduleAddActionPerformed
+        setVisible(false);
+        GeneratePartialReportWindow generatePartialWindow = new GeneratePartialReportWindow();
+        generatePartialWindow.setVisible(true);
+    }//GEN-LAST:event_jButtonscheduleAddActionPerformed
 
     /**
      * @param args the command line arguments

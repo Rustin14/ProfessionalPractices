@@ -52,6 +52,16 @@ public class GeneratePartialReportWindow extends javax.swing.JFrame {
         return empty;
     }
     
+    void cancelAction() {
+        int dialogButton = JOptionPane.YES_NO_OPTION;
+        int dialogResult = JOptionPane.showConfirmDialog (null, "¿Estás seguro de cancelar la operación?","Cancelar operación", dialogButton);
+        if(dialogResult == JOptionPane.YES_OPTION) {
+            setVisible(false);
+            PrincipalWindowPracticing mainWindow = new PrincipalWindowPracticing();
+            mainWindow.setVisible(true);
+        } else {}
+    }
+    
     JPanel fillContainer() {
         JPanel container = new JPanel();
         container.add(jTextNameActivity);
@@ -341,7 +351,7 @@ public class GeneratePartialReportWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextNameActivityActionPerformed
 
     private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
-        // TODO add your handling code here:
+        cancelAction();
     }//GEN-LAST:event_jButtonCancelActionPerformed
 
     private void jTextPlannedTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextPlannedTimeActionPerformed
