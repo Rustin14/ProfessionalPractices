@@ -9,34 +9,34 @@ package Domain;
 
 public class Coordinator {
     private String name;
-    private int id_person;
-    private int cubicle;
+    private String id_person;
+    private String cubicle;
     private String staff_number;
     private String email;
     private String password;
 
     public Coordinator(){}
 
-    public Coordinator(String name, int id_person, int cubicle, String staff_number) {
+    public Coordinator(String name, String id_person, String cubicle, String staff_number) {
         this.name = name;
         this.id_person = id_person;
         this.cubicle = cubicle;
         this.staff_number = staff_number;
     }
 
-    public int getId_person() {
+    public String getId_person() {
         return id_person;
     }
 
-    public void setId_person(int id_person) {
+    public void setId_person(String id_person) {
         this.id_person = id_person;
     }
 
-    public int getCubicle() {
+    public String getCubicle() {
         return cubicle;
     }
 
-    public void setCubicle(int cubicle) {
+    public void setCubicle(String cubicle) {
         this.cubicle = cubicle;
     }
 

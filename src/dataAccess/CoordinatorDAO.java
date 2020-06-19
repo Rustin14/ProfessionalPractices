@@ -8,13 +8,15 @@ package dataAccess;
 
 import Domain.Coordinator;
 import InterfacesDAO.ICoordinatorDAO;
-
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 public class CoordinatorDAO implements ICoordinatorDAO {
     private final ConnectDB connectDB;
@@ -28,16 +30,19 @@ public class CoordinatorDAO implements ICoordinatorDAO {
 
 
     @Override
-    public void saveCoordinator(int id_person, String name, int cubicle, String staff_number) throws SQLException, ClassNotFoundException{
-        Connection connect = connectDB.getConnection();
-        String query = "INSERT INTO coordinator (id_person, name, cubicle, staff_number) VALUES (?, ?, ?, ?)";
-        PreparedStatement statement = connect.prepareStatement(query);
-        statement.setInt(1, id_person);
-        statement.setString(2, name);
-        statement.setInt(3, cubicle);
-        statement.setString(4, staff_number);
-        statement.executeQuery();
-        connectDB.closeConnection();
+    public void saveCoordinator(String id_person, String name, String cubicle, String staff_number,
+            String email, String password) throws SQLException, ClassNotFoundException{
+                Connection connect = connectDB.getConnection();
+                String query = "INSERT INTO coordinator (id_person, name, cubicle, staff_number) VALUES (?, ?, ?, ?)";
+                PreparedStatement statement = connect.prepareStatement(query);
+                statement.setString(1, id_person);
+                statement.setString(2, name);
+                statement.setString(3, cubicle);
+                statement.setString(4, staff_number);
+                statement.setString(5, email);
+                statement.setString(6, password);
+                statement.executeQuery();
+                connectDB.closeConnection();
     }
 
     @Override
@@ -50,7 +55,7 @@ public class CoordinatorDAO implements ICoordinatorDAO {
         statement.executeQuery();
         while (results.next()) {
             coordinator = new Coordinator();
-            coordinator.setId_person(results.getInt("id_person"));
+            coordinator.setId_person(results.getString("id_person"));
             coordinator.setName(results.getString("name"));
         }
         connectDB.closeConnection();
@@ -67,7 +72,7 @@ public class CoordinatorDAO implements ICoordinatorDAO {
         statement.executeQuery();
         while (results.next()) {
             coordinator = new Coordinator();
-            coordinator.setId_person(results.getInt("id_person"));
+            coordinator.setId_person(results.getString("id_person"));
             coordinator.setName(results.getString("name"));
         }
         connectDB.closeConnection();
@@ -104,9 +109,9 @@ public class CoordinatorDAO implements ICoordinatorDAO {
         results = consultation.executeQuery("SELECT * FROM coordinator");
         while (results.next()) {
             coordinator = new Coordinator();
-            coordinator.setId_person(results.getInt("id_person"));
+            coordinator.setId_person(results.getString("id_person"));
             coordinator.setName(results.getString("name"));
-            coordinator.setCubicle(results.getInt("cubicle"));
+            coordinator.setCubicle(results.getString("cubicle"));
             coordinator.setStaff_number(results.getString("staff_number"));
             coordinator.setEmail(results.getString("email"));
             coordinator.setPassword(results.getString("password"));

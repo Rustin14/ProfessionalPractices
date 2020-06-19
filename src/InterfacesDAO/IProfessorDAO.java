@@ -10,7 +10,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface IProfessorDAO {
-    public void saveProfessor(int id_person, String name, int cubicle, String staff_number) throws SQLException, ClassNotFoundException;
+    public void saveProfessor(String id_person, String name, String shift
+            ,String cubicle, String staff_number, String email, String password) throws SQLException, ClassNotFoundException;
     public Professor searchProfessorByIDPerson (int id_person) throws SQLException, ClassNotFoundException;
     public Professor searchProfessorByKeyword (String keywords) throws SQLException, ClassNotFoundException;
     public void deleteProfessorByIDPerson (int id_person, boolean userAnswer) throws SQLException, ClassNotFoundException;

@@ -31,14 +31,18 @@ public class ProfessorDAO implements IProfessorDAO {
     }
 
     @Override
-    public void saveProfessor(int id_person, String name, int cubicle, String staff_number) throws SQLException, ClassNotFoundException {
+    public void saveProfessor(String id_person, String name, String shift,String cubicle, String staff_number
+            ,String email, String password) throws SQLException, ClassNotFoundException {
         Connection connect = connectDB.getConnection();
         String query = "INSERT INTO professor (id_person, name, cubicle, staff_number) VALUES (?, ?, ?, ?)";
         PreparedStatement statement = connect.prepareStatement(query);
-        statement.setInt(1, id_person);
+        statement.setString(1, id_person);
         statement.setString(2, name);
-        statement.setInt(4, cubicle);
-        statement.setString(4, staff_number);
+        statement.setString(3, shift);
+        statement.setString(4, cubicle);
+        statement.setString(5, staff_number);
+        statement.setString(6, email);
+        statement.setString(7, password);
         statement.executeQuery();
         connectDB.closeConnection();
     }
@@ -108,7 +112,8 @@ public class ProfessorDAO implements IProfessorDAO {
             professor = new Professor();
             professor.setId_person(results.getInt("id_person"));
             professor.setName(results.getString("name"));
-            professor.setCubicle(results.getInt("cubicle"));
+            professor.setShift(results.getString("Shift"));
+            professor.setCubicle(results.getString("cubicle"));
             professor.setStaff_number(results.getString("staff_number"));
             professor.setEmail(results.getString("email"));
             professor.setPassword(results.getString("password"));

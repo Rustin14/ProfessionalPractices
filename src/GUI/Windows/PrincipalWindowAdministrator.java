@@ -1,11 +1,18 @@
+/*
+Intitution: Universidad Veracruzana 
+File creator: Brandon Trujillo
+Class name: RegisterProfessor
+Date of creation: May 15th. 2020 
+*/ 
 package GUI.Windows;
-
+import Domain.Coordinator;
+import Domain.Professor;
+import dataAccess.CoordinatorDAO;
+import dataAccess.ProfessorDAO;
+import java.sql.SQLException;
+import java.util.List;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author BRANDON
- */
 public class PrincipalWindowAdministrator extends javax.swing.JFrame {
 
     public PrincipalWindowAdministrator() {
@@ -94,15 +101,11 @@ public class PrincipalWindowAdministrator extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonOptionRegisterCoordinatorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOptionRegisterCoordinatorActionPerformed
-        RegisterCoordinator goToRegisterCoordinator = new RegisterCoordinator();
-        goToRegisterCoordinator.setVisible(true);
-        dispose();
+        validatePreconditionsForRegisterCoordinator(coordinatorList);
     }//GEN-LAST:event_jButtonOptionRegisterCoordinatorActionPerformed
 
     private void jButtonOptionRegisterProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOptionRegisterProfessorActionPerformed
-        RegisterProfessor goToRegisterProfessor = new RegisterProfessor();
-        goToRegisterProfessor.setVisible(true);
-        dispose();
+        validatePreconditionsForRegisterProfesor(professorList);
     }//GEN-LAST:event_jButtonOptionRegisterProfessorActionPerformed
 
     private void jButtonLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLogOutActionPerformed
@@ -119,6 +122,44 @@ public class PrincipalWindowAdministrator extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Aún no existe implementación");
     }//GEN-LAST:event_jButtonoptionDeleteProfesorActionPerformed
 
+    List<Coordinator> coordinatorList = null;
+    
+    public List getCoordinator() throws SQLException, ClassNotFoundException{
+        CoordinatorDAO coordinator = new CoordinatorDAO();
+        coordinatorList = coordinator.returnAllCoordinators();
+        return coordinatorList;
+    }
+    
+   void validatePreconditionsForRegisterCoordinator(List coordinatorList){
+        if(coordinatorList.size() == 0){
+            RegisterCoordinator goToRegisterCoordinator = new RegisterCoordinator();
+            goToRegisterCoordinator.setVisible(true);
+            dispose();
+        }else{
+            JOptionPane.showMessageDialog(this, "Ya hay un Coordinador Registrado, "
+                    + "para registrar otro debe eliminar el actual");
+        }
+    }
+   
+   List <Professor> professorList = null;
+   
+   public List getProfesors() throws SQLException, ClassNotFoundException {
+       ProfessorDAO professor = new ProfessorDAO();
+       professorList = professor.returnAllProfessors();
+       return professorList;
+   }
+   
+   void validatePreconditionsForRegisterProfesor(List professorList){
+       if(professorList.size() <= 1){
+           RegisterProfessor goToRegisterProfessor = new RegisterProfessor();
+           goToRegisterProfessor.setVisible(true);
+           dispose();
+       }else{
+           JOptionPane.showMessageDialog(this, "Ya existen 2 profesores registrados, para registrar otro,"
+                   + "elimine alguno");
+       }
+   }
+    
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

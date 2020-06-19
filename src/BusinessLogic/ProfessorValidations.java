@@ -12,6 +12,7 @@ public class ProfessorValidations extends PersonDataValidations {
     boolean validTurn; 
     boolean validQualification;
     boolean validStaffNumber; 
+    boolean validCubicleNumber;
     
     public boolean validateTurn (String turn) {
         return validTurn = turn.matches("^[M|m|V|v]{1}[a|t|u|i|n|o|e|s|p|r|t]*$"); 
@@ -23,6 +24,10 @@ public class ProfessorValidations extends PersonDataValidations {
     
     public boolean validateStaffNumber (String staffNumber) {
         return validStaffNumber = staffNumber.matches("^[0-9]{5}$"); 
+    }
+    
+    public boolean validateCubicleNumber (String cubicleNumber){
+        return validCubicleNumber = cubicleNumber.matches("^[0-9]{1,3}$");
     }
     
 }

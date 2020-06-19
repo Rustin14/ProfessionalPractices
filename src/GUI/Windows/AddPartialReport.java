@@ -157,6 +157,7 @@ public class AddPartialReport extends javax.swing.JFrame {
            partialReportsIDs.add(String.valueOf(partialReports.get(i).getId_partial()));
            i++;
         }
+        
         partialReportIDs = partialReportsIDs.toArray(new String[partialReportsIDs.size()]);
         JComboBox jComboBox = new JComboBox(partialReportIDs);
         jComboBox.setEditable(true);

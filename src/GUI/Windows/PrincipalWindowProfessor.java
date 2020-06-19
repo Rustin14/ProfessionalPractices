@@ -59,6 +59,11 @@ public class PrincipalWindowProfessor extends javax.swing.JFrame {
         jButtonGenerateActivitie.setBackground(new java.awt.Color(51, 255, 204));
         jButtonGenerateActivitie.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jButtonGenerateActivitie.setText("Generar Actividad");
+        jButtonGenerateActivitie.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGenerateActivitieActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonGenerateActivitie, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 190, 50));
 
         jButtonActivitiesDelivered.setBackground(new java.awt.Color(51, 255, 204));
@@ -69,6 +74,11 @@ public class PrincipalWindowProfessor extends javax.swing.JFrame {
         jButtonUploadPresentationFormat.setBackground(new java.awt.Color(51, 255, 204));
         jButtonUploadPresentationFormat.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jButtonUploadPresentationFormat.setText("<html><center> Subir formato de presentación");
+        jButtonUploadPresentationFormat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonUploadPresentationFormatActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonUploadPresentationFormat, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 280, 190, 70));
 
         jButtonMontlyReport.setBackground(new java.awt.Color(51, 255, 204));
@@ -107,6 +117,18 @@ public class PrincipalWindowProfessor extends javax.swing.JFrame {
         returnToLogin.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButtonLogoutActionPerformed
+
+    private void jButtonGenerateActivitieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGenerateActivitieActionPerformed
+        GenerateActivity goToGenerateActivity = new GenerateActivity();
+        goToGenerateActivity.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButtonGenerateActivitieActionPerformed
+
+    private void jButtonUploadPresentationFormatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUploadPresentationFormatActionPerformed
+       AddPresentationFormat goToPresentationFormat = new AddPresentationFormat();
+       goToPresentationFormat.setVisible(true);
+       dispose();
+    }//GEN-LAST:event_jButtonUploadPresentationFormatActionPerformed
 
     public static void main(String args[]) {
 

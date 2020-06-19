@@ -1,13 +1,18 @@
+/*
+Intitution: Universidad Veracruzana 
+File creator: Brandon Trujillo
+Class name: RegisterProfessor
+Date of creation: May 15th. 2020 
+*/ 
 package GUI.Windows;
-
 import BusinessLogic.CoordinatorValidations;
 import BusinessLogic.PersonDataValidations;
+import dataAccess.CoordinatorDAO;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author BRANDON
- */
 public class RegisterCoordinator extends javax.swing.JFrame {
 
     public RegisterCoordinator() {
@@ -16,39 +21,6 @@ public class RegisterCoordinator extends javax.swing.JFrame {
         this.setTitle("registrar Coordinador");
     }
 
-    void verificarCampos(){
-        PersonDataValidations user = new PersonDataValidations();
-        CoordinatorValidations userCoordinator = new CoordinatorValidations();
-            if (jTextFieldNameCoordinator.getText().isEmpty() 
-                || jTextFieldPersonalNumber.getText().isEmpty() 
-                    || jTextFieldMailCoordinator.getText().isEmpty() 
-                        || jTextFieldPasswordCoordinator.getText().isEmpty()){
-                            JOptionPane.showMessageDialog(this, "Favor de NO dejar espacios vacios");   
-            }else{
-            
-                String nameCoordinator = jTextFieldNameCoordinator.getText();
-                String personalNumberCoordinator = jTextFieldPersonalNumber.getText();
-                String mailCoordinator = jTextFieldMailCoordinator.getText();
-                String passwordCoordinator = jTextFieldPasswordCoordinator.getText();
-            
-                if((user.validateName(nameCoordinator) == true) 
-                        && (userCoordinator.validateStaffNumber(personalNumberCoordinator) == true) 
-                            && (user.validateEmail(mailCoordinator) == true) 
-                                && (user.validatePassword(passwordCoordinator) == true)){
-                                    JOptionPane.showMessageDialog(this, "REGISTRO EXITOSO");
-                                    dispose(); 
-                }else if((user.validateName(nameCoordinator) == false)){
-                    JOptionPane.showMessageDialog(this, "Asegurese de ingresar un nombre valido");
-                }else if((userCoordinator.validateStaffNumber(personalNumberCoordinator) == false)){
-                    JOptionPane.showMessageDialog(this, "Asegurese de ingresar un numero de personal valido");
-                }else if((user.validateEmail(mailCoordinator) == false)){
-                    JOptionPane.showMessageDialog(this, "Asegurese de ingresar un Email valido");
-                }else if((user.validatePassword(passwordCoordinator) == false)){
-                    JOptionPane.showMessageDialog(this, "Asegurese de que su contraseña contenga números y caracteres");
-                }   
-            }
-    }
-   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -65,6 +37,10 @@ public class RegisterCoordinator extends javax.swing.JFrame {
         jTextFieldMailCoordinator = new javax.swing.JTextField();
         jTextFieldPasswordCoordinator = new javax.swing.JTextField();
         jButtonRegister = new javax.swing.JButton();
+        jLabelCubicle = new javax.swing.JLabel();
+        jTextFieldCubicle = new javax.swing.JTextField();
+        jLabelIDNumber = new javax.swing.JLabel();
+        jTextFieldIDNumber = new javax.swing.JTextField();
         jLabelFound = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -86,34 +62,34 @@ public class RegisterCoordinator extends javax.swing.JFrame {
 
         jLabelNameCoordinator.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabelNameCoordinator.setText("Nombre :");
-        getContentPane().add(jLabelNameCoordinator, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, -1, -1));
+        getContentPane().add(jLabelNameCoordinator, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, -1, -1));
 
         jLabelCoordinatorIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/coordinador.png"))); // NOI18N
-        getContentPane().add(jLabelCoordinatorIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 100, -1, -1));
+        getContentPane().add(jLabelCoordinatorIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 100, -1, -1));
 
         jLabelPersonalNumber.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabelPersonalNumber.setText("Número de personal :");
-        getContentPane().add(jLabelPersonalNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, 30));
+        getContentPane().add(jLabelPersonalNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, -1, 30));
 
         jLabelMailCoordinator.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabelMailCoordinator.setText("Correo :");
-        getContentPane().add(jLabelMailCoordinator, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 230, -1, -1));
+        getContentPane().add(jLabelMailCoordinator, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 250, -1, -1));
 
         jLabelPasswordCoordinator.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabelPasswordCoordinator.setText("Asigne una contraseña :");
-        getContentPane().add(jLabelPasswordCoordinator, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, -1, -1));
+        getContentPane().add(jLabelPasswordCoordinator, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, -1, -1));
 
         jTextFieldPersonalNumber.setBackground(new java.awt.Color(204, 255, 255));
-        getContentPane().add(jTextFieldPersonalNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 180, 230, 30));
+        getContentPane().add(jTextFieldPersonalNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 210, 230, 30));
 
         jTextFieldNameCoordinator.setBackground(new java.awt.Color(204, 255, 255));
-        getContentPane().add(jTextFieldNameCoordinator, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 130, 230, 30));
+        getContentPane().add(jTextFieldNameCoordinator, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 90, 230, 30));
 
         jTextFieldMailCoordinator.setBackground(new java.awt.Color(204, 255, 255));
-        getContentPane().add(jTextFieldMailCoordinator, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, 230, 30));
+        getContentPane().add(jTextFieldMailCoordinator, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 250, 230, 30));
 
         jTextFieldPasswordCoordinator.setBackground(new java.awt.Color(204, 255, 255));
-        getContentPane().add(jTextFieldPasswordCoordinator, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 280, 230, 30));
+        getContentPane().add(jTextFieldPasswordCoordinator, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 290, 230, 30));
 
         jButtonRegister.setBackground(new java.awt.Color(204, 255, 255));
         jButtonRegister.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -125,31 +101,120 @@ public class RegisterCoordinator extends javax.swing.JFrame {
         });
         getContentPane().add(jButtonRegister, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, -1, -1));
 
+        jLabelCubicle.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabelCubicle.setText("Cubiculo: ");
+        getContentPane().add(jLabelCubicle, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, -1, -1));
+
+        jTextFieldCubicle.setBackground(new java.awt.Color(204, 255, 255));
+        getContentPane().add(jTextFieldCubicle, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 170, 230, 30));
+
+        jLabelIDNumber.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabelIDNumber.setText("Número de identificación:");
+        getContentPane().add(jLabelIDNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
+
+        jTextFieldIDNumber.setBackground(new java.awt.Color(204, 255, 255));
+        getContentPane().add(jTextFieldIDNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, 230, 30));
+
         jLabelFound.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Fondo.jpg"))); // NOI18N
         getContentPane().add(jLabelFound, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 723, 461));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-    String [] cancelButtons = {"Si", "No"}; 
+    
     
     private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
-        
-        int optionSelected = JOptionPane.showOptionDialog(this, "¿Seguro que desea cancelar?", "Cancelar Registro de Coordinador", 
-                JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.CANCEL_OPTION, null, cancelButtons, cancelButtons[0]);
-        
-        if (optionSelected == 0) {
-            PrincipalWindowAdministrator returnToWindowAdministrator = new PrincipalWindowAdministrator();
-            returnToWindowAdministrator.setVisible(true);
-            dispose();   
-        } 
-        
+        cancelOption();
     }//GEN-LAST:event_jButtonCancelActionPerformed
     
     private void jButtonRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegisterActionPerformed
         verificarCampos();
     }//GEN-LAST:event_jButtonRegisterActionPerformed
-
+    
+    String nameCoordinator = "";
+    String idNumber = "";
+    String cubicleNumber = "";
+    String staffNumber = "";
+    String mailCoordinator = "";
+    String passwordCoordinator = "";
+    
+     void verificarCampos(){
+        PersonDataValidations user = new PersonDataValidations();
+        CoordinatorValidations userCoordinator = new CoordinatorValidations();
+            if (jTextFieldNameCoordinator.getText().isEmpty() 
+                    || jTextFieldCubicle.getText().isEmpty()
+                        || jTextFieldPersonalNumber.getText().isEmpty() 
+                            || jTextFieldMailCoordinator.getText().isEmpty() 
+                                || jTextFieldPasswordCoordinator.getText().isEmpty()){
+                                    JOptionPane.showMessageDialog(this, "Favor de NO dejar espacios vacios");   
+            }else{
+            
+                nameCoordinator = jTextFieldNameCoordinator.getText();
+                idNumber = jTextFieldIDNumber.getText();
+                cubicleNumber = jTextFieldNameCoordinator.getText();
+                staffNumber = jTextFieldPersonalNumber.getText();
+                mailCoordinator = jTextFieldMailCoordinator.getText();
+                passwordCoordinator = jTextFieldPasswordCoordinator.getText();
+            
+                if((user.validateName(nameCoordinator) == true) 
+                        && (user.validateIDNumber(idNumber) == true)
+                            && (userCoordinator.validateCubicleNumber(cubicleNumber) == true)
+                                && (userCoordinator.validateStaffNumber(staffNumber) == true) 
+                                    && (user.validateEmail(mailCoordinator) == true) 
+                                        && (user.validatePassword(passwordCoordinator) == true)){
+                                            saveCoordinator();
+                                            JOptionPane.showMessageDialog(this, "REGISTRO EXITOSO");
+                                            returnHomeAdministrator();
+                                            
+                }else if((user.validateName(nameCoordinator) == false)){
+                    JOptionPane.showMessageDialog(this, "Asegurese de ingresar un nombre valido");
+                }else if(user.validateIDNumber(idNumber) == false){
+                    JOptionPane.showMessageDialog(this, "Asegurese de ingresar un NÚMERO de identificación valido,"
+                            + "4 números como máximo");
+                }else if((userCoordinator.validateCubicleNumber(cubicleNumber) == false)){
+                    JOptionPane.showMessageDialog(this, "Asegurese de ingresar un número de cúbiculo valido");
+                }else if((userCoordinator.validateStaffNumber(staffNumber) == false)){
+                    JOptionPane.showMessageDialog(this, "Asegurese de ingresar un numero de personal valido");
+                }else if((user.validateEmail(mailCoordinator) == false)){
+                    JOptionPane.showMessageDialog(this, "Asegurese de ingresar un Email valido");
+                }else if((user.validatePassword(passwordCoordinator) == false)){
+                    JOptionPane.showMessageDialog(this, "Asegurese de que su contraseña contenga números y caracteres");
+                }   
+            }
+    }
+   
+    void saveCoordinator(){
+        try {
+            CoordinatorDAO coordinator = new CoordinatorDAO();
+            coordinator.saveCoordinator(idNumber, nameCoordinator, cubicleNumber, staffNumber, mailCoordinator
+                    ,passwordCoordinator);
+        } catch (SQLException | ClassNotFoundException ex) {
+            JOptionPane.showMessageDialog(this, "No se puede acceder a la base de datos en este momento. Intente más tarde.");
+            Logger.getLogger(RegisterCoordinator.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+     
+    void returnHomeAdministrator(){
+        PrincipalWindowAdministrator returnToWindowAdministrator = new PrincipalWindowAdministrator();
+        returnToWindowAdministrator.setVisible(true);
+        dispose(); 
+    }
+    
+    void cancelOption(){
+        String [] cancelButtons = {"Si", "No"}; 
+        int optionSelected = JOptionPane.showOptionDialog(this, "¿Seguro que desea cancelar?", 
+                "Cancelar Registro de Coordinador", 
+                JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.CANCEL_OPTION, null, cancelButtons, cancelButtons[0]);
+        if (optionSelected == 0) {
+            returnHomeAdministrator();
+        }  
+    }
+    
+    
+    
+    
+    
+    
     public static void main(String args[]) {
         
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -163,12 +228,16 @@ public class RegisterCoordinator extends javax.swing.JFrame {
     private javax.swing.JButton jButtonCancel;
     private javax.swing.JButton jButtonRegister;
     private javax.swing.JLabel jLabelCoordinatorIcon;
+    private javax.swing.JLabel jLabelCubicle;
     private javax.swing.JLabel jLabelFound;
+    private javax.swing.JLabel jLabelIDNumber;
     private javax.swing.JLabel jLabelMailCoordinator;
     private javax.swing.JLabel jLabelNameCoordinator;
     private javax.swing.JLabel jLabelPasswordCoordinator;
     private javax.swing.JLabel jLabelPersonalNumber;
     private javax.swing.JLabel jLabelTitle;
+    private javax.swing.JTextField jTextFieldCubicle;
+    private javax.swing.JTextField jTextFieldIDNumber;
     private javax.swing.JTextField jTextFieldMailCoordinator;
     private javax.swing.JTextField jTextFieldNameCoordinator;
     private javax.swing.JTextField jTextFieldPasswordCoordinator;

@@ -13,6 +13,7 @@ public class CoordinatorValidations extends PersonDataValidations {
     boolean validProjectName; 
     boolean validStaffNumber;  
     boolean validQuotaProject;
+    boolean validCubicleNumber;
     
     public boolean validateCompanyName (String companyName) {
         return validCompanyName = companyName.matches("[A-ZÑa-zñ0-9+[ ]?]{1,20}");
@@ -30,4 +31,7 @@ public class CoordinatorValidations extends PersonDataValidations {
         return validQuotaProject = quotaProject.matches("[1-9]{1,2}"); 
     } 
             
+    public boolean validateCubicleNumber (String cubicleNumber){
+        return validCubicleNumber = cubicleNumber.matches("^[0-9]{1,3}$");
+    }
 }

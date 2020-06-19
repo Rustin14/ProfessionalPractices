@@ -24,14 +24,15 @@ public class PartialReportDAO implements IPartialReportDAO {
 
 
     @Override
-    public void savePartialReport(int id_partial, int partialNumber, int score, String observations, Date dueDate, int id_practicing, String address) throws SQLException, ClassNotFoundException {
-        Connection connect = connectDB.getConnection();
-        String query = "INSERT INTO partialreport  (id_partial, id_practicing) VALUES (?, ?)";
-        PreparedStatement statement = connect.prepareStatement(query);
-        statement.setInt(1, id_partial);
-        statement.setInt(7, id_practicing);
-        statement.executeQuery();
-        connectDB.closeConnection();
+    public void savePartialReport(int id_partial, int partialNumber, int score, String observations
+            ,Date dueDate, int id_practicing, String address) throws SQLException, ClassNotFoundException {
+                Connection connect = connectDB.getConnection();
+                String query = "INSERT INTO partialreport  (id_partial, id_practicing) VALUES (?, ?)";
+                PreparedStatement statement = connect.prepareStatement(query);
+                statement.setInt(1, id_partial);
+                statement.setInt(7, id_practicing);
+                statement.executeQuery();
+                connectDB.closeConnection();
     }
     
     public void savePartialReportByIDPartial(int id_partial, String address) throws SQLException, ClassNotFoundException, FileNotFoundException {
