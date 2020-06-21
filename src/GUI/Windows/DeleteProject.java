@@ -78,9 +78,7 @@ public class DeleteProject extends javax.swing.JFrame {
                 JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.CANCEL_OPTION, null, cancelButtons, cancelButtons [0]); 
         
         if (optionSelected == 0) {
-            PrincipalWindowCoordinator returnToPrincipalWindowCoordinator = new PrincipalWindowCoordinator(); 
-            returnToPrincipalWindowCoordinator.setVisible(true); 
-            dispose();
+            returnHomeCoordinator(); 
         }
         
     }//GEN-LAST:event_jButtonCancelActionPerformed
@@ -94,13 +92,16 @@ public class DeleteProject extends javax.swing.JFrame {
         
        if (optionSelected == 0) {
            JOptionPane.showMessageDialog(this, "Proyecto eliminado exitosamente"); 
-           PrincipalWindowCoordinator returnToPrincipalWindowCoordinator = new PrincipalWindowCoordinator(); 
-           returnToPrincipalWindowCoordinator.setVisible(true);
-           dispose();
+           returnHomeCoordinator(); 
        }
         
     }//GEN-LAST:event_jButtonDeleteActionPerformed
 
+    void returnHomeCoordinator(){
+        PrincipalWindowCoordinator returnToPrincipalWindowCoordinator = new PrincipalWindowCoordinator(); 
+        returnToPrincipalWindowCoordinator.setVisible(true);
+        dispose(); 
+    } 
     
     public static void main(String args[]) {
         

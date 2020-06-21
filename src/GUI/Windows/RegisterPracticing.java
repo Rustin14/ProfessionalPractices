@@ -1,11 +1,10 @@
 package GUI.Windows;
 
-import javax.swing.JOptionPane;
-import BusinessLogic.PersonDataValidations;
+import javax.swing.JOptionPane; 
 import BusinessLogic.PracticingValidations;
 /**
  *
- * @author BRANDON
+ * @author BRANDON 
  */
 public class RegisterPracticing extends javax.swing.JFrame {
 
@@ -16,15 +15,20 @@ public class RegisterPracticing extends javax.swing.JFrame {
     }
 
 void verificarCampos(){
-    PersonDataValidations user = new PersonDataValidations();
+    
     PracticingValidations practicing = new PracticingValidations();
-    if (jTextFieldNamePracticing.getText().isEmpty() || jTextFieldEnrollmentPracticing.getText().isEmpty() 
-        || jTextFieldProfessor.getText().isEmpty() || jTextFieldLanguageIndigenous.getText().isEmpty()){
-            JOptionPane.showMessageDialog(this, "Favor de NO dejar campos vacios");
-    }else if (jRadioButtonManSex.isSelected()== false 
-        && jRadioButtonWomanSex.isSelected() == false ){
-            JOptionPane.showMessageDialog(this, "Favor de NO dejar campos vacios");
+    
+    if (jTextFieldNamePracticing.getText().isEmpty() 
+            || jTextFieldEnrollmentPracticing.getText().isEmpty() 
+                || jTextFieldProfessor.getText().isEmpty() 
+                    || jTextFieldLanguageIndigenous.getText().isEmpty()){
+            
+        JOptionPane.showMessageDialog(this, "Favor de NO dejar campos vacios");
+        
+    }else if (jRadioButtonManSex.isSelected()== false && jRadioButtonWomanSex.isSelected() == false ){
+            JOptionPane.showMessageDialog(this, "Favor de NO dejar campos vacios"); 
     }else{
+        
         String namePracticing = jTextFieldNamePracticing.getText();
         String enrollmentPracticing = jTextFieldEnrollmentPracticing.getText();
         String nameProfessor = jTextFieldProfessor.getText();
@@ -39,21 +43,24 @@ void verificarCampos(){
             choiceOfSex = jRadioButtonWomanSex.getText();
         }
            
-        if((user.validateName(namePracticing) == true) && (practicing.validateEnrollment(enrollmentPracticing) == true)
-            && (user.validateName(nameProfessor) == true) && (user.validateEmail(mailPracticing) == true) 
-                && (user.validatePassword(passwordPracticing)) == true){
-                    JOptionPane.showMessageDialog(this, "REGISTRO EXITOSO");
-                    PrincipalWindowCoordinator returnToPrincipalWindowCoordinator = new PrincipalWindowCoordinator(); 
-                    returnToPrincipalWindowCoordinator.setVisible(true);
-                    dispose(); 
-        }else if((user.validateName(namePracticing) == false) || (user.validateName(nameProfessor) == false)){
-                JOptionPane.showMessageDialog(this, "Revise el apartado Nombre o Profesor,"
-                    + " los nombres deben estar correctamente escritos y solo se puede ingresar texto");
-        }else if(practicing.validateEnrollment(enrollmentPracticing) == false){
+        if((practicing.validateName(namePracticing)) 
+                && (practicing.validateEnrollment(enrollmentPracticing))
+                    && (practicing.validateName(nameProfessor)) 
+                        && (practicing.validateEmail(mailPracticing)) 
+                            && (practicing.validatePassword(passwordPracticing))){
+                    
+            JOptionPane.showMessageDialog(this, "REGISTRO EXITOSO");
+            returnHomeCoordinator();
+            
+        }else if(!practicing.validateName(namePracticing)){
+                JOptionPane.showMessageDialog(this, "Asegurese de ingresar un nombre de practicante valido");
+        }else if(!practicing.validateEnrollment(enrollmentPracticing)){
                 JOptionPane.showMessageDialog(this, "Ingrese una matricula valida");
-        }else if(user.validateEmail(mailPracticing) == false){
+        }else if(!practicing.validateName(nameProfessor)){
+                JOptionPane.showMessageDialog(this, "Asegurese de ingresar un nombre de profesor valido");
+        }else if(!practicing.validateEmail(mailPracticing)){
                 JOptionPane.showMessageDialog(this, "Ingrese un Email valido");
-        }else if(user.validatePassword(passwordPracticing) == false){
+        }else if(!practicing.validatePassword(passwordPracticing)){
                 JOptionPane.showMessageDialog(this, "Ingrese una contraseña que contenga números y letras");
         }
     }
@@ -185,14 +192,16 @@ void verificarCampos(){
                 JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.CANCEL_OPTION, null, cancelButtons, cancelButtons[0]);
         
         if (optionSelected == 0) {
-            PrincipalWindowCoordinator returnToWindowCoordinator = new PrincipalWindowCoordinator();
-            returnToWindowCoordinator.setVisible(true);
-            dispose(); 
+            returnHomeCoordinator();  
         } 
       
     }//GEN-LAST:event_jButtonCancelActionPerformed
 
-
+    void returnHomeCoordinator(){
+        PrincipalWindowCoordinator returnToPrincipalWindowCoordinator = new PrincipalWindowCoordinator(); 
+        returnToPrincipalWindowCoordinator.setVisible(true);
+        dispose();
+    } 
     
     private void jButtonRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegisterActionPerformed
         verificarCampos();

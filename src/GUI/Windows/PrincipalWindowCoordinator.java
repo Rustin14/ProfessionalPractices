@@ -182,7 +182,9 @@ public class PrincipalWindowCoordinator extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonOptionRegisterProjectActionPerformed
 
     private void jButtonOptionAssignProjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOptionAssignProjectActionPerformed
-        // TODO add your handling code here:
+        AssignProjectSelectPracticing goToAssignProjectSelectPracticing = new AssignProjectSelectPracticing();
+        goToAssignProjectSelectPracticing.setVisible(true);
+        dispose(); 
     }//GEN-LAST:event_jButtonOptionAssignProjectActionPerformed
 
     private void jButtonOptionDeleteProjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOptionDeleteProjectActionPerformed

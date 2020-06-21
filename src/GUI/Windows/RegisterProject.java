@@ -113,35 +113,41 @@ public class RegisterProject extends javax.swing.JFrame {
     
     private void jButtonRegisterProjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegisterProjectActionPerformed
         
-        if (jTextFieldCompanyName.getText().isEmpty() || jTextFieldNumberPhone.getText().isEmpty()
-                || jTextFieldProjectName.getText().isEmpty() || jTextFieldManagerName.getText().isEmpty()
-                        || jTextFieldQuotaProject.getText().isEmpty() || jTextPaneActivities.getText().isEmpty()) {
+        if (jTextFieldCompanyName.getText().isEmpty() 
+                || jTextFieldNumberPhone.getText().isEmpty()
+                    || jTextFieldProjectName.getText().isEmpty() 
+                        || jTextFieldManagerName.getText().isEmpty()
+                            || jTextFieldQuotaProject.getText().isEmpty() 
+                                || jTextPaneActivities.getText().isEmpty()) {
+            
             JOptionPane.showMessageDialog(this, "Favor de NO dejar espacios vacios");
+            
         } else {
+            
             String companyName = jTextFieldCompanyName.getText();
             String numberPhone = jTextFieldNumberPhone.getText();
             String projectName = jTextFieldProjectName.getText();
             String managerName = jTextFieldManagerName.getText(); 
             String quotaProject = jTextFieldQuotaProject.getText();
             
-            if ((coordinator.validateCompanyName(companyName) == true) && (coordinator.validatePhoneNumber(numberPhone) 
-                    == true) && (coordinator.validateProjectName(projectName) == true) && (coordinator.validateName(managerName)
-                            == true) && (coordinator.validateQuotaProject(quotaProject) == true)) {
+            if ((coordinator.validateCompanyName(companyName)) 
+                    && (coordinator.validatePhoneNumber(numberPhone)) 
+                        && (coordinator.validateProjectName(projectName)) 
+                            && (coordinator.validateName(managerName)) 
+                                && (coordinator.validateQuotaProject(quotaProject))) {
                 
                 JOptionPane.showMessageDialog(this, "REGISTRO DE PROYECTO EXITOSO");    
-                PrincipalWindowCoordinator returnToPrincipalWindowCoordinator = new PrincipalWindowCoordinator(); 
-                returnToPrincipalWindowCoordinator.setVisible(true);
-                dispose();
+                returnHomeCoordinator(); 
                 
-            } else if (coordinator.validateCompanyName(companyName) == false) {
+            } else if (!coordinator.validateCompanyName(companyName)) {
                 JOptionPane.showMessageDialog(this, "Asegurese de ingresar un nombre de compañia valido");
-            } else if (coordinator.validatePhoneNumber(numberPhone) == false) {
+            } else if (!coordinator.validatePhoneNumber(numberPhone)) {
                 JOptionPane.showMessageDialog(this, "Asegurese de ingresar un telefono valido");
-            } else if (coordinator.validateProjectName(projectName) == false) {
+            } else if (!coordinator.validateProjectName(projectName)) {
                 JOptionPane.showMessageDialog(this, "Asegurese de ingresar un nombre de proyecto valido");
-            } else if (coordinator.validateName(managerName) == false) {
+            } else if (!coordinator.validateName(managerName)) {
                 JOptionPane.showMessageDialog(this, "Asegurese de ingresar un nombre de encargado del proyecto valido");
-            } else if (coordinator.validateQuotaProject(quotaProject) == false) {
+            } else if (!coordinator.validateQuotaProject(quotaProject)) {
                 JOptionPane.showMessageDialog(this, "Asegurese de ingresar un cupo de proyecto valido. Solo numeros");
             }
         } 
@@ -155,13 +161,16 @@ public class RegisterProject extends javax.swing.JFrame {
                 JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.CANCEL_OPTION, null, cancelButtons, cancelButtons[0]);
         
         if (optionSelected == 0) {
-            PrincipalWindowCoordinator returnToPrincipalWindowCoordinator = new PrincipalWindowCoordinator(); 
-            returnToPrincipalWindowCoordinator.setVisible(true);
-            dispose();     
+            returnHomeCoordinator();     
         } 
          
     }//GEN-LAST:event_jButtonCancelActionPerformed
-
+    
+    void returnHomeCoordinator(){
+        PrincipalWindowCoordinator returnToPrincipalWindowCoordinator = new PrincipalWindowCoordinator(); 
+        returnToPrincipalWindowCoordinator.setVisible(true);
+        dispose();
+    }
   
     public static void main(String args[]) {
         
