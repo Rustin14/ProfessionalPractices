@@ -160,24 +160,26 @@ public class GenerateActivity extends javax.swing.JFrame {
         }
     }
     
-    String [] cancelButtons = {"Sí", "No"};
-    
     private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
-        
-        int optionSelected = JOptionPane.showOptionDialog(this, "¿Seguro que desea cancelar?", "Cancelar generar actividad",
-            JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.CANCEL_OPTION, null, cancelButtons, cancelButtons [0]); 
-        
-         if (optionSelected == 0) {
-            PrincipalWindowProfessor returnToPrincipalWindowProfessor = new PrincipalWindowProfessor(); 
-            returnToPrincipalWindowProfessor.setVisible(true); 
-            dispose();  
-        }
+      cancelOption();
     }//GEN-LAST:event_jButtonCancelActionPerformed
 
     private void jButtonAceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptActionPerformed
         verificarCampos();
     }//GEN-LAST:event_jButtonAceptActionPerformed
 
+    void cancelOption(){
+        String [] cancelButtons = {"Sí", "No"};
+        int optionSelected = JOptionPane.showOptionDialog(this, "¿Seguro que desea cancelar?", "Cancelar generar actividad",
+            JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.CANCEL_OPTION, null, cancelButtons, cancelButtons [0]); 
+        
+         if (optionSelected == JOptionPane.YES_NO_OPTION) {
+            PrincipalWindowProfessor returnToPrincipalWindowProfessor = new PrincipalWindowProfessor(); 
+            returnToPrincipalWindowProfessor.setVisible(true); 
+            dispose();  
+        }
+    }
+    
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {

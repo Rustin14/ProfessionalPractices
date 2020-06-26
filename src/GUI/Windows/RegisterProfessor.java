@@ -167,7 +167,7 @@ public class RegisterProfessor extends javax.swing.JFrame {
                 jButtonCancelActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 420, -1, -1));
+        getContentPane().add(jButtonCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(594, 409, 100, 40));
 
         jTextFieldNameProfessor.setBackground(new java.awt.Color(204, 255, 255));
         getContentPane().add(jTextFieldNameProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 80, 240, 30));
@@ -180,7 +180,7 @@ public class RegisterProfessor extends javax.swing.JFrame {
                 jButtonRegisterActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonRegister, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 420, -1, -1));
+        getContentPane().add(jButtonRegister, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 409, 100, 40));
 
         jTextFieldPersonalNumber.setBackground(new java.awt.Color(204, 255, 255));
         getContentPane().add(jTextFieldPersonalNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 160, 240, 30));

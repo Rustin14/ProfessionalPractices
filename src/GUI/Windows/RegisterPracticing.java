@@ -2,10 +2,7 @@ package GUI.Windows;
 
 import javax.swing.JOptionPane; 
 import BusinessLogic.PracticingValidations;
-/**
- *
- * @author BRANDON 
- */
+
 public class RegisterPracticing extends javax.swing.JFrame {
 
     public RegisterPracticing() {
@@ -48,10 +45,9 @@ void verificarCampos(){
                     && (practicing.validateName(nameProfessor)) 
                         && (practicing.validateEmail(mailPracticing)) 
                             && (practicing.validatePassword(passwordPracticing))){
-                    
-            JOptionPane.showMessageDialog(this, "REGISTRO EXITOSO");
-            returnHomeCoordinator();
-            
+                                JOptionPane.showMessageDialog(this, "REGISTRO EXITOSO");
+                                returnHomeCoordinator();
+
         }else if(!practicing.validateName(namePracticing)){
                 JOptionPane.showMessageDialog(this, "Asegurese de ingresar un nombre de practicante valido");
         }else if(!practicing.validateEnrollment(enrollmentPracticing)){

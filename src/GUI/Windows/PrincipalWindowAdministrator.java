@@ -115,11 +115,15 @@ public class PrincipalWindowAdministrator extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonLogOutActionPerformed
 
     private void jButtonOptionDeleteCoordinatorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOptionDeleteCoordinatorActionPerformed
-        JOptionPane.showMessageDialog(this, "Aún no existe implementación");
+        DeleteCoordinator goToWindowDeleteCoordinator = new DeleteCoordinator();
+        goToWindowDeleteCoordinator.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButtonOptionDeleteCoordinatorActionPerformed
 
     private void jButtonoptionDeleteProfesorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonoptionDeleteProfesorActionPerformed
-        JOptionPane.showMessageDialog(this, "Aún no existe implementación");
+        DeleteProfessor goToWindowDeleteProfessor = new DeleteProfessor();
+        goToWindowDeleteProfessor.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButtonoptionDeleteProfesorActionPerformed
 
     List<Coordinator> coordinatorList = null;

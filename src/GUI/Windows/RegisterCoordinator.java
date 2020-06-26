@@ -1,7 +1,7 @@
 /*
 Intitution: Universidad Veracruzana 
 File creator: Brandon Trujillo
-Class name: RegisterProfessor
+Class name: RegisterCoordinator
 Date of creation: May 15th. 2020 
 */ 
 package GUI.Windows;
