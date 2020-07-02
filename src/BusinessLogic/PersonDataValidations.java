@@ -51,19 +51,22 @@ public class PersonDataValidations {
     public boolean validateDocumentName (String documentName) {
         return validDocumentName = documentName.matches("^[A-ZÑa-zñ0-9]{1,30}[.]{1}[t|x|d|o|c|p|d|f|l|s|m|z|i]{3,5}$");
     }   
-    public boolean validateTitles(String title){
+    public boolean validateTitle (String title) {
         return validTitle = title.matches("^([A-ZÑa-zñ0-9]+[ ]?){1,30}$");
     }
     
-    public boolean validateDateDay(String dateDay){
-        return validDateDay = dateDay.matches("^[1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31]{1,2}$");
+    public boolean validateDateDay (String dateDay) {
+        return validDateDay = dateDay.matches("^[0-9]{1,2}$");
     }
-    public boolean validateDateYear(String dateYear){
+    
+    public boolean validateDateYear (String dateYear) {
         return validDateYear = dateYear.matches("^[0-9]{4}$");
     }
-    public boolean validateDateMonth(String month){
+    
+    public boolean validateDateMonth (String month) {
         return validMonth = month.matches("^[enero|febrero|marzo|abril|mayo|junio|julio|agosto"
-                + "|septiembre|octubre|noviembre|diciembre]{1,12}$");
+                + "|septiembre|octubre|noviembre|diciembre|Enero|Febrero|Marzo|Abril|Mayo|Junio|Julio"
+                + "|Agosto|Septiembre|Octubre|Noviembre|Diciembre]{1,12}$");
     }
      
 }

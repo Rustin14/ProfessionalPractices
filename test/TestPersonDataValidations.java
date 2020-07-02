@@ -21,6 +21,12 @@ public class TestPersonDataValidations {
         assertEquals(valueExpected, valueEntered); 
     }
     
+    @Test
+    public void TestValidateIDNumber() {
+        valueEntered = personTest.validateIDNumber("118");
+        assertEquals(valueExpected, valueEntered);
+    }
+    
     @Test 
     public void TestValidateEmail() {          
         valueEntered = personTest.validateEmail("zS18019633@estudiantes.uv.mx"); 
@@ -50,5 +56,28 @@ public class TestPersonDataValidations {
         valueEntered = personTest.validateDocumentName("Tarea.pdf"); 
         assertEquals(valueExpected, valueEntered); 
     }
-     
+    
+    @Test
+    public void TestValidateTitle() {
+        valueEntered = personTest.validateTitle("Titulo de Algo");
+        assertEquals(valueExpected, valueEntered);
+    } 
+    
+    @Test
+    public void TestValidateDateDay() {
+        valueEntered = personTest.validateDateDay("26");
+        assertEquals(valueExpected, valueEntered);
+    }
+    
+    @Test
+    public void TestValidateDateYear(){
+        valueEntered = personTest.validateDateYear("2000");
+        assertEquals(valueExpected, valueEntered); 
+    }
+    
+    @Test
+    public void TestValidateDateMonth(){
+        valueEntered = personTest.validateDateMonth("Mayo");
+        assertEquals(valueExpected, valueEntered);
+    }
 }

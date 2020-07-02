@@ -39,4 +39,10 @@ public class TestCoordinatorValidations {
         assertEquals(valueExpected, valueEntered); 
     }
     
+    @Test
+    public void TestValidateCubicleNumber() {
+        valueEntered = coordinatorTest.validateCubicleNumber("123");
+        assertEquals(valueExpected, valueEntered); 
+    } 
+    
 }
