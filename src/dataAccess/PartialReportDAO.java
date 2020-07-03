@@ -37,7 +37,7 @@ public class PartialReportDAO implements IPartialReportDAO {
     
     public void savePartialReportByIDPartial(int id_partial, String address) throws SQLException, ClassNotFoundException, FileNotFoundException {
         Connection connect = connectDB.getConnection();
-        String query = "INSERT INTO partialreport (paperFile) VALUES (?) where id_partial = ?";
+        String query = "INSERT INTO partialreport (paperFile) VALUES (?)";
         PreparedStatement statement = connect.prepareStatement(query);
         File file = new File(address);
         InputStream inputStream = new FileInputStream(file);
