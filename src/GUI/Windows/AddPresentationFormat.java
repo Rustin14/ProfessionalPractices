@@ -27,7 +27,7 @@ public class AddPresentationFormat extends javax.swing.JFrame {
     public AddPresentationFormat() {
         initComponents();
         this.setLocationRelativeTo(null);
-        this.setTitle("Añadir formato de presentación");
+        this.setTitle("Seleccionar archivo");
     }
 
     @SuppressWarnings("unchecked")
@@ -112,7 +112,7 @@ public class AddPresentationFormat extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCancelActionPerformed
 
     private void jButtonSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelectActionPerformed
-          selectFile();
+      selectFile();
     }//GEN-LAST:event_jButtonSelectActionPerformed
 
     private void jButtonAceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptActionPerformed
@@ -121,9 +121,10 @@ public class AddPresentationFormat extends javax.swing.JFrame {
     
     void cancelOption(){
         String [] cancelButtons = {"Sí", "No"};
-        int optionSelected = JOptionPane.showOptionDialog(this, "¿Seguro que desea cancelar?", "Cancelar generar actividad",
-            JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.CANCEL_OPTION, null, cancelButtons, cancelButtons [0]); 
-         if (optionSelected == JOptionPane.YES_NO_OPTION) {
+        int optionSelected = JOptionPane.showOptionDialog
+                (this, "¿Seguro que desea cancelar?", "Cancelar Añadir Formato de Presentación",
+                        JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.CANCEL_OPTION, null, cancelButtons, cancelButtons [0]); 
+        if (optionSelected == JOptionPane.YES_NO_OPTION) {
             PrincipalWindowProfessor returnToPrincipalWindowProfessor = new PrincipalWindowProfessor(); 
             returnToPrincipalWindowProfessor.setVisible(true); 
             dispose();  
