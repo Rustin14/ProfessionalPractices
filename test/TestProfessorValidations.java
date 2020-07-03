@@ -32,5 +32,11 @@ public class TestProfessorValidations {
         valueEntered = professorTest.validateStaffNumber("51278");
         assertEquals(valueExpected, valueEntered); 
     } 
+    
+    @Test
+    public void TestValidateCubicleNumber(){
+        valueEntered = professorTest.validateCubicleNumber("56");
+        assertEquals(valueExpected, valueEntered);
+    }
 
 }

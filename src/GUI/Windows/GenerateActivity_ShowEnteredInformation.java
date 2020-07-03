@@ -95,21 +95,22 @@ public class GenerateActivity_ShowEnteredInformation extends javax.swing.JFrame 
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    String [] cancelButtons = {"Sí", "No"};
     
     private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
-        int optionSelected = JOptionPane.showOptionDialog(this, "¿Seguro que desea cancelar?", "Cancelar información ingresada",
+        cancelOption();
+    }//GEN-LAST:event_jButtonCancelActionPerformed
+
+    void cancelOption(){
+        String [] cancelButtons = {"Sí", "No"};
+        int optionSelected = JOptionPane.showOptionDialog(this, "¿Seguro que desea cancelar?", "Cancelar generar actividad",
             JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.CANCEL_OPTION, null, cancelButtons, cancelButtons [0]); 
         
-         if (optionSelected == 0) {
+         if (optionSelected == JOptionPane.YES_NO_OPTION) {
             GenerateActivity returnToGenerateActivity = new GenerateActivity(); 
             returnToGenerateActivity.setVisible(true); 
             dispose();  
         }
-    }//GEN-LAST:event_jButtonCancelActionPerformed
-
-
+    }
     
     public static void main(String args[]) {
 

@@ -143,12 +143,12 @@ public class GenerateActivity extends javax.swing.JFrame {
             monthOfDelivery = jTextFieldMonthOfDelivery.getText();
             yearOfDelivery = jTextFieldYearOfDelivery.getText();
            
-            if((user.validateTitles(titleOfActivity) == true) 
+            if((user.validateTitle(titleOfActivity) == true) 
                         && (user.validateDateDay(dayOfDelivery) == true) 
                             && (user.validateDateMonth(monthOfDelivery) == true) 
                                 && (user.validateDateYear(yearOfDelivery) == true)){
                                         goToNextWindow();
-            }else if((user.validateTitles(titleOfActivity) == false)){
+            }else if((user.validateTitle(titleOfActivity) == false)){
                 JOptionPane.showMessageDialog(this, "Asegurese de ingresar un título valido");
             }else if((user.validateDateDay(dayOfDelivery) == false)){
                 JOptionPane.showMessageDialog(this, "Asegurese de ingresar un día valido (valores numericos)");
@@ -160,24 +160,26 @@ public class GenerateActivity extends javax.swing.JFrame {
         }
     }
     
-    String [] cancelButtons = {"Sí", "No"};
-    
     private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
-        
-        int optionSelected = JOptionPane.showOptionDialog(this, "¿Seguro que desea cancelar?", "Cancelar generar actividad",
-            JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.CANCEL_OPTION, null, cancelButtons, cancelButtons [0]); 
-        
-         if (optionSelected == 0) {
-            PrincipalWindowProfessor returnToPrincipalWindowProfessor = new PrincipalWindowProfessor(); 
-            returnToPrincipalWindowProfessor.setVisible(true); 
-            dispose();  
-        }
+      cancelOption();
     }//GEN-LAST:event_jButtonCancelActionPerformed
 
     private void jButtonAceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptActionPerformed
         verificarCampos();
     }//GEN-LAST:event_jButtonAceptActionPerformed
 
+    void cancelOption(){
+        String [] cancelButtons = {"Sí", "No"};
+        int optionSelected = JOptionPane.showOptionDialog(this, "¿Seguro que desea cancelar?", "Cancelar generar actividad",
+            JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.CANCEL_OPTION, null, cancelButtons, cancelButtons [0]); 
+        
+         if (optionSelected == JOptionPane.YES_NO_OPTION) {
+            PrincipalWindowProfessor returnToPrincipalWindowProfessor = new PrincipalWindowProfessor(); 
+            returnToPrincipalWindowProfessor.setVisible(true); 
+            dispose();  
+        }
+    }
+    
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {

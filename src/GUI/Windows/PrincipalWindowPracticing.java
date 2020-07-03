@@ -48,6 +48,7 @@ public class PrincipalWindowPracticing extends javax.swing.JFrame {
         jButtonAddMontlyReport = new javax.swing.JButton();
         jButtonAddActivitiesPlan = new javax.swing.JButton();
         jButtonAddSelfAppraisal = new javax.swing.JButton();
+        jButtonCheckMailbox = new javax.swing.JButton();
         jLabelFound = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -137,7 +138,7 @@ public class PrincipalWindowPracticing extends javax.swing.JFrame {
                 jButtonLogoutActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 400, -1, -1));
+        getContentPane().add(jButtonLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 400, -1, -1));
 
         jButtonAddMontlyReport.setBackground(new java.awt.Color(51, 255, 204));
         jButtonAddMontlyReport.setFont(new java.awt.Font("Arial", 1, 10)); // NOI18N
@@ -157,6 +158,15 @@ public class PrincipalWindowPracticing extends javax.swing.JFrame {
         jButtonAddSelfAppraisal.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jButtonAddSelfAppraisal.setText("<html><center>Añadir Autoevaluación");
         getContentPane().add(jButtonAddSelfAppraisal, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 200, 160, 70));
+
+        jButtonCheckMailbox.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jButtonCheckMailbox.setText("Consultar Buzón");
+        jButtonCheckMailbox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCheckMailboxActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonCheckMailbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 400, -1, -1));
 
         jLabelFound.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Fondo.jpg"))); // NOI18N
         getContentPane().add(jLabelFound, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 440));
@@ -189,6 +199,11 @@ public class PrincipalWindowPracticing extends javax.swing.JFrame {
         GeneratePartialReportWindow generatePartialWindow = new GeneratePartialReportWindow();
         generatePartialWindow.setVisible(true);
     }//GEN-LAST:event_jButtonscheduleAddActionPerformed
+
+    private void jButtonCheckMailboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCheckMailboxActionPerformed
+        CheckMailbox goToCheckMailbox = new CheckMailbox(); 
+        goToCheckMailbox.setVisible(true); 
+    }//GEN-LAST:event_jButtonCheckMailboxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -229,6 +244,7 @@ public class PrincipalWindowPracticing extends javax.swing.JFrame {
     private javax.swing.JButton jButtonAddActivitiesPlan;
     private javax.swing.JButton jButtonAddMontlyReport;
     private javax.swing.JButton jButtonAddSelfAppraisal;
+    private javax.swing.JButton jButtonCheckMailbox;
     private javax.swing.JButton jButtonLogout;
     private javax.swing.JButton jButtonMyProyect;
     private javax.swing.JButton jButtonPartialReportAdd;
