@@ -7,10 +7,12 @@ Date of creation: May 8th. 2020
 package dataAccess;
 
 import Domain.MonthlyReport;
+import Domain.PartialReport;
 import InterfacesDAO.IMonthlyReportDAO;
 
 import java.io.*;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -22,34 +24,52 @@ public class MonthlyReportDAO implements IMonthlyReportDAO {
 
 
     @Override
-    public void saveMonthlyReportByIDMonthly(int id_monthly, int monthNumber, int score, String observations, java.sql.Date dueDate, int id_practicing, String address) throws SQLException, ClassNotFoundException{
+    public void saveMonthlyReportByIDMonthly(int id_monthly, int id_practicing) throws SQLException, ClassNotFoundException{
         Connection connect = connectDB.getConnection();
-        String query = "INSERT INTO monthlyreport  (id_monthly, id_monthNumber, score, observations, dueDate, paperFile, id_practicing) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO monthlyreport  (id_monthly, id_practicing) VALUES (?, ?)";
         PreparedStatement statement = connect.prepareStatement(query);
         statement.setInt(1, id_monthly);
-        statement.setInt(2, monthNumber);
-        statement.setInt(3, score);
-        statement.setString(4, observations);
-        statement.setDate(5, dueDate);
         statement.setInt(7, id_practicing);
         statement.executeQuery(); 
         connectDB.closeConnection();
     }
 
     @Override
-    public MonthlyReport readMonthlyReportByIDMonthly(int id_monthly, String address) throws SQLException, ClassNotFoundException {
+    public MonthlyReport readMonthlyReportByIDMonthly(int id_monthly) throws SQLException, ClassNotFoundException {
         MonthlyReport paper = null;
         ResultSet resultSet = null;
         Connection connect = connectDB.getConnection();
-        String query = "SELECT paperFile FROM monthlyreport where id_monthly = ?";
+        String query = "SELECT id_monthly, id_practicing FROM monthlyreport where id_monthly = ?";
         PreparedStatement statement = connect.prepareStatement(query);
+        statement.setInt(1, id_monthly);
         resultSet = statement.executeQuery();
-        connectDB.closeConnection();
+        while (resultSet.next()) {
+            paper = new MonthlyReport();
+            paper.setId_monthly(resultSet.getInt("id_monthly"));
+            paper.setId_practicing(resultSet.getInt("id_practicing"));
+        }
+        //connectDB.closeConnection();
         return paper;
     }
 
     @Override
     public void deleteMonthlyReportByIDMonthly(int id_monthly) {
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+    
+    @Override
+    public ArrayList<MonthlyReport> ReadAllMonthlyReports() throws SQLException, ClassNotFoundException {
+        MonthlyReport paper = null;
+        ArrayList<MonthlyReport> allMonthlyReports = new ArrayList();
+        Connection connect = connectDB.getConnection();
+        String query = "SELECT id_monthly FROM monthlyreport";
+        PreparedStatement statement = connect.prepareStatement(query);
+        results = statement.executeQuery();
+        while (results.next()) {
+            paper = new MonthlyReport();
+            paper.setId_monthly(results.getInt("id_monthly"));
+            allMonthlyReports.add(paper);
+        }
+        return allMonthlyReports;
     }
 }
