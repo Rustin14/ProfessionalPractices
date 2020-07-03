@@ -34,6 +34,7 @@ public class PrincipalWindowCoordinator extends javax.swing.JFrame {
         jLabelRegisterPracticingIcon = new javax.swing.JLabel();
         jLabelDeleteIconPRacticing = new javax.swing.JLabel();
         jLabelGeneratrReportIcon = new javax.swing.JLabel();
+        jButtonCheckMailbox = new javax.swing.JButton();
         jLabelFound = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -153,6 +154,15 @@ public class PrincipalWindowCoordinator extends javax.swing.JFrame {
         jLabelGeneratrReportIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/GEnerateReportIcon.png"))); // NOI18N
         getContentPane().add(jLabelGeneratrReportIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 290, -1, -1));
 
+        jButtonCheckMailbox.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jButtonCheckMailbox.setText("Consultar Buzón");
+        jButtonCheckMailbox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCheckMailboxActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonCheckMailbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 400, -1, -1));
+
         jLabelFound.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Fondo.jpg"))); // NOI18N
         getContentPane().add(jLabelFound, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 723, 448));
 
@@ -160,7 +170,9 @@ public class PrincipalWindowCoordinator extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonOptionReportIndicatorsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOptionReportIndicatorsActionPerformed
-        // TODO add your handling code here:
+        GenerateIndicator goToGenerateIndicator = new GenerateIndicator();
+        goToGenerateIndicator.setVisible(true);
+        dispose(); 
     }//GEN-LAST:event_jButtonOptionReportIndicatorsActionPerformed
 
     private void jButtonLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLogoutActionPerformed
@@ -205,6 +217,11 @@ public class PrincipalWindowCoordinator extends javax.swing.JFrame {
         dispose(); 
     }//GEN-LAST:event_jButtonOptionUpdateProjectActionPerformed
 
+    private void jButtonCheckMailboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCheckMailboxActionPerformed
+        CheckMailbox goToCheckMailbox = new CheckMailbox(); 
+        goToCheckMailbox.setVisible(true);
+    }//GEN-LAST:event_jButtonCheckMailboxActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -242,6 +259,7 @@ public class PrincipalWindowCoordinator extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonCheckMailbox;
     private javax.swing.JButton jButtonLogout;
     private javax.swing.JButton jButtonOptionAssignProject;
     private javax.swing.JButton jButtonOptionDeletePracticing;

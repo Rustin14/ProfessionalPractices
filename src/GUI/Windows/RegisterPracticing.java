@@ -99,7 +99,7 @@ void verificarCampos(){
                 jButtonCancelActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 400, 100, 30));
+        getContentPane().add(jButtonCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 370, 130, 50));
 
         jLabelTitle.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabelTitle.setText("Registrar Practicante");
@@ -148,7 +148,7 @@ void verificarCampos(){
                 jButtonRegisterActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonRegister, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, 100, 30));
+        getContentPane().add(jButtonRegister, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 370, 130, 50));
 
         jRadioButtonWomanSex.setBackground(new java.awt.Color(204, 255, 255));
         buttonGroupChoiceOfSex.add(jRadioButtonWomanSex);
