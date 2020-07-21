@@ -3,7 +3,7 @@ Intitution: Universidad Veracruzana
 File creator: Mario Dorantes
 Class name: TestProfessorValidations   
 Date of creation: May 16th. 2020 
-*/  
+*/    
 
 import BusinessLogic.ProfessorValidations;
 import org.junit.Test;
