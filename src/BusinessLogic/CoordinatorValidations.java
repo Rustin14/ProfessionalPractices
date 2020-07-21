@@ -32,6 +32,6 @@ public class CoordinatorValidations extends PersonDataValidations {
     } 
             
     public boolean validateCubicleNumber (String cubicleNumber){
-        return validCubicleNumber = cubicleNumber.matches("^[0-9]{1,3}$");
+        return validCubicleNumber = cubicleNumber.matches("[0-9]{1,2}");
     }
 }

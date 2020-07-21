@@ -74,7 +74,7 @@ public class RegisterProfessor extends javax.swing.JFrame {
             }else if(user.validateEmail(mailProfessor) == false){
                 JOptionPane.showMessageDialog(this, "Ingrese un email valido");
             }else if(professor.validateCubicleNumber(cubicle) == false){
-                JOptionPane.showMessageDialog(this, "Ingrese un NÚMERO de cubiculo valido, 3 números como máximo");
+                JOptionPane.showMessageDialog(this, "Ingrese un NÚMERO de cubiculo valido, 2 números como máximo");
             }else if(user.validatePassword(passwordProfessor) == false){
                 JOptionPane.showMessageDialog(this, "Ingrese una contraseña valida");
             }else if(professor.validateStaffNumber(personalNumber) == false){

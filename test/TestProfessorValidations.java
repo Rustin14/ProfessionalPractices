@@ -35,7 +35,7 @@ public class TestProfessorValidations {
     
     @Test
     public void TestValidateCubicleNumber(){
-        valueEntered = professorTest.validateCubicleNumber("56");
+        valueEntered = professorTest.validateCubicleNumber("18");
         assertEquals(valueExpected, valueEntered);
     }
 
