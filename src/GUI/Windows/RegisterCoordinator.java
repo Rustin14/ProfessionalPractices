@@ -133,14 +133,15 @@ public class RegisterCoordinator extends javax.swing.JFrame {
     
     String nameCoordinator = "";
     String idNumber = "";
-    String cubicleNumber = "";
+    String cubicle = "";
     String staffNumber = "";
     String mailCoordinator = "";
     String passwordCoordinator = "";
     
      void verificarCampos(){
-        PersonDataValidations user = new PersonDataValidations();
+        
         CoordinatorValidations userCoordinator = new CoordinatorValidations();
+        
             if (jTextFieldNameCoordinator.getText().isEmpty() 
                     || jTextFieldCubicle.getText().isEmpty()
                         || jTextFieldPersonalNumber.getText().isEmpty() 
@@ -151,33 +152,33 @@ public class RegisterCoordinator extends javax.swing.JFrame {
             
                 nameCoordinator = jTextFieldNameCoordinator.getText();
                 idNumber = jTextFieldIDNumber.getText();
-                cubicleNumber = jTextFieldNameCoordinator.getText();
+                cubicle = jTextFieldNameCoordinator.getText();
                 staffNumber = jTextFieldPersonalNumber.getText();
                 mailCoordinator = jTextFieldMailCoordinator.getText();
                 passwordCoordinator = jTextFieldPasswordCoordinator.getText();
             
-                if((user.validateName(nameCoordinator) == true) 
-                        && (user.validateIDNumber(idNumber) == true)
-                            && (userCoordinator.validateCubicleNumber(cubicleNumber) == true)
-                                && (userCoordinator.validateStaffNumber(staffNumber) == true) 
-                                    && (user.validateEmail(mailCoordinator) == true) 
-                                        && (user.validatePassword(passwordCoordinator) == true)){
+                if((userCoordinator.validateName(nameCoordinator)) 
+                        && (userCoordinator.validateIDNumber(idNumber))
+                            && (userCoordinator.validateCubicleNumber(cubicle))
+                                && (userCoordinator.validateStaffNumber(staffNumber)) 
+                                    && (userCoordinator.validateEmail(mailCoordinator)) 
+                                        && (userCoordinator.validatePassword(passwordCoordinator))){
                                             saveCoordinator();
                                             JOptionPane.showMessageDialog(this, "REGISTRO EXITOSO");
                                             returnHomeAdministrator();
                                             
-                }else if((user.validateName(nameCoordinator) == false)){
+                }else if(!userCoordinator.validateName(nameCoordinator)){
                     JOptionPane.showMessageDialog(this, "Asegurese de ingresar un nombre valido");
-                }else if(user.validateIDNumber(idNumber) == false){
+                }else if(!userCoordinator.validateIDNumber(idNumber)){
                     JOptionPane.showMessageDialog(this, "Asegurese de ingresar un NÚMERO de identificación valido,"
                             + "4 números como máximo");
-                }else if((userCoordinator.validateCubicleNumber(cubicleNumber) == false)){
-                    JOptionPane.showMessageDialog(this, "Asegurese de ingresar un número de cúbiculo valido");
-                }else if((userCoordinator.validateStaffNumber(staffNumber) == false)){
+                }else if(!userCoordinator.validateCubicleNumber(cubicle)){
+                    JOptionPane.showMessageDialog(this, "Ingrese un NÚMERO de cubiculo valido, 2 números como máximo");
+                }else if(!userCoordinator.validateStaffNumber(staffNumber)){
                     JOptionPane.showMessageDialog(this, "Asegurese de ingresar un numero de personal valido");
-                }else if((user.validateEmail(mailCoordinator) == false)){
+                }else if(!userCoordinator.validateEmail(mailCoordinator)){
                     JOptionPane.showMessageDialog(this, "Asegurese de ingresar un Email valido");
-                }else if((user.validatePassword(passwordCoordinator) == false)){
+                }else if(!userCoordinator.validatePassword(passwordCoordinator)){
                     JOptionPane.showMessageDialog(this, "Asegurese de que su contraseña contenga números y caracteres");
                 }   
             }
@@ -186,7 +187,7 @@ public class RegisterCoordinator extends javax.swing.JFrame {
     void saveCoordinator(){
         try {
             CoordinatorDAO coordinator = new CoordinatorDAO();
-            coordinator.saveCoordinator(idNumber, nameCoordinator, cubicleNumber, staffNumber, mailCoordinator
+            coordinator.saveCoordinator(idNumber, nameCoordinator, cubicle, staffNumber, mailCoordinator
                     ,passwordCoordinator);
         } catch (SQLException | ClassNotFoundException ex) {
             JOptionPane.showMessageDialog(this, "No se puede acceder a la base de datos en este momento. Intente más tarde.");
