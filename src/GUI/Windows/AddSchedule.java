@@ -125,9 +125,10 @@ public class AddSchedule extends javax.swing.JFrame {
 
     void cancelOption(){
         String [] cancelButtons = {"Sí", "No"};
-        int optionSelected = JOptionPane.showOptionDialog(this, "¿Seguro que desea cancelar?", "Cancelar generar actividad",
-            JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.CANCEL_OPTION, null, cancelButtons, cancelButtons [0]); 
-         if (optionSelected == JOptionPane.YES_NO_OPTION) {
+        int optionSelected = JOptionPane.showOptionDialog
+                (this, "¿Seguro que desea cancelar?", "Cancelar generar actividad",
+                        JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.CANCEL_OPTION, null, cancelButtons, cancelButtons [0]); 
+        if (optionSelected == JOptionPane.YES_NO_OPTION) {
             PrincipalWindowProfessor returnToPrincipalWindowProfessor = new PrincipalWindowProfessor(); 
             returnToPrincipalWindowProfessor.setVisible(true); 
             dispose();  

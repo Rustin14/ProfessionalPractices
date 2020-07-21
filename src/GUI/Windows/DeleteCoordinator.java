@@ -68,19 +68,19 @@ public class DeleteCoordinator extends javax.swing.JFrame {
 
         jTextFieldCubicle.setEditable(false);
         jTextFieldCubicle.setBackground(new java.awt.Color(204, 255, 255));
-        getContentPane().add(jTextFieldCubicle, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 320, -1));
+        getContentPane().add(jTextFieldCubicle, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 320, 30));
 
         jTextFieldEmail.setEditable(false);
         jTextFieldEmail.setBackground(new java.awt.Color(204, 255, 255));
-        getContentPane().add(jTextFieldEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 160, 320, -1));
+        getContentPane().add(jTextFieldEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 160, 320, 30));
 
         jTextFieldSatffNumber.setEditable(false);
         jTextFieldSatffNumber.setBackground(new java.awt.Color(204, 255, 255));
-        getContentPane().add(jTextFieldSatffNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, 320, -1));
+        getContentPane().add(jTextFieldSatffNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, 320, 30));
 
         jTextFieldIDNumber.setEditable(false);
         jTextFieldIDNumber.setBackground(new java.awt.Color(204, 255, 255));
-        getContentPane().add(jTextFieldIDNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 240, 320, -1));
+        getContentPane().add(jTextFieldIDNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 240, 320, 30));
 
         jButtonDelete.setBackground(new java.awt.Color(204, 255, 255));
         jButtonDelete.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -110,8 +110,7 @@ public class DeleteCoordinator extends javax.swing.JFrame {
 
     void cancelOption(){
         String [] cancelButtons = {"Si", "No"}; 
-        int optionSelected = JOptionPane.showOptionDialog(this, "¿Seguro que desea cancelar?", 
-                "Cancelar Registro de Coordinador", 
+        int optionSelected = JOptionPane.showOptionDialog(this, "¿Seguro que desea cancelar?", "Cancelar Registro de Coordinador", 
                 JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.CANCEL_OPTION, null, cancelButtons, cancelButtons[0]);
         if (optionSelected == JOptionPane.YES_NO_OPTION) {
             PrincipalWindowAdministrator returnToWindowAdministrator = new PrincipalWindowAdministrator();

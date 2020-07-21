@@ -99,19 +99,19 @@ public class DeleteProfessor extends javax.swing.JFrame {
 
         jTextFieldCubicle.setEditable(false);
         jTextFieldCubicle.setBackground(new java.awt.Color(204, 255, 255));
-        getContentPane().add(jTextFieldCubicle, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 190, 340, -1));
+        getContentPane().add(jTextFieldCubicle, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 190, 340, 30));
 
         jTextFieldEmail.setEditable(false);
         jTextFieldEmail.setBackground(new java.awt.Color(204, 255, 255));
-        getContentPane().add(jTextFieldEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 230, 340, -1));
+        getContentPane().add(jTextFieldEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 230, 340, 30));
 
         jTextFieldSatffNumber.setEditable(false);
         jTextFieldSatffNumber.setBackground(new java.awt.Color(204, 255, 255));
-        getContentPane().add(jTextFieldSatffNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 270, 340, -1));
+        getContentPane().add(jTextFieldSatffNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 270, 340, 30));
 
         jTextFieldIDNumber.setEditable(false);
         jTextFieldIDNumber.setBackground(new java.awt.Color(204, 255, 255));
-        getContentPane().add(jTextFieldIDNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 310, 340, -1));
+        getContentPane().add(jTextFieldIDNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 310, 340, 30));
 
         jLabelFound.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Fondo.jpg"))); // NOI18N
         getContentPane().add(jLabelFound, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 660, 410));
@@ -127,9 +127,9 @@ public class DeleteProfessor extends javax.swing.JFrame {
 
     void cancelOption(){
         String [] cancelButtons = {"Sí", "No"};
-        int optionSelected = JOptionPane.showOptionDialog(this, "¿Seguro desea cancelar?", "Cancelar Eliminar Profesor", 
-                JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.CANCEL_OPTION, null, cancelButtons, cancelButtons [0]); 
-     
+        int optionSelected = JOptionPane.showOptionDialog
+                (this, "¿Seguro desea cancelar?", "Cancelar Eliminar Profesor", 
+                        JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.CANCEL_OPTION, null, cancelButtons, cancelButtons [0]); 
         if (optionSelected == JOptionPane.YES_NO_OPTION) {
             PrincipalWindowAdministrator returnToPrincipalWindowAdministrador = new PrincipalWindowAdministrator(); 
             returnToPrincipalWindowAdministrador.setVisible(true); 
