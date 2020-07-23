@@ -84,23 +84,14 @@ public class ProfessorDAO implements IProfessorDAO {
     }
 
     @Override
-    public void deleteProfessorByIDPerson(int id_person, boolean userAnswer) throws SQLException, ClassNotFoundException {
+    public void deleteProfessorByIDPerson(String id_person) throws SQLException, ClassNotFoundException {
         Connection connect = null;
-        PreparedStatement sentence = null;
         connect = connectDB.getConnection();
-        String query = "START TRANSACTION; DELETE FROM professor WHERE id_person = ?";
-        sentence = connect.prepareStatement(query);
-        sentence.setInt(1, id_person);
-        results = sentence.executeQuery();
-        if (userAnswer) {
-                sentence = connect.prepareStatement("COMMIT");
-                sentence.executeQuery();
-                connectDB.closeConnection();
-            } else {
-                sentence = connect.prepareStatement("ROLLBACK");
-                sentence.executeQuery();
-                connectDB.closeConnection();
-        }
+        String query = "UPDATE professor SET status = 'Inactivo' WHERE id_person = ?";
+        PreparedStatement statement = connect.prepareStatement(query);
+        statement.setString(1, id_person);
+        statement.executeUpdate();
+        connectDB.closeConnection();
     }
 
     @Override
@@ -123,6 +114,48 @@ public class ProfessorDAO implements IProfessorDAO {
         }
         connectDB.closeConnection();
         return allProfessors;
+    }
+    
+    public ArrayList<Professor> getProfessors(String status) throws SQLException, ClassNotFoundException{
+        ArrayList<Professor> activeProfessors = new ArrayList<>();
+        Professor professor = null;
+        connection = connectDB.getConnection();
+        consultation = connection.createStatement();
+        results = consultation.executeQuery("SELECT * FROM professor WHERE status = 'Activo'");
+        while (results.next()) {
+            professor = new Professor();
+            professor.setId_person(results.getInt("id_person"));
+            professor.setName(results.getString("name"));
+            professor.setShift(results.getString("Shift"));
+            professor.setCubicle(results.getString("cubicle"));
+            professor.setStaff_number(results.getString("staff_number"));
+            professor.setEmail(results.getString("email"));
+            professor.setPassword(results.getString("password"));
+            activeProfessors.add(professor);
+        }
+        connectDB.closeConnection();
+        return activeProfessors;
+    }
+    
+    public Professor getProfessor(String nameProfessor)throws SQLException, ClassNotFoundException{
+        Professor professor = null;
+        Connection connect = connectDB.getConnection();
+        String query = "SELECT * FROM professor where name = ?";
+        PreparedStatement statement = connect.prepareStatement(query);
+        statement.setString(1, nameProfessor);
+        results = statement.executeQuery();
+        while (results.next()) {
+            professor = new Professor();
+            professor.setId_person(results.getInt("id_person"));
+            professor.setName(results.getString("name"));
+            professor.setShift(results.getString("Shift"));
+            professor.setCubicle(results.getString("cubicle"));
+            professor.setStaff_number(results.getString("staff_number"));
+            professor.setEmail(results.getString("email"));
+            professor.setId_person(results.getString("id_person"));
+        }
+        connectDB.closeConnection();
+        return professor;
     }
 }
 

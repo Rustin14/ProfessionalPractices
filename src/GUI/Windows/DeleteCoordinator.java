@@ -120,7 +120,7 @@ public class DeleteCoordinator extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCancelActionPerformed
 
     private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
-        deleteCoordinator(idPerson);
+        deleteCoordinator(idPersonCoordinator);
     }//GEN-LAST:event_jButtonDeleteActionPerformed
 
     void cancelOption(){
@@ -132,15 +132,15 @@ public class DeleteCoordinator extends javax.swing.JFrame {
         }
     }
  
-    String idPerson = "";
+    String idPersonCoordinator = "";
     
-    String getCoordinator(){
+    void getCoordinator(){
         CoordinatorDAO getCoordinator = new CoordinatorDAO();
         String status = "Activo";
         
         try {
            Coordinator coordinator = getCoordinator.getCoordinator(status);
-           idPerson = coordinator.getId_person();
+           idPersonCoordinator = coordinator.getId_person();
            jTextFieldName.setText(coordinator.getName());
            jTextFieldCubicle.setText(coordinator.getCubicle());
            jTextFieldEmail.setText(coordinator.getEmail());
@@ -150,13 +150,12 @@ public class DeleteCoordinator extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "No se puede acceder a esta sección. Reintente más tarde");
             Logger.getLogger(DeleteCoordinator.class.getName()).log(Level.SEVERE, null, ex);
         }  
-        return idPerson;
     }
 
-    void deleteCoordinator(String idPerson){
+    void deleteCoordinator(String idPersonCoordinator){
         CoordinatorDAO deleteCoordinator = new CoordinatorDAO();
         try {
-            deleteCoordinator.deleteCoordinatorByIDPerson(idPerson);
+            deleteCoordinator.deleteCoordinatorByIDPerson(idPersonCoordinator);
             JOptionPane.showMessageDialog(this, "Eliminado exitosamente");
             returnToWindowAdministrator();
         } catch (SQLException | ClassNotFoundException ex){

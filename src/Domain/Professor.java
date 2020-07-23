@@ -30,7 +30,7 @@ public class Professor extends Person {
         this.status = status;
     }
 
-    public String id_person(){
+    public String getid_person(){
         return id_person;
     }
 

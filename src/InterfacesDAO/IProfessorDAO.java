@@ -14,6 +14,6 @@ public interface IProfessorDAO {
             String staff_number, String email, String password, String shift, String status) throws SQLException, ClassNotFoundException;
     public Professor searchProfessorByIDPerson (int id_person) throws SQLException, ClassNotFoundException;
     public Professor searchProfessorByKeyword (String keywords) throws SQLException, ClassNotFoundException;
-    public void deleteProfessorByIDPerson (int id_person, boolean userAnswer) throws SQLException, ClassNotFoundException;
+    public void deleteProfessorByIDPerson (String id_person) throws SQLException, ClassNotFoundException;
     public List<Professor> returnAllProfessors() throws SQLException, ClassNotFoundException;
 }
