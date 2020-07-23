@@ -28,6 +28,7 @@ public class RegisterProfessor extends javax.swing.JFrame {
     String mailProfessor = "";
     String passwordProfessor = "";
     String chooseShift = null;
+    static final String status = "Activo";
     
     void verificarCampos(){
         PersonDataValidations user = new PersonDataValidations ();
@@ -49,7 +50,7 @@ public class RegisterProfessor extends javax.swing.JFrame {
             personalNumber = jTextFieldPersonalNumber.getText();
             mailProfessor = jTextFieldMailProfessor.getText();
             passwordProfessor = jTextFieldPasswordProfessor.getText();
-            chooseShift = null;
+           
             
             if (jRadioButtonMorningShift.isSelected() == true){
                 chooseShift = jRadioButtonMorningShift.getText();
@@ -63,9 +64,7 @@ public class RegisterProfessor extends javax.swing.JFrame {
                             && (professor.validateCubicleNumber(cubicle) == true)
                                 && (user.validatePassword(passwordProfessor) == true) 
                                     && (professor.validateStaffNumber(personalNumber) == true)){
-                                        validateRepeatedInformation();
-                                        JOptionPane.showMessageDialog(this, "REGISTRO EXITOSO");
-                                        returnHomeAdministrator();
+                                        saveProfessor();
             }else if(user.validateName(nameProfessor) == false){
                 JOptionPane.showMessageDialog(this, "Favor de ingresar un nombre valido");
             }else if(user.validateIDNumber(idNumber) == false){
@@ -86,15 +85,14 @@ public class RegisterProfessor extends javax.swing.JFrame {
     void saveProfessor(){
         ProfessorDAO professor = new ProfessorDAO();
         try {
-            professor.saveProfessor(idNumber, nameProfessor, chooseShift, cubicle, chooseShift, mailProfessor, passwordProfessor);
+            professor.saveProfessor(idNumber, nameProfessor, cubicle, personalNumber,
+                    mailProfessor, passwordProfessor, chooseShift, status);
+            JOptionPane.showMessageDialog(this, "REGISTRO EXITOSO");
+            returnHomeAdministrator();
         } catch (SQLException | ClassNotFoundException ex) {
-            JOptionPane.showMessageDialog(this, "No se puede acceder a la base de datos en este momento. Intente más tarde.");
+            JOptionPane.showMessageDialog(this, "No hay conexión con la base de datos. Reintente más tarde.");
             Logger.getLogger(RegisterProfessor.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-    
-    void validateRepeatedInformation(){
-        // not suported yet
     }
     
     void returnHomeAdministrator(){
@@ -221,8 +219,6 @@ public class RegisterProfessor extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-    
-    
     private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
         String [] cancelButtons = {"Si", "No"}; 
         int optionSelected = JOptionPane.showOptionDialog(this, "¿Seguro que desea cancelar?", "Cancelar Registro de Profesor", 
@@ -231,11 +227,8 @@ public class RegisterProfessor extends javax.swing.JFrame {
         if (optionSelected == 0) {
            returnHomeAdministrator();   
         }
-     
     }//GEN-LAST:event_jButtonCancelActionPerformed
 
-
-    
     private void jButtonRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegisterActionPerformed
         verificarCampos();
     }//GEN-LAST:event_jButtonRegisterActionPerformed

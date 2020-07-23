@@ -6,6 +6,11 @@ Date of creation: Jun 26th. 2020
 */ 
 package GUI.Windows;
 
+import Domain.Coordinator;
+import dataAccess.CoordinatorDAO;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class DeleteCoordinator extends javax.swing.JFrame {
@@ -14,6 +19,7 @@ public class DeleteCoordinator extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setTitle("Eliminar Coordinador");
+        getCoordinator();
     }
 
     @SuppressWarnings("unchecked")
@@ -29,7 +35,7 @@ public class DeleteCoordinator extends javax.swing.JFrame {
         jTextFieldName = new javax.swing.JTextField();
         jTextFieldCubicle = new javax.swing.JTextField();
         jTextFieldEmail = new javax.swing.JTextField();
-        jTextFieldSatffNumber = new javax.swing.JTextField();
+        jTextFieldStaffNumber = new javax.swing.JTextField();
         jTextFieldIDNumber = new javax.swing.JTextField();
         jButtonDelete = new javax.swing.JButton();
         jButtonCancel = new javax.swing.JButton();
@@ -74,9 +80,9 @@ public class DeleteCoordinator extends javax.swing.JFrame {
         jTextFieldEmail.setBackground(new java.awt.Color(204, 255, 255));
         getContentPane().add(jTextFieldEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 160, 320, 30));
 
-        jTextFieldSatffNumber.setEditable(false);
-        jTextFieldSatffNumber.setBackground(new java.awt.Color(204, 255, 255));
-        getContentPane().add(jTextFieldSatffNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, 320, 30));
+        jTextFieldStaffNumber.setEditable(false);
+        jTextFieldStaffNumber.setBackground(new java.awt.Color(204, 255, 255));
+        getContentPane().add(jTextFieldStaffNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, 320, 30));
 
         jTextFieldIDNumber.setEditable(false);
         jTextFieldIDNumber.setBackground(new java.awt.Color(204, 255, 255));
@@ -85,6 +91,11 @@ public class DeleteCoordinator extends javax.swing.JFrame {
         jButtonDelete.setBackground(new java.awt.Color(204, 255, 255));
         jButtonDelete.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jButtonDelete.setText("Eliminar");
+        jButtonDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDeleteActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, 100, 40));
 
         jButtonCancel.setBackground(new java.awt.Color(204, 255, 255));
@@ -108,15 +119,56 @@ public class DeleteCoordinator extends javax.swing.JFrame {
         cancelOption();
     }//GEN-LAST:event_jButtonCancelActionPerformed
 
+    private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
+        deleteCoordinator(idPerson);
+    }//GEN-LAST:event_jButtonDeleteActionPerformed
+
     void cancelOption(){
         String [] cancelButtons = {"Si", "No"}; 
         int optionSelected = JOptionPane.showOptionDialog(this, "¿Seguro que desea cancelar?", "Cancelar Registro de Coordinador", 
                 JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.CANCEL_OPTION, null, cancelButtons, cancelButtons[0]);
         if (optionSelected == JOptionPane.YES_NO_OPTION) {
-            PrincipalWindowAdministrator returnToWindowAdministrator = new PrincipalWindowAdministrator();
-            returnToWindowAdministrator.setVisible(true);
-            dispose(); 
+            returnToWindowAdministrator();
         }
+    }
+ 
+    String idPerson = "";
+    
+    String getCoordinator(){
+        CoordinatorDAO getCoordinator = new CoordinatorDAO();
+        String status = "Activo";
+        
+        try {
+           Coordinator coordinator = getCoordinator.getCoordinator(status);
+           idPerson = coordinator.getId_person();
+           jTextFieldName.setText(coordinator.getName());
+           jTextFieldCubicle.setText(coordinator.getCubicle());
+           jTextFieldEmail.setText(coordinator.getEmail());
+           jTextFieldStaffNumber.setText(coordinator.getStaff_number());
+           jTextFieldIDNumber.setText(coordinator.getId_person());
+        } catch (SQLException | ClassNotFoundException ex) {
+            JOptionPane.showMessageDialog(this, "No se puede acceder a esta sección. Reintente más tarde");
+            Logger.getLogger(DeleteCoordinator.class.getName()).log(Level.SEVERE, null, ex);
+        }  
+        return idPerson;
+    }
+
+    void deleteCoordinator(String idPerson){
+        CoordinatorDAO deleteCoordinator = new CoordinatorDAO();
+        try {
+            deleteCoordinator.deleteCoordinatorByIDPerson(idPerson);
+            JOptionPane.showMessageDialog(this, "Eliminado exitosamente");
+            returnToWindowAdministrator();
+        } catch (SQLException | ClassNotFoundException ex){
+            JOptionPane.showMessageDialog(this, "No hay conexión con la base de datos, Reintente más tarde");
+            Logger.getLogger(DeleteCoordinator.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    void returnToWindowAdministrator(){
+        PrincipalWindowAdministrator returnToAdministrator = new PrincipalWindowAdministrator();
+        returnToAdministrator.setVisible(true);
+        dispose(); 
     }
     
     public static void main(String args[]) {
@@ -141,6 +193,6 @@ public class DeleteCoordinator extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldEmail;
     private javax.swing.JTextField jTextFieldIDNumber;
     private javax.swing.JTextField jTextFieldName;
-    private javax.swing.JTextField jTextFieldSatffNumber;
+    private javax.swing.JTextField jTextFieldStaffNumber;
     // End of variables declaration//GEN-END:variables
 }

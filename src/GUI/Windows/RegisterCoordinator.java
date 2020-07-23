@@ -137,7 +137,7 @@ public class RegisterCoordinator extends javax.swing.JFrame {
     String staffNumber = "";
     String mailCoordinator = "";
     String passwordCoordinator = "";
-    
+    static final String status = "Activo";
      void verificarCampos(){
         
         CoordinatorValidations userCoordinator = new CoordinatorValidations();
@@ -187,10 +187,10 @@ public class RegisterCoordinator extends javax.swing.JFrame {
     void saveCoordinator(){
         try {
             CoordinatorDAO coordinator = new CoordinatorDAO();
-            coordinator.saveCoordinator(idNumber, nameCoordinator, cubicle, staffNumber, mailCoordinator
-                    ,passwordCoordinator);
+            coordinator.saveCoordinator(idNumber, nameCoordinator, cubicle, staffNumber, mailCoordinator,
+                    passwordCoordinator, status);
         } catch (SQLException | ClassNotFoundException ex) {
-            JOptionPane.showMessageDialog(this, "No se puede acceder a la base de datos en este momento. Intente más tarde.");
+            JOptionPane.showMessageDialog(this, "No hay conexión con la base de datos. Reintente más tarde.");
             Logger.getLogger(RegisterCoordinator.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

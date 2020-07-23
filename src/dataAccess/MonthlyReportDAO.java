@@ -24,7 +24,7 @@ public class MonthlyReportDAO implements IMonthlyReportDAO {
 
 
     @Override
-    public void saveMonthlyReportByIDMonthly(int id_monthly, int id_practicing) throws SQLException, ClassNotFoundException{
+    public void saveMonthlyReportByIDMonthly(int id_monthly, int monthNumber, int score, String observations, Date dueDate, int id_practicing, String address) throws SQLException, ClassNotFoundException{
         Connection connect = connectDB.getConnection();
         String query = "INSERT INTO monthlyreport  (id_monthly, id_practicing) VALUES (?, ?)";
         PreparedStatement statement = connect.prepareStatement(query);
@@ -35,7 +35,7 @@ public class MonthlyReportDAO implements IMonthlyReportDAO {
     }
 
     @Override
-    public MonthlyReport readMonthlyReportByIDMonthly(int id_monthly) throws SQLException, ClassNotFoundException {
+    public MonthlyReport readMonthlyReportByIDMonthly(int id_monthly, String address) throws SQLException, ClassNotFoundException {
         MonthlyReport paper = null;
         ResultSet resultSet = null;
         Connection connect = connectDB.getConnection();

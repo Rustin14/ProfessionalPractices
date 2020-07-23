@@ -14,11 +14,12 @@ public class Professor extends Person {
     private String staff_number = "";
     private String email = "";
     private String password = "";
+    private String status = "";
 
     public Professor(){}
 
     public Professor(String name, String id_person,String shift, String cubicle, String staff_number
-            ,String email, String password){
+            ,String email, String password, String status){
         this.name = name;
         this.id_person = id_person;
         this.shift = shift;
@@ -26,6 +27,7 @@ public class Professor extends Person {
         this.staff_number = staff_number;
         this.email = email;
         this.password = password;
+        this.status = status;
     }
 
     public String id_person(){
@@ -85,5 +87,13 @@ public class Professor extends Person {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+    
+    public void setStatus(String status){
+        this.status = status;
+    }
+    
+    public String getStatus(){
+        return status;
     }
 }

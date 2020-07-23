@@ -8,20 +8,22 @@ Date of creation: April 27th. 2020
 package Domain;
 
 public class Coordinator {
-    private String name;
-    private String id_person;
-    private String cubicle;
-    private String staff_number;
-    private String email;
-    private String password;
+    private String name = "";
+    private String id_person = "";
+    private String cubicle = "";
+    private String staff_number = "";
+    private String email = "";
+    private String password = "";
+    private String status = "";
 
     public Coordinator(){}
 
-    public Coordinator(String name, String id_person, String cubicle, String staff_number) {
+    public Coordinator(String name, String id_person, String cubicle, String staff_number, String status) {
         this.name = name;
         this.id_person = id_person;
         this.cubicle = cubicle;
         this.staff_number = staff_number;
+        this.status = status;
     }
 
     public String getId_person() {
@@ -70,6 +72,14 @@ public class Coordinator {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+    
+    public void setStatus(String status){
+        this.status = status;
+    }
+    
+    public String getStatus(){
+        return status;
     }
 }
 

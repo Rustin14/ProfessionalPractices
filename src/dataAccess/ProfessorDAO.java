@@ -31,20 +31,22 @@ public class ProfessorDAO implements IProfessorDAO {
     }
 
     @Override
-    public void saveProfessor(String id_person, String name, String shift,String cubicle, String staff_number
-            ,String email, String password) throws SQLException, ClassNotFoundException {
-        Connection connect = connectDB.getConnection();
-        String query = "INSERT INTO professor (id_person, name, cubicle, staff_number) VALUES (?, ?, ?, ?)";
-        PreparedStatement statement = connect.prepareStatement(query);
-        statement.setString(1, id_person);
-        statement.setString(2, name);
-        statement.setString(3, shift);
-        statement.setString(4, cubicle);
-        statement.setString(5, staff_number);
-        statement.setString(6, email);
-        statement.setString(7, password);
-        statement.executeQuery();
-        connectDB.closeConnection();
+    public void saveProfessor(String id_person, String name, String cubicle, String staff_number,
+            String email, String password, String shift, String status) throws SQLException, ClassNotFoundException {
+                    Connection connect = connectDB.getConnection();
+                    String query = "INSERT INTO professor (id_person, name, cubicle, staff_number,"
+                            + "email, password, shift, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                                    PreparedStatement statement = connect.prepareStatement(query);
+                                    statement.setString(1, id_person);
+                                    statement.setString(2, name);
+                                    statement.setString(3, cubicle);
+                                    statement.setString(4, staff_number);
+                                    statement.setString(5, email);
+                                    statement.setString(6, password);
+                                    statement.setString(7, shift);
+                                    statement.setString(8, status);
+                                    statement.executeUpdate();
+                                    connectDB.closeConnection();
     }
 
     @Override
