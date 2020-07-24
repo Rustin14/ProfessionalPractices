@@ -143,18 +143,18 @@ public class GenerateActivity extends javax.swing.JFrame {
             monthOfDelivery = jTextFieldMonthOfDelivery.getText();
             yearOfDelivery = jTextFieldYearOfDelivery.getText();
            
-            if((user.validateTitle(titleOfActivity) == true) 
-                        && (user.validateDateDay(dayOfDelivery) == true) 
-                            && (user.validateDateMonth(monthOfDelivery) == true) 
-                                && (user.validateDateYear(yearOfDelivery) == true)){
+            if((user.validateTitle(titleOfActivity)) 
+                        && (user.validateDateDay(dayOfDelivery)) 
+                            && (user.validateDateMonth(monthOfDelivery)) 
+                                && (user.validateDateYear(yearOfDelivery))){
                                         goToNextWindow();
-            }else if((user.validateTitle(titleOfActivity) == false)){
+            }else if((!user.validateTitle(titleOfActivity))){
                 JOptionPane.showMessageDialog(this, "Asegurese de ingresar un título valido");
-            }else if((user.validateDateDay(dayOfDelivery) == false)){
+            }else if((!user.validateDateDay(dayOfDelivery))){
                 JOptionPane.showMessageDialog(this, "Asegurese de ingresar un día valido (valores numericos)");
-            }else if((user.validateDateMonth(monthOfDelivery) == false)){
+            }else if((!user.validateDateMonth(monthOfDelivery))){
                 JOptionPane.showMessageDialog(this, "Asegurese de ingresar un mes valido (el nombre de un mes)");
-            }else if((user.validateDateYear(yearOfDelivery) == false)){
+            }else if((!user.validateDateYear(yearOfDelivery))){
                 JOptionPane.showMessageDialog(this, "Asegurese de ingresar un año valido (valores numericos)");
             }       
         }

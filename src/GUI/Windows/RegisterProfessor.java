@@ -8,6 +8,8 @@ package GUI.Windows;
 import javax.swing.JOptionPane;
 import BusinessLogic.PersonDataValidations;
 import BusinessLogic.ProfessorValidations;
+import Domain.Person;
+import dataAccess.PersonDAO;
 import dataAccess.ProfessorDAO;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -22,7 +24,7 @@ public class RegisterProfessor extends javax.swing.JFrame {
     }
 
     String nameProfessor = "";
-    String idNumber = "";
+    String phoneNumber = "";
     String cubicle = "";
     String personalNumber = "";
     String mailProfessor = "";
@@ -35,7 +37,7 @@ public class RegisterProfessor extends javax.swing.JFrame {
         ProfessorValidations professor = new ProfessorValidations();
         
         if (jTextFieldNameProfessor.getText().isEmpty() 
-                ||jTextFieldIDNumber.getText().isEmpty()
+                ||jTextFieldPhoneNumber.getText().isEmpty()
                     || jTextFieldCubicle.getText().isEmpty()
                         || jTextFieldPersonalNumber.getText().isEmpty()
                             || jTextFieldMailProfessor.getText().isEmpty() 
@@ -45,7 +47,7 @@ public class RegisterProfessor extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Favor de NO dejar campos vacios");
         }else{
             nameProfessor = jTextFieldNameProfessor.getText();
-            idNumber = jTextFieldIDNumber.getText();
+            phoneNumber = jTextFieldPhoneNumber.getText();
             cubicle = jTextFieldCubicle.getText();
             personalNumber = jTextFieldPersonalNumber.getText();
             mailProfessor = jTextFieldMailProfessor.getText();
@@ -58,41 +60,68 @@ public class RegisterProfessor extends javax.swing.JFrame {
                 chooseShift = jRadioButtonEveningShift.getText();
             }
             
-            if((user.validateName(nameProfessor) == true) 
-                    &&(user.validateIDNumber(idNumber) == true)
-                        && (user.validateEmail(mailProfessor) == true) 
-                            && (professor.validateCubicleNumber(cubicle) == true)
-                                && (user.validatePassword(passwordProfessor) == true) 
-                                    && (professor.validateStaffNumber(personalNumber) == true)){
-                                        saveProfessor();
-            }else if(user.validateName(nameProfessor) == false){
+            if((user.validateName(nameProfessor)) 
+                    &&(user.validatePhoneNumber(phoneNumber))
+                        && (user.validateEmail(mailProfessor)) 
+                            && (professor.validateCubicleNumber(cubicle))
+                                && (user.validatePassword(passwordProfessor)) 
+                                    && (professor.validateStaffNumber(personalNumber))){
+                                        savePerson(nameProfessor, phoneNumber, mailProfessor);
+                                        getIdPersonSaved(nameProfessor);
+            }else if(!user.validateName(nameProfessor)){
                 JOptionPane.showMessageDialog(this, "Favor de ingresar un nombre valido");
-            }else if(user.validateIDNumber(idNumber) == false){
-                JOptionPane.showMessageDialog(this, "Favor de ingresar un NÚMERO de identificacón valido,"
-                        + "4 números como máximo");
-            }else if(user.validateEmail(mailProfessor) == false){
+            }else if(!user.validatePhoneNumber(phoneNumber)){
+                JOptionPane.showMessageDialog(this, "Favor de ingresar un número de telefono valido");
+            }else if(!user.validateEmail(mailProfessor)){
                 JOptionPane.showMessageDialog(this, "Ingrese un email valido");
-            }else if(professor.validateCubicleNumber(cubicle) == false){
+            }else if(!professor.validateCubicleNumber(cubicle)){
                 JOptionPane.showMessageDialog(this, "Ingrese un NÚMERO de cubiculo valido, 2 números como máximo");
-            }else if(user.validatePassword(passwordProfessor) == false){
+            }else if(!user.validatePassword(passwordProfessor)){
                 JOptionPane.showMessageDialog(this, "Ingrese una contraseña valida");
-            }else if(professor.validateStaffNumber(personalNumber) == false){
+            }else if(!professor.validateStaffNumber(personalNumber)){
                 JOptionPane.showMessageDialog(this, "Ingrese un número de personal valido");
             }
         }
     }
     
-    void saveProfessor(){
-        ProfessorDAO professor = new ProfessorDAO();
+    void savePerson(String nameProfessor, String phoneNumber, String mailProfessor){
+        PersonDAO Person = new PersonDAO();
         try {
-            professor.saveProfessor(idNumber, nameProfessor, cubicle, personalNumber,
-                    mailProfessor, passwordProfessor, chooseShift, status);
-            JOptionPane.showMessageDialog(this, "REGISTRO EXITOSO");
-            returnHomeAdministrator();
-        } catch (SQLException | ClassNotFoundException ex) {
+            Person.savePerson(nameProfessor, phoneNumber, mailProfessor);
+        } catch (SQLException | ClassNotFoundException ex){
             JOptionPane.showMessageDialog(this, "No hay conexión con la base de datos. Reintente más tarde.");
             Logger.getLogger(RegisterProfessor.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+    }
+    
+    
+    void getIdPersonSaved(String nameProfessor){
+        String idPerson = "";
+        PersonDAO getId = new PersonDAO();
+        try {
+           Person person = getId.searchPersonByKeyword(nameProfessor);
+           idPerson = person.getId_person();
+        } catch (SQLException | ClassNotFoundException ex) {
+            JOptionPane.showMessageDialog(this, "No se pudo obtener la información necesaria. Reintente más tarde.");
+            Logger.getLogger(RegisterProfessor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        saveProfessor(idPerson, nameProfessor, cubicle, personalNumber,
+                mailProfessor, passwordProfessor, chooseShift, status);
+    }
+    
+    void saveProfessor(String idPerson, String nameProfessor, String cubicle, String personalNumber, 
+            String mailProfessor, String passwordProfessor, String chooseShift, String status){
+                    ProfessorDAO professor = new ProfessorDAO();
+                    try {
+                        professor.saveProfessor(idPerson, nameProfessor, cubicle, personalNumber,
+                                mailProfessor, passwordProfessor, chooseShift, status);
+                                JOptionPane.showMessageDialog(this, "REGISTRO EXITOSO");
+                                returnHomeAdministrator();
+                    } catch (SQLException | ClassNotFoundException ex) {
+                        JOptionPane.showMessageDialog(this, "No hay conexión con la base de datos. Reintente más tarde.");
+                        Logger.getLogger(RegisterProfessor.class.getName()).log(Level.SEVERE, null, ex);
+                    }
     }
     
     void returnHomeAdministrator(){
@@ -121,8 +150,8 @@ public class RegisterProfessor extends javax.swing.JFrame {
         jTextFieldPasswordProfessor = new javax.swing.JTextField();
         jRadioButtonMorningShift = new javax.swing.JRadioButton();
         jRadioButtonEveningShift = new javax.swing.JRadioButton();
-        jLabelIDNumber = new javax.swing.JLabel();
-        jTextFieldIDNumber = new javax.swing.JTextField();
+        jLabelPhoneNumber = new javax.swing.JLabel();
+        jTextFieldPhoneNumber = new javax.swing.JTextField();
         jLabelCubicle = new javax.swing.JLabel();
         jTextFieldCubicle = new javax.swing.JTextField();
         jLabelFound = new javax.swing.JLabel();
@@ -192,19 +221,19 @@ public class RegisterProfessor extends javax.swing.JFrame {
         jRadioButtonMorningShift.setBackground(new java.awt.Color(204, 255, 255));
         buttonGroupChoiceOfShifts.add(jRadioButtonMorningShift);
         jRadioButtonMorningShift.setText("Matutino");
-        getContentPane().add(jRadioButtonMorningShift, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 250, -1, -1));
+        getContentPane().add(jRadioButtonMorningShift, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 250, -1, -1));
 
         jRadioButtonEveningShift.setBackground(new java.awt.Color(204, 255, 255));
         buttonGroupChoiceOfShifts.add(jRadioButtonEveningShift);
         jRadioButtonEveningShift.setText("Vespertino");
-        getContentPane().add(jRadioButtonEveningShift, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 250, -1, -1));
+        getContentPane().add(jRadioButtonEveningShift, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 250, -1, -1));
 
-        jLabelIDNumber.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabelIDNumber.setText("Número de identificación :");
-        getContentPane().add(jLabelIDNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, -1, -1));
+        jLabelPhoneNumber.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabelPhoneNumber.setText("Número de telefono :");
+        getContentPane().add(jLabelPhoneNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, -1, -1));
 
-        jTextFieldIDNumber.setBackground(new java.awt.Color(204, 255, 255));
-        getContentPane().add(jTextFieldIDNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 210, 240, 30));
+        jTextFieldPhoneNumber.setBackground(new java.awt.Color(204, 255, 255));
+        getContentPane().add(jTextFieldPhoneNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 210, 240, 30));
 
         jLabelCubicle.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabelCubicle.setText("Cubículo :");
@@ -224,7 +253,7 @@ public class RegisterProfessor extends javax.swing.JFrame {
         int optionSelected = JOptionPane.showOptionDialog(this, "¿Seguro que desea cancelar?", "Cancelar Registro de Profesor", 
                 JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.CANCEL_OPTION, null, cancelButtons, cancelButtons[0]);
         
-        if (optionSelected == 0) {
+        if (optionSelected == JOptionPane.YES_NO_CANCEL_OPTION) {
            returnHomeAdministrator();   
         }
     }//GEN-LAST:event_jButtonCancelActionPerformed
@@ -249,20 +278,20 @@ public class RegisterProfessor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelCorreoProfessor;
     private javax.swing.JLabel jLabelCubicle;
     private javax.swing.JLabel jLabelFound;
-    private javax.swing.JLabel jLabelIDNumber;
     private javax.swing.JLabel jLabelNameProfessor;
     private javax.swing.JLabel jLabelPasswordProfessor;
     private javax.swing.JLabel jLabelPersonalNumber;
+    private javax.swing.JLabel jLabelPhoneNumber;
     private javax.swing.JLabel jLabelProfessorIcon;
     private javax.swing.JLabel jLabelTitle;
     private javax.swing.JLabel jLabelTurnProfessor;
     private javax.swing.JRadioButton jRadioButtonEveningShift;
     private javax.swing.JRadioButton jRadioButtonMorningShift;
     private javax.swing.JTextField jTextFieldCubicle;
-    private javax.swing.JTextField jTextFieldIDNumber;
     private javax.swing.JTextField jTextFieldMailProfessor;
     private javax.swing.JTextField jTextFieldNameProfessor;
     private javax.swing.JTextField jTextFieldPasswordProfessor;
     private javax.swing.JTextField jTextFieldPersonalNumber;
+    private javax.swing.JTextField jTextFieldPhoneNumber;
     // End of variables declaration//GEN-END:variables
 }

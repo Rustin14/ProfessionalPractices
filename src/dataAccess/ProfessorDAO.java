@@ -59,7 +59,7 @@ public class ProfessorDAO implements IProfessorDAO {
         results = statement.executeQuery();
         while (results.next()) {
             professor = new Professor();
-            professor.setId_person(results.getInt("id_person"));
+            professor.setId_person(results.getString("id_person"));
             professor.setName(results.getString("name"));
             connectDB.closeConnection();
         }
@@ -76,7 +76,7 @@ public class ProfessorDAO implements IProfessorDAO {
         results = statement.executeQuery();
         while (results.next()) {
             professor = new Professor();
-            professor.setId_person(results.getInt("id_person"));
+            professor.setId_person(results.getString("id_person"));
             professor.setName(results.getString("name"));
         }
         connectDB.closeConnection();
@@ -103,7 +103,7 @@ public class ProfessorDAO implements IProfessorDAO {
         results = consultation.executeQuery("SELECT * FROM professor");
         while (results.next()) {
             professor = new Professor();
-            professor.setId_person(results.getInt("id_person"));
+            professor.setId_person(results.getString("id_person"));
             professor.setName(results.getString("name"));
             professor.setShift(results.getString("Shift"));
             professor.setCubicle(results.getString("cubicle"));
@@ -124,7 +124,7 @@ public class ProfessorDAO implements IProfessorDAO {
         results = consultation.executeQuery("SELECT * FROM professor WHERE status = 'Activo'");
         while (results.next()) {
             professor = new Professor();
-            professor.setId_person(results.getInt("id_person"));
+            professor.setId_person(results.getString("id_person"));
             professor.setName(results.getString("name"));
             professor.setShift(results.getString("Shift"));
             professor.setCubicle(results.getString("cubicle"));
@@ -146,7 +146,7 @@ public class ProfessorDAO implements IProfessorDAO {
         results = statement.executeQuery();
         while (results.next()) {
             professor = new Professor();
-            professor.setId_person(results.getInt("id_person"));
+            professor.setId_person(results.getString("id_person"));
             professor.setName(results.getString("name"));
             professor.setShift(results.getString("Shift"));
             professor.setCubicle(results.getString("cubicle"));

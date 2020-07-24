@@ -16,9 +16,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 public class PersonDAO implements IPersonDAO {
     private final ConnectDB connectDB;
@@ -31,6 +29,7 @@ public class PersonDAO implements IPersonDAO {
         connectDB = new ConnectDB();
     }
 
+    @Override
     public Person searchPersonbyID (int id_person) throws SQLException, ClassNotFoundException {
         Person person = null;
         Connection connect = connectDB.getConnection();
@@ -40,30 +39,31 @@ public class PersonDAO implements IPersonDAO {
         results = sentencia.executeQuery();
         while (results.next()){
             person = new Person();
-            person.setId_person(results.getInt("id_person"));
+            person.setId_person(results.getString("id_person"));
             person.setName(results.getString("name"));
         }
         connectDB.closeConnection();
         return person;
     }
 
-    public Person searchPersonByKeyword (String keyword) throws SQLException, ClassNotFoundException {
+    @Override
+    public Person searchPersonByKeyword (String name) throws SQLException, ClassNotFoundException {
         Person person = null;
         Connection connect = connectDB.getConnection();
-        String query = "SELECT id_person, name FROM person WHERE name LIKE %{?}%";
+        String query = "SELECT id_person FROM person WHERE name = ?";
         PreparedStatement sentence = connect.prepareStatement(query);
-        sentence.setString(1, keyword);
+        sentence.setString(1, name);
         results = sentence.executeQuery();
         while (results.next()) {
             person = new Person();
-            person.setId_person(results.getInt("id_person"));
-            person.setName(results.getString("name"));
+            person.setId_person(results.getString("id_person"));
         }
         connectDB.closeConnection();
         return person;
     }
 
-    public void deletePersonByIDPerson (int id_person, boolean userAnswer) throws SQLException, ClassNotFoundException {
+    @Override
+    public void deletePersonByIDPerson (int id_person, boolean userAnswer) throws SQLException, ClassNotFoundException{
         Connection connect = null;
         PreparedStatement sentence = null;
         connect = connectDB.getConnection();
@@ -82,6 +82,7 @@ public class PersonDAO implements IPersonDAO {
         }
     }
 
+    @Override
     public List<Person> returnAllPerson() throws SQLException, ClassNotFoundException {
         List<Person> allPerson = new ArrayList();
         Person person = null;
@@ -90,12 +91,24 @@ public class PersonDAO implements IPersonDAO {
         results = consultation.executeQuery("select id_person, name from person");
         while (results.next()){
             person = new Person();
-            person.setId_person(results.getInt("id_person"));
+            person.setId_person(results.getString("id_person"));
             person.setName(results.getString("name"));
             allPerson.add(person);
         }
         connectDB.closeConnection();
         return allPerson;
+    }
+    
+    @Override
+    public void savePerson(String name, String phoneNumber, String email) throws SQLException, ClassNotFoundException{
+            Connection connect = connectDB.getConnection();
+            String query = "INSERT INTO person (name, phoneNumber, email) VALUES (?, ?,  ?)";
+                    PreparedStatement statement = connect.prepareStatement(query);
+                    statement.setString(1, name);
+                    statement.setString(2, phoneNumber);
+                    statement.setString(3, email);
+                    statement.executeUpdate();
+                    connectDB.closeConnection();
     }
 }
 

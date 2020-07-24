@@ -15,7 +15,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
+
 
 
 public class CoordinatorDAO implements ICoordinatorDAO {
@@ -34,17 +34,17 @@ public class CoordinatorDAO implements ICoordinatorDAO {
             String password, String status) throws SQLException, ClassNotFoundException{
                     Connection connect = connectDB.getConnection();
                     String query = "INSERT INTO coordinator (id_person, name, cubicle, staff_number,"
-                        + "email, password, status) VALUES (?, ?, ?, ?, ?, ?, ?)";
-                                PreparedStatement statement = connect.prepareStatement(query);
-                                statement.setString(1, id_person);
-                                statement.setString(2, name);
-                                statement.setString(3, cubicle);
-                                statement.setString(4, staff_number);
-                                statement.setString(5, email);
-                                statement.setString(6, password);
-                                statement.setString(7, status);
-                                statement.executeQuery();
-                                connectDB.closeConnection();
+                            + "email, password, status) VALUES (?, ?, ?, ?, ?, ?, ?)";
+                                    PreparedStatement statement = connect.prepareStatement(query);
+                                    statement.setString(1, id_person);
+                                    statement.setString(2, name);
+                                    statement.setString(3, cubicle);
+                                    statement.setString(4, staff_number);
+                                    statement.setString(5, email);
+                                    statement.setString(6, password);
+                                    statement.setString(7, status);
+                                    statement.executeUpdate();
+                                    connectDB.closeConnection();
     }
 
     @Override

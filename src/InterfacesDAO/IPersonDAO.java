@@ -18,4 +18,5 @@ public interface IPersonDAO {
     public Person searchPersonByKeyword (String keyword) throws SQLException, ClassNotFoundException;
     public void deletePersonByIDPerson (int id_person, boolean userAnswer) throws SQLException, ClassNotFoundException;
     public List<Person> returnAllPerson() throws SQLException, ClassNotFoundException;
+    public void savePerson(String name, String phoneNumber, String email) throws SQLException, ClassNotFoundException;
 }

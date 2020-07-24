@@ -1,13 +1,13 @@
 package Domain;
 
 public class Person {
-    private int id_person;
+    private String id_person;
     private String name;
     private String phoneNumber;
     private String email;
     private String id_course;
 
-    public Person(int id_person, String name, String phoneNumber, String email, String id_course) {
+    public Person(String id_person, String name, String phoneNumber, String email, String id_course) {
         this.id_person = id_person;
         this.name = name;
         this.phoneNumber = phoneNumber;
@@ -17,11 +17,11 @@ public class Person {
 
     public Person(){}
 
-    public void setId_person (int id_p) {
+    public void setId_person (String id_p) {
         this.id_person = id_p;
     }
 
-    public int getId_person () {
+    public String getId_person () {
         return id_person;
     }
 

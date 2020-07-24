@@ -7,7 +7,9 @@ Date of creation: May 15th. 2020
 package GUI.Windows;
 import BusinessLogic.CoordinatorValidations;
 import BusinessLogic.PersonDataValidations;
+import Domain.Person;
 import dataAccess.CoordinatorDAO;
+import dataAccess.PersonDAO;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -39,8 +41,8 @@ public class RegisterCoordinator extends javax.swing.JFrame {
         jButtonRegister = new javax.swing.JButton();
         jLabelCubicle = new javax.swing.JLabel();
         jTextFieldCubicle = new javax.swing.JTextField();
-        jLabelIDNumber = new javax.swing.JLabel();
-        jTextFieldIDNumber = new javax.swing.JTextField();
+        jLabelPhoneNumber = new javax.swing.JLabel();
+        jTextFieldPhoneNumber = new javax.swing.JTextField();
         jLabelFound = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -103,17 +105,17 @@ public class RegisterCoordinator extends javax.swing.JFrame {
 
         jLabelCubicle.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabelCubicle.setText("Cubiculo: ");
-        getContentPane().add(jLabelCubicle, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, -1, -1));
+        getContentPane().add(jLabelCubicle, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, -1, -1));
 
         jTextFieldCubicle.setBackground(new java.awt.Color(204, 255, 255));
-        getContentPane().add(jTextFieldCubicle, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 170, 230, 30));
+        getContentPane().add(jTextFieldCubicle, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, 230, 30));
 
-        jLabelIDNumber.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabelIDNumber.setText("Número de identificación:");
-        getContentPane().add(jLabelIDNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
+        jLabelPhoneNumber.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabelPhoneNumber.setText("Número de telefono :");
+        getContentPane().add(jLabelPhoneNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, -1, -1));
 
-        jTextFieldIDNumber.setBackground(new java.awt.Color(204, 255, 255));
-        getContentPane().add(jTextFieldIDNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, 230, 30));
+        jTextFieldPhoneNumber.setBackground(new java.awt.Color(204, 255, 255));
+        getContentPane().add(jTextFieldPhoneNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 170, 230, 30));
 
         jLabelFound.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Fondo.jpg"))); // NOI18N
         getContentPane().add(jLabelFound, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 723, 461));
@@ -132,7 +134,7 @@ public class RegisterCoordinator extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonRegisterActionPerformed
     
     String nameCoordinator = "";
-    String idNumber = "";
+    String phoneNumber = "";
     String cubicle = "";
     String staffNumber = "";
     String mailCoordinator = "";
@@ -141,37 +143,36 @@ public class RegisterCoordinator extends javax.swing.JFrame {
      void verificarCampos(){
         
         CoordinatorValidations userCoordinator = new CoordinatorValidations();
+        PersonDataValidations userPerson = new PersonDataValidations();
         
             if (jTextFieldNameCoordinator.getText().isEmpty() 
                     || jTextFieldCubicle.getText().isEmpty()
                         || jTextFieldPersonalNumber.getText().isEmpty() 
                             || jTextFieldMailCoordinator.getText().isEmpty() 
-                                || jTextFieldPasswordCoordinator.getText().isEmpty()){
-                                    JOptionPane.showMessageDialog(this, "Favor de NO dejar espacios vacios");   
+                                || jTextFieldPhoneNumber.getText().isEmpty()
+                                    || jTextFieldPasswordCoordinator.getText().isEmpty()){
+                                        JOptionPane.showMessageDialog(this, "Favor de NO dejar espacios vacios");   
             }else{
             
                 nameCoordinator = jTextFieldNameCoordinator.getText();
-                idNumber = jTextFieldIDNumber.getText();
-                cubicle = jTextFieldNameCoordinator.getText();
+                phoneNumber = jTextFieldPhoneNumber.getText();
+                cubicle = jTextFieldCubicle.getText();
                 staffNumber = jTextFieldPersonalNumber.getText();
                 mailCoordinator = jTextFieldMailCoordinator.getText();
                 passwordCoordinator = jTextFieldPasswordCoordinator.getText();
             
                 if((userCoordinator.validateName(nameCoordinator)) 
-                        && (userCoordinator.validateIDNumber(idNumber))
+                        && (userPerson.validatePhoneNumber(phoneNumber))
                             && (userCoordinator.validateCubicleNumber(cubicle))
                                 && (userCoordinator.validateStaffNumber(staffNumber)) 
                                     && (userCoordinator.validateEmail(mailCoordinator)) 
                                         && (userCoordinator.validatePassword(passwordCoordinator))){
-                                            saveCoordinator();
-                                            JOptionPane.showMessageDialog(this, "REGISTRO EXITOSO");
-                                            returnHomeAdministrator();
-                                            
+                                            savePerson(nameCoordinator, phoneNumber, mailCoordinator);
+                                            getIdPersonSaved(nameCoordinator);
                 }else if(!userCoordinator.validateName(nameCoordinator)){
                     JOptionPane.showMessageDialog(this, "Asegurese de ingresar un nombre valido");
-                }else if(!userCoordinator.validateIDNumber(idNumber)){
-                    JOptionPane.showMessageDialog(this, "Asegurese de ingresar un NÚMERO de identificación valido,"
-                            + "4 números como máximo");
+                }else if(!userPerson.validatePhoneNumber(phoneNumber)){
+                    JOptionPane.showMessageDialog(this, "Asegurese de ingresar un número de télefono valido");
                 }else if(!userCoordinator.validateCubicleNumber(cubicle)){
                     JOptionPane.showMessageDialog(this, "Ingrese un NÚMERO de cubiculo valido, 2 números como máximo");
                 }else if(!userCoordinator.validateStaffNumber(staffNumber)){
@@ -183,16 +184,43 @@ public class RegisterCoordinator extends javax.swing.JFrame {
                 }   
             }
     }
-   
-    void saveCoordinator(){
+    
+    void savePerson(String nameCoordinator, String phoneNumber, String mailCoordinator){
+        PersonDAO personSave = new PersonDAO();
         try {
-            CoordinatorDAO coordinator = new CoordinatorDAO();
-            coordinator.saveCoordinator(idNumber, nameCoordinator, cubicle, staffNumber, mailCoordinator,
-                    passwordCoordinator, status);
+            personSave.savePerson(nameCoordinator, phoneNumber, mailCoordinator);
         } catch (SQLException | ClassNotFoundException ex) {
             JOptionPane.showMessageDialog(this, "No hay conexión con la base de datos. Reintente más tarde.");
             Logger.getLogger(RegisterCoordinator.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    void getIdPersonSaved(String nameCoordinator){
+        String idPerson = "";
+        PersonDAO getId = new PersonDAO();
+        try {
+            Person person = getId.searchPersonByKeyword(nameCoordinator);
+            idPerson = person.getId_person();
+        } catch (SQLException | ClassNotFoundException ex) {
+            JOptionPane.showMessageDialog(this, "No se pudo obtener la información necesaria. Reintente más tarde.");
+            Logger.getLogger(RegisterCoordinator.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        saveCoordinator(idPerson, nameCoordinator, cubicle, staffNumber, mailCoordinator,
+                passwordCoordinator, status);
+    }
+   
+    void saveCoordinator(String idPerson, String nameCoordinator, String cubicle, String staffNumber, 
+            String mailCoordinator,String passwordCoordinator, String status){
+                    try {
+                        CoordinatorDAO coordinator = new CoordinatorDAO();
+                        coordinator.saveCoordinator(idPerson, nameCoordinator, cubicle, staffNumber, mailCoordinator,
+                                passwordCoordinator, status);
+                                JOptionPane.showMessageDialog(this, "Registro exitoso");
+                                returnHomeAdministrator();
+                    } catch (SQLException | ClassNotFoundException ex) {
+                        JOptionPane.showMessageDialog(this, "No hay conexión con la base de datos. Reintente más tarde.");
+                        Logger.getLogger(RegisterCoordinator.class.getName()).log(Level.SEVERE, null, ex);
+                    }
     }
      
     void returnHomeAdministrator(){
@@ -231,17 +259,17 @@ public class RegisterCoordinator extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelCoordinatorIcon;
     private javax.swing.JLabel jLabelCubicle;
     private javax.swing.JLabel jLabelFound;
-    private javax.swing.JLabel jLabelIDNumber;
     private javax.swing.JLabel jLabelMailCoordinator;
     private javax.swing.JLabel jLabelNameCoordinator;
     private javax.swing.JLabel jLabelPasswordCoordinator;
     private javax.swing.JLabel jLabelPersonalNumber;
+    private javax.swing.JLabel jLabelPhoneNumber;
     private javax.swing.JLabel jLabelTitle;
     private javax.swing.JTextField jTextFieldCubicle;
-    private javax.swing.JTextField jTextFieldIDNumber;
     private javax.swing.JTextField jTextFieldMailCoordinator;
     private javax.swing.JTextField jTextFieldNameCoordinator;
     private javax.swing.JTextField jTextFieldPasswordCoordinator;
     private javax.swing.JTextField jTextFieldPersonalNumber;
+    private javax.swing.JTextField jTextFieldPhoneNumber;
     // End of variables declaration//GEN-END:variables
 }
